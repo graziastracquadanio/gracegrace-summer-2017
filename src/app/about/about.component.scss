@@ -1,0 +1,204 @@
+@import '../../assets/styles/media-queries';
+@import '../../assets/styles/variables';
+
+@mixin super_heading {
+  font-family: $primary-heading-font;
+  font-size: 2em;
+  text-transform: uppercase;
+  line-height: 1.25;
+  color: $black-color;
+  margin-bottom: 1em;
+
+  @include printAndSmartphone {
+    font-size: 22px;
+    margin-top: 20px;
+    margin-bottom: 20px;
+  }
+
+  @include smartphone {
+
+  }
+}
+
+@mixin heading {
+  font-family: $primary-heading-font;
+  font-size: 1.5em;
+  margin-bottom: 0.5em;
+  text-transform: uppercase;
+  line-height: 1.25;
+  color: $primary-color;
+
+  @include printAndSmartphone {
+    font-size: 16px;
+    margin-bottom: 5px;
+  }
+}
+
+@mixin heading_subsection {
+  font-family: $secondary-heading-font;
+  font-size: 1.2em;
+  margin-bottom: 0.3em;
+  line-height: 1.25;
+  color: $black-color;
+  font-weight: 300;
+
+  @include printAndSmartphone {
+    font-size: 14px;
+    margin-bottom: 2px;
+  }
+}
+
+@mixin subheading_subsection {
+  font-family: $general-font;
+  font-size: 1em;
+  line-height: 1.25;
+  color: $black-color;
+  margin-bottom: 0.2em;
+  font-style: italic;
+
+  @include printAndSmartphone {
+    font-size: 13px;
+    margin-bottom: 2px;
+  }
+}
+
+@mixin general_text($color: $black-color) {
+  font-family: $general-font;
+  font-size: 0.9em;
+  line-height: 1.5;
+  color: $color;
+
+  @include printAndSmartphone {
+    font-size: 12px;
+    margin-bottom: 2px;
+  }
+}
+
+.cv {
+  margin: 0 auto;
+  width: 90%;
+  max-width: 60em;
+  padding: 0 1em;
+
+  @include print {
+    width: 100%;
+    max-width: auto;
+    padding: 0;
+  }
+
+  &_section {
+    padding-bottom: 2em;
+    page-break-inside: avoid;
+
+    @include printAndSmartphone {
+      padding-bottom: 16px;
+    }
+  }
+
+  &_section_title {
+    @include heading;
+  }
+
+  &_intro {
+    @include super_heading;
+
+    span {
+      display: inline-block;
+      color: $primary-color;
+    }
+  }
+
+  &_experience_item {
+    margin-bottom: 1.5em;
+
+    @include printAndSmartphone {
+      margin-bottom: 12px;
+    }
+
+    &:last-child {
+      margin-bottom: 0;
+    }
+
+    h2 {
+      @include heading_subsection;
+    }
+
+    &_company {
+      font-weight: 400;
+    }
+
+    &_details {
+      @include subheading_subsection;
+    }
+
+    &_description {
+      @include general_text;
+    }
+  }
+
+  &_about {
+    p {
+      @include general_text;
+    }
+  }
+
+  &_works {
+    p {
+      @include general_text;
+    }
+
+    &_item {
+      display: flex;
+      margin: 0.5em 0;
+
+      @include smartphone {
+        flex-direction: column;
+      }
+
+      @include printAndSmartphone {
+        margin: 5px 0;
+      }
+
+      &_name {
+        @include general_text;
+        width: 20%;
+        min-width: 150px;
+      }
+
+      &_description {
+        @include general_text;
+        width: 80%;
+
+        @include smartphone {
+          width: 100%;
+        }
+      }
+    }
+  }
+
+  &_code_item {
+    display: flex;
+    align-items: center;
+    margin: 0.5em 0;
+
+    @include printAndSmartphone {
+      margin: 5px 0;
+    }
+
+    &_icon {
+      width: 2em;
+      height: 2em;
+      margin-right: 1em;
+
+      @include printAndSmartphone {
+        width: 28px;
+        height: 28px;
+        margin-right: 16px;
+      }
+    }
+
+    &_url {
+      @include general_text($primary-color);
+    }
+  }
+}

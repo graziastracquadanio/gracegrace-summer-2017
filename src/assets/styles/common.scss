@@ -1,0 +1,33 @@
+@import 'variables';
+
+body {
+  width: 100%;
+  height: 100vh;
+  // background-image: url('/assets/images/watercolor_bg.jpg');
+}
+
+a {
+  color: $primary-color;
+}
+
+// PRINT STUFF
+@page {
+  size: A4;
+  margin: 25mm 25mm 25mm 25mm;
+}
+
+@media print {
+  body {
+    height: auto;
+    background-image: none;
+  }
+
+  .print-hidden {
+    display: none;
+  }
+}
+
+svg {
+  width: 100%;
+  height: 100%;
+}
