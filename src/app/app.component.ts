@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { COLORS } from './constants/color-defs';
+import { COLORS } from './commons/color-defs';
 
 @Component({
   selector: 'app-root',

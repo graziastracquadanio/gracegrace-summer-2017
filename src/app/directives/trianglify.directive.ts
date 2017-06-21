@@ -1,6 +1,6 @@
 import { Directive, ElementRef, HostListener, Input, Renderer } from '@angular/core';
 import * as Trianglify from 'trianglify';
-import { COLORS } from '../constants/color-defs';
+import { COLORS } from '../commons/color-defs';
 
 @Directive({
   selector: '[trianglify]'
@@ -15,7 +15,7 @@ export class TrianglifyDirective {
     private renderer: Renderer) {
   }
 
-  private trianglifyElement(color: number, duration: number = 250) {
+  private trianglifyElement(color: any, duration: number = 250) {
     let element = this.elementRef.nativeElement;
     const options = this.getOptions(element, color);
     const { width, height } = options;
@@ -43,9 +43,11 @@ export class TrianglifyDirective {
     this.currentBackground = background;
   }
 
-  private getOptions(element: any, color: number) {
+  private getOptions(element: any, color: any) {
     const { width, height } = this.rect(element);
-    const palette = Trianglify.colorbrewer[COLORS[color]];
+    const palette = typeof color === 'number' ?
+      Trianglify.colorbrewer[COLORS[color]] :
+      color;
 
     return {
       width,
@@ -68,8 +70,11 @@ export class TrianglifyDirective {
   }
 
   @Input() set trianglify(value: any) {
-    this.currentIndex = typeof value === 'number' ? value : COLORS.findIndex(color => color === value);
-    this.trianglifyElement(this.currentIndex, 250);
+    const nextColor = typeof value === 'string' ?
+        COLORS.findIndex(color => color === value) :
+        value;
+
+    this.trianglifyElement(nextColor, 250);
   }
 
   @Input() set trianglifyCycle(timing: number) {

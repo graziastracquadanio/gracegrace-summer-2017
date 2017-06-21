@@ -10,4 +10,3 @@ export const COLORS = [
   'OrRd',
   'PuRd',
 ]
-

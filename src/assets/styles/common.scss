@@ -55,3 +55,7 @@ svg {
 .centered-container {
   @include centered-container;
 }
+
+.after-menu {
+  margin-top: 5em;
+}

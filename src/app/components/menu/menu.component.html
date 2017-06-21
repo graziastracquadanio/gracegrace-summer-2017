@@ -1,23 +1,47 @@
 <div class="main-menu print-hidden">
-  <a
-    class="main-menu_item"
-    title="Home"
-    routerLink="/home"
-    routerLinkActive="active">
-    Home
-  </a>
-  <a
-    class="main-menu_item"
-    title="View my cv"
-    routerLink="/about"
-    routerLinkActive="active">
-    About&Cv
-  </a>
-  <a
-    class="main-menu_item"
-    title="Some stuff"
-    routerLink="/stuff"
-    routerLinkActive="active">
-    Stuff
-  </a>
+  <div class="main-menu_links">
+    <a
+      class="main-menu_item"
+      title="Home"
+      routerLink="/home"
+      routerLinkActive="active">
+      Home
+    </a>
+    <a
+      class="main-menu_item"
+      title="View my cv"
+      routerLink="/about"
+      routerLinkActive="active">
+      About&Cv
+    </a>
+    <a
+      class="main-menu_item"
+      title="Some stuff"
+      routerLink="/stuff"
+      routerLinkActive="active">
+      Stuff
+    </a>
+  </div>
+  <div class="main-menu_social">
+    <a class="main-menu_social-item"
+      title="Instagram"
+      [inlineSVG]="'/assets/svg/instagram.svg'">
+    </a>
+    <a class="main-menu_social-item"
+      title="Facebook"
+      [inlineSVG]="'/assets/svg/facebook.svg'">
+    </a>
+    <a class="main-menu_social-item"
+      title="Linkedin"
+      [inlineSVG]="'/assets/svg/linkedin.svg'">
+    </a>
+    <a class="main-menu_social-item"
+      title="Codepen"
+      [inlineSVG]="'/assets/svg/codepen.svg'">
+    </a>
+    <a class="main-menu_social-item"
+      title="Github"
+      [inlineSVG]="'/assets/svg/github.svg'">
+    </a>
+  </div>
 </div>
