@@ -1,4 +1,5 @@
 @import 'variables';
+@import 'media-queries';
 
 body {
   width: 100%;
@@ -23,11 +24,34 @@ a {
   }
 
   .print-hidden {
-    display: none;
+    display: none !important;
+    visibility: hidden !important;
   }
 }
+
+@media not print {
+  .print-display {
+    display: none !important;
+    visibility: hidden !important;
+  }
+}
+// END PRINT STUFF
 
 svg {
   width: 100%;
   height: 100%;
+}
+
+@mixin centered-container {
+  margin: 0 auto;
+  width: 80%;
+  max-width: 60rem;
+
+  @include smartphone {
+    width: 90%;
+  }
+}
+
+.centered-container {
+  @include centered-container;
 }

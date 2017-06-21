@@ -6,12 +6,20 @@ import { NgModule } from '@angular/core';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { AboutComponent } from './about/about.component';
+import { AboutComponent } from './components/about/about.component';
+import { IntroComponent } from './components/intro/intro.component';
+import { TrianglifyDirective } from './directives/trianglify.directive';
+import { MenuComponent } from './components/menu/menu.component';
+import { TypewritingDirective } from './directives/typewriting.directive';
 
 @NgModule({
   declarations: [
     AppComponent,
-    AboutComponent
+    AboutComponent,
+    IntroComponent,
+    TrianglifyDirective,
+    MenuComponent,
+    TypewritingDirective
   ],
   imports: [
     AppRoutingModule,

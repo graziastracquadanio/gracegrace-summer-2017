@@ -1,0 +1,46 @@
+@import '../assets/styles/variables';
+
+.colorful-bg {
+  position: fixed;
+  height: 100vh;
+  width: 100%;
+  z-index: -1;
+  background-size: contain;
+  // transition: background-image .25s linear;
+}
+
+.color-switcher {
+  $color-switcher-color: white;
+
+  position: fixed;
+  bottom: 0;
+  right: 0;
+
+  display: flex;
+  align-items: flex-end;
+
+  margin-bottom: 0.5em;
+  margin-right: 0.5em;
+  opacity: .5;
+  transition: opacity .2s ease-out;
+  cursor: pointer;
+  color: $color-switcher-color;
+  fill: $color-switcher-color;
+
+  &:hover {
+    opacity: 1;
+  }
+
+  .icon {
+    height: 2em;
+    width: 2em;
+    margin-right: 0.3em;
+  }
+
+  .text {
+    font-family: $general-font;
+    font-size: .8em;
+    width: 7em;
+    user-select: none;
+  }
+}

@@ -1,1 +1,11 @@
-<router-outlet></router-outlet>
+<app-menu></app-menu>
+
+
+<router-outlet>
+  <div class="colorful-bg"  [trianglify]="color" [trianglifyCycle]="10000"></div>
+</router-outlet>
+
+<div class="color-switcher" (click)="generateRandomColor()">
+  <div class="icon" [inlineSVG]="'/assets/svg/idea.svg'"></div>
+  <div class="text">Click here to change color</div>
+</div>

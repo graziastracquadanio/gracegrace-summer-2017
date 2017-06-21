@@ -1,0 +1,41 @@
+// color-switcher
+.color-switcher {
+  .icon {
+    animation: ideaLineAnimation 4s linear infinite;
+    transform-origin: 50% 100%;
+  }
+
+  &:hover {
+    .icon {
+      animation-play-state: paused;
+    }
+
+    .line {
+      opacity: 1;
+    }
+  }
+
+  .line {
+    opacity: 0;
+  }
+}
+
+$ideanAngle: 10deg;
+
+@keyframes ideaLineAnimation {
+  0% {
+    transform: rotate(0);
+  } 75% {
+    transform: rotate(0);
+  } 80% {
+    transform: rotate(-$ideanAngle);
+  } 85% {
+    transform: rotate($ideanAngle);
+  } 90% {
+    transform: rotate(-$ideanAngle);
+  } 95% {
+    transform: rotate($ideanAngle);
+  } 100% {
+    transform: rotate(0);
+  }
+}
