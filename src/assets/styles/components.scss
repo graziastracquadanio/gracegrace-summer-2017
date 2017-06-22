@@ -13,10 +13,21 @@
     .line {
       opacity: 1;
     }
+
+    .text_bg svg {
+      animation: ovalSketchAnimation 1.75s linear infinite;
+    }
   }
 
   .line {
     opacity: 0;
+  }
+
+  .text_bg svg {
+    fill: transparent;
+    stroke: white;
+    stroke-width: 2px;
+    stroke-dasharray: 700;
   }
 }
 
@@ -37,5 +48,15 @@ $ideanAngle: 10deg;
     transform: rotate($ideanAngle);
   } 100% {
     transform: rotate(0);
+  }
+}
+
+@keyframes ovalSketchAnimation {
+  0% {
+    stroke-dashoffset: 700;
+  } 50% {
+    stroke-dashoffset: 1400;
+  } 100% {
+    stroke-dashoffset: 2100;
   }
 }

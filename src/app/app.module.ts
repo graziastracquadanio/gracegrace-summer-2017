@@ -5,6 +5,10 @@ import { HttpModule } from '@angular/http';
 import { InlineSVGModule } from 'ng-inline-svg';
 import { NgModule } from '@angular/core';
 
+import {
+  ColorService
+} from './services';
+
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { AboutComponent } from './components/about/about.component';
@@ -20,7 +24,7 @@ import { TypewritingDirective } from './directives/typewriting.directive';
     IntroComponent,
     TrianglifyDirective,
     MenuComponent,
-    TypewritingDirective
+    TypewritingDirective,
   ],
   imports: [
     AppRoutingModule,
@@ -30,7 +34,9 @@ import { TypewritingDirective } from './directives/typewriting.directive';
     HttpModule,
     InlineSVGModule,
   ],
-  providers: [],
+  providers: [
+    ColorService,
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

@@ -1,5 +1,7 @@
-import { Component } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
+import { Router } from '@angular/router';
 import { COLORS } from './commons/color-defs';
+import { ColorService } from './services';
 
 @Component({
   selector: 'app-root',
@@ -8,20 +10,40 @@ import { COLORS } from './commons/color-defs';
 })
 
 export class AppComponent {
-  indexColor: number = 0;
-  color: string = COLORS[0];
+  changeFast: boolean;
+  currentPalette: string;
+  colorSubscription;
 
-  constructor() {
+  constructor(
+    private colorService: ColorService,
+    private router: Router) {
+
+    setInterval(() => {
+      this.changeFast = false;
+      this.colorService.setNextPalette();
+    }, 10000);
   }
 
-  generateRandomColor() {
-    this.indexColor++;
-    this.indexColor = this.indexColor === COLORS.length ? 0 : this.indexColor;
-    this.color = COLORS[this.indexColor];
+  showNextPalette() {
+    this.changeFast = true;
+    this.colorService.setNextPalette();
   }
-}
 
-function getRandom(min, max) {
-    return Math.floor(Math.random() * (max - min)) + min;
+  ngOnInit() {
+    this.colorSubscription = this.colorService.currentPalette$.subscribe(
+      value => {
+        this.changeFast = true;
+        this.currentPalette = value;
+      }
+    );
+
+    this.router.events.subscribe((val) => {
+      this.colorService.setNextPalette();
+    });
+  }
+
+  ngOnDestroy() {
+    this.colorSubscription.unsubscribe();
+  }
 }
 

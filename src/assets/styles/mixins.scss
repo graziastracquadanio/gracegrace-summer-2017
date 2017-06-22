@@ -1,0 +1,35 @@
+@import 'variables';
+
+// COLOR DEFS
+@mixin colorBasedOnContext {
+  @each $code, $color in $palette-defs {
+    .#{$code} & {
+      color: $color;
+    }
+  }
+}
+
+@mixin lightColorBasedOnContext {
+  @each $code, $color in $palette-defs-light {
+    .#{$code} & {
+      color: $color;
+    }
+  }
+}
+
+@mixin backgroundBasedOnContext {
+  @each $code, $color in $palette-defs {
+    .#{$code} & {
+      background-color: $color;
+    }
+  }
+}
+
+@mixin lightBackgroundBasedOnContext {
+  @each $code, $color in $palette-defs-light {
+    .#{$code} & {
+      background-color: $color;
+    }
+  }
+}
+// END COLOR DEFS

@@ -1,6 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import content from './about.content';
 import { slideInOut } from '../../commons/routing-animation';
+import { ColorService } from '../../services/color.service';
 
 @Component({
   selector: 'about',
@@ -10,12 +11,24 @@ import { slideInOut } from '../../commons/routing-animation';
   host: { '[@routingAnimation]': '' }
 })
 export class AboutComponent implements OnInit {
+  colorSubscription;
+  currentPalette;
   experience: Object[] = content.experience;
   works: Object[] = content.works;
 
-  constructor() { }
-
-  ngOnInit() {
+  constructor(private colorService: ColorService) {
   }
 
+  ngOnInit() {
+    this.colorSubscription = this.colorService.currentPalette$.subscribe(
+      value => {
+        console.log(value)
+        this.currentPalette = value;
+      }
+    );
+  }
+
+  ngOnDestroy() {
+    this.colorSubscription.unsubscribe();
+  }
 }

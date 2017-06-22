@@ -8,3 +8,29 @@ $black:                   #404040; //#181a2b;
 $text-color:              white;
 $light-text-color:        white;
 $dark-text-color:         $black;
+
+$palette-defs: (
+  RdPu:   #c51b8a,
+  BuPu:   #8856a7,
+  BuGn:   #2ca25f,
+  GnBu:   #43a2ca,
+  YlGnBu: #2c7fb8,
+  YlGn:   #31a354,
+  YlOrBr: #d95f0e,
+  YlOrRd: #f03b20,
+  OrRd:   #e34a33,
+  PuRd:   #dd1c77
+);
+
+$palette-defs-light: (
+  RdPu:   #fde0dd,
+  BuPu:   #e0ecf4,
+  BuGn:   #e5f5f9,
+  GnBu:   #e0f3db,
+  YlGnBu: #edf8b1,
+  YlGn:   #f7fcb9,
+  YlOrBr: #fff7bc,
+  YlOrRd: #ffeda0,
+  OrRd:   #fee8c8,
+  PuRd:   #e7e1ef
+);

@@ -1,11 +1,14 @@
-<app-menu></app-menu>
+<app-menu [color]="currentPalette"></app-menu>
 
 
 <router-outlet>
-  <div class="colorful-bg"  [trianglify]="color" [trianglifyCycle]="10000"></div>
+  <div class="colorful-bg"  [trianglify]="currentPalette" [animateFast]="changeFast"></div>
 </router-outlet>
 
-<div class="color-switcher" (click)="generateRandomColor()">
+<div class="color-switcher" (click)="showNextPalette()">
   <div class="icon" [inlineSVG]="'/assets/svg/idea.svg'"></div>
-  <div class="text">Click here to change color</div>
+  <div class="text">
+    <div class="text_bg" [inlineSVG]="'/assets/svg/oval.svg'"></div>
+    <span>Click here to change color</span>
+  </div>
 </div>

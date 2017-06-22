@@ -1,6 +1,7 @@
 @import '../../../assets/styles/common';
 @import '../../../assets/styles/media-queries';
 @import '../../../assets/styles/variables';
+@import '../../../assets/styles/mixins';
 
 @mixin super_heading {
   font-family: $primary-heading-font;
@@ -15,10 +16,6 @@
     margin-top: 20px;
     margin-bottom: 20px;
   }
-
-  @include smartphone {
-
-  }
 }
 
 @mixin heading {
@@ -27,7 +24,8 @@
   margin-bottom: 0.5em;
   text-transform: uppercase;
   line-height: 1.25;
-  color: $primary-color;
+  // color: $primary-color;
+  @include colorBasedOnContext();
 
   @include printAndSmartphone {
     font-size: 16px;

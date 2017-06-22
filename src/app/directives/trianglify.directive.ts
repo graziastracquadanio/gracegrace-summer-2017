@@ -1,16 +1,21 @@
 import { Directive, ElementRef, HostListener, Input, Renderer } from '@angular/core';
 import * as Trianglify from 'trianglify';
 import { COLORS } from '../commons/color-defs';
+import { ColorService } from '../services';
 
 @Directive({
   selector: '[trianglify]'
 })
 
 export class TrianglifyDirective {
-  currentIndex: number = 0;
+  isFast: boolean;
+  fastAnimation: number = 250;
+  slowAnimation: number = 5000;
+  currentColor: any;
   currentBackground: string = 'white';
 
   constructor(
+    private colorService: ColorService,
     private elementRef: ElementRef,
     private renderer: Renderer) {
   }
@@ -63,28 +68,27 @@ export class TrianglifyDirective {
     return { width, height };
   }
 
-  private getNextColor(timing: number = 250) {
-    this.currentIndex++;
-    this.currentIndex = this.currentIndex === COLORS.length ? 0 : this.currentIndex;
-    this.trianglifyElement(this.currentIndex, timing);
+  private parseColor(value: any) {
+    return typeof value === 'string' ?
+      COLORS.findIndex(color => color === value) :
+      value;
   }
 
   @Input() set trianglify(value: any) {
-    const nextColor = typeof value === 'string' ?
-        COLORS.findIndex(color => color === value) :
-        value;
+    const nextColor = this.parseColor(value);
+    let timing = this.isFast || this.currentBackground === 'white' ?
+      this.fastAnimation : this.slowAnimation;
 
-    this.trianglifyElement(nextColor, 250);
+    this.currentColor = nextColor;
+    this.trianglifyElement(nextColor, timing);
   }
 
-  @Input() set trianglifyCycle(timing: number) {
-    if (timing > 0) {
-      setInterval(() => { this.getNextColor(timing/2)}, timing);
-    }
+  @Input() set animateFast(value: boolean) {
+    this.isFast = value;
   }
 
   @HostListener('window:resize', ['$event'])
     onResize(event) {
-      this.trianglifyElement(this.currentIndex, 0);
+      this.trianglifyElement(this.currentColor, 0);
     }
 }
