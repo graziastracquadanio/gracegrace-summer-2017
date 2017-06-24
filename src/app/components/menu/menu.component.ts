@@ -7,6 +7,7 @@ import { Component, Input } from '@angular/core';
 })
 export class MenuComponent {
   @Input() color: string;
+  @Input() animateFast: boolean;
 
   constructor() { }
 

@@ -1,6 +1,9 @@
 @import '../../../assets/styles/variables';
 @import '../../../assets/styles/mixins';
 
+$fastTransition: .2s;
+$slowTransition: 4s;
+
 .main-menu {
   position: fixed;
   top: 0;
@@ -27,16 +30,21 @@
     padding: 4px 7px 2px;
     margin: 0 0.3em;
     user-select: none;
-    transition: all .2s ease-in;
     cursor: pointer;
     position: relative;
+    border-radius: 5px;
+    overflow: hidden;
 
-    &:hover,
     &.active {
-      border-radius: 5px;
-
       @include lightColorBasedOnContext();
       @include backgroundBasedOnContext();
+      .fast & {
+        transition: all $fastTransition ease-out;
+      }
+
+      .slow & {
+        transition: all $slowTransition linear;
+      }
     }
   }
 

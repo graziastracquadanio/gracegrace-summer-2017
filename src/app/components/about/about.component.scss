@@ -3,6 +3,8 @@
 @import '../../../assets/styles/variables';
 @import '../../../assets/styles/mixins';
 
+$slowTransition: 4s;
+
 @mixin super_heading {
   font-family: $primary-heading-font;
   font-size: 2em;
@@ -24,10 +26,11 @@
   margin-bottom: 0.5em;
   text-transform: uppercase;
   line-height: 1.25;
-  // color: $primary-color;
   @include colorBasedOnContext();
+  transition: all $slowTransition ease-in;
 
   @include printAndSmartphone {
+    color: $primary-color !important;
     font-size: 16px;
     margin-bottom: 5px;
   }

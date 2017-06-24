@@ -1,6 +1,6 @@
 import { trigger, state, animate, transition, style } from '@angular/animations';
 
-const fadeIn = '.6s';
+const fadeIn = '.4s';
 const fadeOut = '.3s';
 
 const slideIn = '.6s';
@@ -11,11 +11,11 @@ export const fadeInOut = trigger('routingAnimation', [
   state('*', style({ opacity: 1 }) ),
   transition(':enter', [
     style({ opacity: 0 }),
-    animate(`${fadeIn} linear`, style({ opacity: 1 }))
+    animate(`${fadeIn} 300ms linear`, style({ opacity: 1 }))
   ]),
   transition(':leave', [
     style({ opacity: 1 }),
-    animate(`${fadeOut} linear`, style({ opacity: 0 }))
+    animate(`${fadeOut} 300ms linear`, style({ opacity: 0 }))
   ])
 ]);
 

@@ -22,7 +22,6 @@ export class AboutComponent implements OnInit {
   ngOnInit() {
     this.colorSubscription = this.colorService.currentPalette$.subscribe(
       value => {
-        console.log(value)
         this.currentPalette = value;
       }
     );

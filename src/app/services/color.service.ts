@@ -27,8 +27,6 @@ export class ColorService {
   setNextPalette(value?: any) {
     let nextIndex;
 
-    console.log(this.currentIndex)
-
     switch (typeof value) {
       case 'string':
         nextIndex = PALETTES.codes.findIndex(code => code === value);

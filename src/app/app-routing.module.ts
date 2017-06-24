@@ -8,19 +8,21 @@ import { IntroComponent } from './components/intro/intro.component';
 const routes: Routes = [
   {
     path: 'home',
-    component: IntroComponent
+    component: IntroComponent,
   },
   {
     path: 'about',
-    component: AboutComponent
+    component: AboutComponent,
   },
   {
     path: '',
-    component: IntroComponent
+    pathMatch: 'full',
+    redirectTo: '/home',
   },
   {
     path: '**',
-    component: IntroComponent
+    pathMatch: 'full',
+    redirectTo: '/home',
   },
 ];
 

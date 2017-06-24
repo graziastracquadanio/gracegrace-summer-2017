@@ -8,7 +8,6 @@ export class TypewritingDirective {
   hideTiming: number = 100;
   pauseBetween: number = 500;
   words: string[] = [];
-  period: number = 2000;
   processedWords: any[] = [];
   fullTiming: number = 0;
 
@@ -69,18 +68,17 @@ export class TypewritingDirective {
   @Input() set typewriting(value: any) {
     const words = typeof value === 'string' ? [value] : value;
     this.processWords(value);
-    this.cycleWords();
-    setInterval(() => {
+    setTimeout(() => {
       this.cycleWords();
-    }, this.fullTiming);
-    this.setCursor('');
+      setInterval(() => {
+        this.cycleWords();
+      }, this.fullTiming);
+    }, 1000);
   }
+
+  @Input('typewritingPeriod') period: number = 2000;
 
   @Input() set typewritingColor(value: string) {
     this.setCursor(value);
-  }
-
-  @Input() set typewritingPeriod(period: number) {
-    this.period = period;
   }
 }

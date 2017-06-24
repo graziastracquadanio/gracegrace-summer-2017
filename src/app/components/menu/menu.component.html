@@ -1,4 +1,4 @@
-<div class="main-menu print-hidden" [ngClass]="color">
+<div class="main-menu print-hidden" [ngClass]="[color, animateFast ? 'fast' : 'slow']">
   <div class="main-menu_links">
     <a
       class="main-menu_item"

@@ -1,57 +1,68 @@
 import { Directive, ElementRef, HostListener, Input, Renderer } from '@angular/core';
 import * as Trianglify from 'trianglify';
-import { COLORS } from '../commons/color-defs';
-import { ColorService } from '../services';
+import { PALETTE_CODES, PALETTE_DEFS } from '../commons/color-defs';
 
 @Directive({
   selector: '[trianglify]'
 })
 
 export class TrianglifyDirective {
-  isFast: boolean;
   fastAnimation: number = 250;
-  slowAnimation: number = 5000;
+  slowAnimation: number = 4000;
   currentColor: any;
   currentBackground: string = 'white';
+  isFast: boolean;
+  isChrome: boolean = navigator.userAgent.indexOf("Chrome") !== -1;
+  isSafari: boolean = navigator.userAgent.indexOf("Safari") !== -1;
 
   constructor(
-    private colorService: ColorService,
     private elementRef: ElementRef,
     private renderer: Renderer) {
+    let element = this.elementRef.nativeElement;
+    this.renderer.setElementStyle(element, 'background-size', 'cover');
+    this.renderer.setElementStyle(element, 'opacity', `${this.isChrome || this.isSafari ? '0.9' : '0.6'}`);
   }
 
   private trianglifyElement(color: any, duration: number = 250) {
+    const fallbackColor = PALETTE_DEFS[PALETTE_CODES[color]].fallback;
     let element = this.elementRef.nativeElement;
-    const options = this.getOptions(element, color);
-    const { width, height } = options;
-    const pattern = Trianglify(options);
-    const svg = pattern.svg();
-    const background = `url('data:image/svg+xml;charset=utf8,<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 ${width} ${height}" height="${height}px" width="${width}px">${svg.innerHTML}</svg>') no-repeat`;
-    this.renderer.setElementStyle(element, 'background-size', '100% 100%');
 
-    this.renderer.invokeElementMethod(
-      element,
-      'animate',
-      [
-        [
-          {background: this.currentBackground},
-          {background: background}
-        ],
-        {
-          duration: duration,
-          delay: 0,
-          fill: 'forwards'
-        }
-      ]
-    );
+    this.renderer.setElementStyle(element, 'background-color', fallbackColor);
 
-    this.currentBackground = background;
+    if (this.isChrome || this.isSafari) {
+      const options = this.getOptions(element, color);
+      const { width, height, x_colors } = options;
+      const pattern = Trianglify(options);
+      const svg = pattern.svg();
+      const background = `url('data:image/svg+xml;charset=utf8,<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 ${width} ${height}" height="${height}px" width="${width}px">${svg.innerHTML}</svg>')`;
+
+      if (this.isChrome) {
+        this.renderer.invokeElementMethod(
+          element,
+          'animate',
+          [
+            [
+              {background: this.currentBackground},
+              {background: background}
+            ],
+            {
+              duration: duration,
+              delay: 0,
+              fill: 'forwards'
+            }
+          ]
+        );
+        this.currentBackground = background;
+      } else {
+        this.renderer.setElementStyle(element, 'background-image', background);
+      }
+    }
   }
 
   private getOptions(element: any, color: any) {
     const { width, height } = this.rect(element);
     const palette = typeof color === 'number' ?
-      Trianglify.colorbrewer[COLORS[color]] :
+      Trianglify.colorbrewer[PALETTE_CODES[color]] :
       color;
 
     return {
@@ -70,7 +81,7 @@ export class TrianglifyDirective {
 
   private parseColor(value: any) {
     return typeof value === 'string' ?
-      COLORS.findIndex(color => color === value) :
+      PALETTE_CODES.findIndex(color => color === value) :
       value;
   }
 
@@ -85,7 +96,13 @@ export class TrianglifyDirective {
 
   @Input() set animateFast(value: boolean) {
     this.isFast = value;
-  }
+    if (!this.isChrome) {
+      let element = this.elementRef.nativeElement;
+      let timing = value || this.currentBackground === 'white' ?
+        this.fastAnimation : this.slowAnimation;
+      this.renderer.setElementStyle(element, 'transition', `all ${timing/1000}s linear`);
+    }
+  };
 
   @HostListener('window:resize', ['$event'])
     onResize(event) {
