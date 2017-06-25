@@ -1,35 +1,89 @@
 @import 'variables';
 
 // COLOR DEFS
-@mixin colorBasedOnContext {
+@mixin colorBasedOnContext($opacity: 1) {
   @each $code, $color in $palette-defs {
     .#{$code} & {
       color: $color;
+      color: rgba($color, $opacity);
     }
   }
 }
 
-@mixin lightColorBasedOnContext {
+@mixin lightColorBasedOnContext($opacity: 1) {
   @each $code, $color in $palette-defs-light {
     .#{$code} & {
       color: $color;
+      color: rgba($color, $opacity);
     }
   }
 }
 
-@mixin backgroundBasedOnContext {
+@mixin backgroundBasedOnContext($opacity: 1) {
   @each $code, $color in $palette-defs {
     .#{$code} & {
       background-color: $color;
+      background-color: rgba($color, $opacity);
     }
   }
 }
 
-@mixin lightBackgroundBasedOnContext {
+@mixin lightBackgroundBasedOnContext($opacity: 1) {
   @each $code, $color in $palette-defs-light {
     .#{$code} & {
       background-color: $color;
+      background-color: rgba($color, $opacity);
+    }
+  }
+}
+
+$fastTransition: .2s;
+$slowTransition: 4s;
+
+@mixin colorTransition($property: all, $other: '') {
+  .fast & {
+    @if $other != '' {
+      transition: $property $fastTransition ease-out, $other;
+    } @else {
+      transition: $property $fastTransition ease-out;
+    }
+  }
+
+  .slow & {
+    @if $other != '' {
+      transition: $property $slowTransition ease-out, $other;
+    } @else {
+      transition: $property $slowTransition ease-out;
     }
   }
 }
 // END COLOR DEFS
+
+// EFFECT ANIMATIONS
+@keyframes gelatine{
+  from, to {
+    transform:scale(1, 1);
+  }
+  25% {
+    transform:scale(.94, 1.1);
+  }
+  50% {
+    transform:scale(1.05, .9);
+  }
+  75% {
+    transform:scale(.98, 1.05);
+  }
+  from, to {
+    transform:scale(1, 1);
+  }
+  25% {
+    transform:scale(.94, 1.1);
+  }
+  50% {
+    transform:scale(1.05, .9);
+  }75% {
+    transform:scale(.98, 1.05);
+  }
+}
+
+// END EFFECT ANIMATIONS

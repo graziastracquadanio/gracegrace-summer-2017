@@ -16,6 +16,8 @@ import { IntroComponent } from './components/intro/intro.component';
 import { TrianglifyDirective } from './directives/trianglify.directive';
 import { MenuComponent } from './components/menu/menu.component';
 import { TypewritingDirective } from './directives/typewriting.directive';
+import { StuffComponent } from './components/stuff/stuff.component';
+import { ReadingsComponent } from './components/readings/readings.component';
 
 @NgModule({
   declarations: [
@@ -25,6 +27,8 @@ import { TypewritingDirective } from './directives/typewriting.directive';
     TrianglifyDirective,
     MenuComponent,
     TypewritingDirective,
+    StuffComponent,
+    ReadingsComponent,
   ],
   imports: [
     AppRoutingModule,

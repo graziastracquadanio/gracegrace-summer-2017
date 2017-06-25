@@ -1,8 +1,7 @@
 @import '../../../assets/styles/variables';
 @import '../../../assets/styles/mixins';
 
-$fastTransition: .2s;
-$slowTransition: 4s;
+$color-opacity: 0.7;
 
 .main-menu {
   position: fixed;
@@ -10,6 +9,9 @@ $slowTransition: 4s;
   width: 100%;
   display: flex;
   z-index: 10;
+
+  @include backgroundBasedOnContext($color-opacity);
+  @include colorTransition(background);
 
   justify-content: space-between;
   align-items: center;
@@ -21,7 +23,7 @@ $slowTransition: 4s;
   }
 
   &_item {
-    color: $black;
+    color: white;
     font-size: 0.9em;
     font-family: $general-font;
     text-transform: uppercase;
@@ -32,19 +34,19 @@ $slowTransition: 4s;
     user-select: none;
     cursor: pointer;
     position: relative;
-    border-radius: 5px;
-    overflow: hidden;
+    $opacity-transition: opacity .25s ease-in;
+    @include colorTransition(color, $opacity-transition);
+    opacity: 0.7;
+
+    &:hover {
+      opacity: 1;
+      animation: gelatine .5s cubic-bezier(.6,4,.3,.8) .1s 1;
+    }
 
     &.active {
-      @include lightColorBasedOnContext();
-      @include backgroundBasedOnContext();
-      .fast & {
-        transition: all $fastTransition ease-out;
-      }
-
-      .slow & {
-        transition: all $slowTransition linear;
-      }
+      @include colorTransition(color);
+      @include colorBasedOnContext($color-opacity);
+      background-color: white;
     }
   }
 
@@ -60,6 +62,7 @@ $slowTransition: 4s;
 
     &:hover {
       opacity: 1;
+      animation: gelatine .5s cubic-bezier(.6,4,.3,.8) 1;
     }
   }
 }

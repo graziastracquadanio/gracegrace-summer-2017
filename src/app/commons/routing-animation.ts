@@ -12,11 +12,12 @@ export const fadeInOut = trigger('routingAnimation', [
   transition(':enter', [
     style({ opacity: 0 }),
     animate(`${fadeIn} 300ms linear`, style({ opacity: 1 }))
-  ]),
-  transition(':leave', [
-    style({ opacity: 1 }),
-    animate(`${fadeOut} 300ms linear`, style({ opacity: 0 }))
   ])
+  // ,
+  // transition(':leave', [
+  //   style({ opacity: 1 }),
+  //   animate(`${fadeOut} 300ms linear`, style({ opacity: 0 }))
+  // ])
 ]);
 
 export const slideInOut = trigger('routingAnimation', [
@@ -31,15 +32,16 @@ export const slideInOut = trigger('routingAnimation', [
       opacity: 1,
       transform: 'translateY(0%)'
     }))
-  ]),
-  transition(':leave', [
-    style({
-      opacity: 1,
-      transform: 'translateY(0%)'
-    }),
-    animate(`${slideOut} ease-out`, style({
-      opacity: 0,
-      transform: 'translateY(100%)'
-    }))
   ])
+  // ,
+  // transition(':leave', [
+  //   style({
+  //     opacity: 1,
+  //     transform: 'translateY(0%)'
+  //   }),
+  //   animate(`${slideOut} ease-out`, style({
+  //     opacity: 0,
+  //     transform: 'translateY(100%)'
+  //   }))
+  // ])
 ]);

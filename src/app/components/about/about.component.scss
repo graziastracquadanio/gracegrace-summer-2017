@@ -27,7 +27,7 @@ $slowTransition: 4s;
   text-transform: uppercase;
   line-height: 1.25;
   @include colorBasedOnContext();
-  transition: all $slowTransition ease-in;
+  transition: color $slowTransition ease-in;
 
   @include printAndSmartphone {
     color: $primary-color !important;
@@ -83,9 +83,7 @@ $slowTransition: 4s;
 }
 
 .cv {
-  padding: 2em;
   margin-bottom: 5em;
-  background-color: rgba(255, 255, 255, .7);
 
   @include print {
     width: 100%;
@@ -94,8 +92,10 @@ $slowTransition: 4s;
   }
 
   &_section {
-    padding-bottom: 2em;
     page-break-inside: avoid;
+    background-color: rgba(255, 255, 255, .5);
+    padding: 2em;
+    margin-bottom: 2em;
 
     @include printAndSmartphone {
       padding-bottom: 16px;

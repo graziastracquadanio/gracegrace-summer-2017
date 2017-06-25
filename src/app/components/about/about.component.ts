@@ -1,5 +1,5 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
-import content from './about.content';
+import content from '../../data/cv-content';
 import { slideInOut } from '../../commons/routing-animation';
 import { ColorService } from '../../services/color.service';
 
