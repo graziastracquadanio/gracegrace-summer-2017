@@ -6,7 +6,8 @@ import { InlineSVGModule } from 'ng-inline-svg';
 import { NgModule } from '@angular/core';
 
 import {
-  ColorService
+  ColorService,
+  MenuService
 } from './services';
 
 import { AppRoutingModule } from './app-routing.module';
@@ -40,6 +41,7 @@ import { ReadingsComponent } from './components/readings/readings.component';
   ],
   providers: [
     ColorService,
+    MenuService,
   ],
   bootstrap: [AppComponent]
 })

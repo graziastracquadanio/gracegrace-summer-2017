@@ -13,11 +13,6 @@ export const fadeInOut = trigger('routingAnimation', [
     style({ opacity: 0 }),
     animate(`${fadeIn} 300ms linear`, style({ opacity: 1 }))
   ])
-  // ,
-  // transition(':leave', [
-  //   style({ opacity: 1 }),
-  //   animate(`${fadeOut} 300ms linear`, style({ opacity: 0 }))
-  // ])
 ]);
 
 export const slideInOut = trigger('routingAnimation', [
@@ -33,15 +28,24 @@ export const slideInOut = trigger('routingAnimation', [
       transform: 'translateY(0%)'
     }))
   ])
-  // ,
-  // transition(':leave', [
-  //   style({
-  //     opacity: 1,
-  //     transform: 'translateY(0%)'
-  //   }),
-  //   animate(`${slideOut} ease-out`, style({
-  //     opacity: 0,
-  //     transform: 'translateY(100%)'
-  //   }))
-  // ])
+]);
+
+export const blurInOut = trigger('blurAnimation', [
+  state('menuVisible', style({
+    filter: 'blur(10px)',
+  })),
+  state('menuHidden',   style({
+    filter: 'none',
+  })),
+  transition('menuVisible <=> menuHidden', animate('300ms linear')),
+]);
+
+export const heightChange = trigger('heightAnimation', [
+  state('menuVisible', style({
+    height: '100vh',
+  })),
+  state('menuHidden',   style({
+    height: '*',
+  })),
+  transition('menuVisible <=> menuHidden', animate('300ms linear')),
 ]);

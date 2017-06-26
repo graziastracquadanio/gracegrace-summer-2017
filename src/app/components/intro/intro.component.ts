@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import * as Trianglify from 'trianglify';
 import { fadeInOut } from '../../commons/routing-animation';
 
@@ -10,12 +10,8 @@ import { fadeInOut } from '../../commons/routing-animation';
   host: { '[@routingAnimation]': '' }
 })
 
-export class IntroComponent implements OnInit {
+export class IntroComponent {
 
   constructor() {
   }
-
-  ngOnInit() {
-  }
-
 }
