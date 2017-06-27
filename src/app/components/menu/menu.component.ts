@@ -21,7 +21,7 @@ export class MenuComponent implements OnInit, OnDestroy {
   ngOnInit() {
     this.menuSubscription = this.menuService.isOpen$.subscribe(
       value => {
-        this.menuState = value ? 'menuVisible' : 'menuHidden';
+        this.menuState = value ? 'menu-visible' : 'menu-hidden';
         this.isOpen = value;
       }
     );

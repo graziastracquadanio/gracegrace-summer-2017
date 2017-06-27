@@ -1,0 +1,49 @@
+@import '../../../assets/styles/media-queries';
+@import '../../../assets/styles/mixins';
+@import '../../../assets/styles/variables';
+
+.reading {
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  // justify-content: space-between;
+
+  * {
+    box-sizing: border-box;
+  }
+
+
+  @include smartphone {
+    flex-direction: column;
+  }
+
+  &-column {
+    width: 100/3 * 1%;
+    padding: 1em;
+  }
+
+  &-bucket {
+    margin-bottom: 2em;
+    padding: 1em;
+    background-color: $background-color;
+  }
+
+  h2 {
+    @include heading_subsection(true);
+  }
+
+  &-item {
+    padding-bottom: 0.5em;
+
+    &_title {
+      @include general_text();
+      text-transform: capitalize;
+    }
+
+    &_author {
+      @include general_text();
+      text-transform: capitalize;
+      font-style: italic;
+    }
+  }
+}

@@ -41,21 +41,3 @@ svg {
   width: 100%;
   height: 100%;
 }
-
-@mixin centered-container {
-  margin: 0 auto;
-  width: 80%;
-  max-width: 60rem;
-
-  @include smartphone {
-    width: 90%;
-  }
-}
-
-.centered-container {
-  @include centered-container;
-}
-
-.after-menu {
-  margin-top: 5em;
-}

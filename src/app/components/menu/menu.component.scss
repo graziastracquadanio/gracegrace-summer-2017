@@ -1,5 +1,6 @@
 @import '../../../assets/styles/variables';
 @import '../../../assets/styles/mixins';
+@import '../../../assets/styles/media-queries';
 
 $color-opacity: 0.7;
 
@@ -31,6 +32,14 @@ $color-opacity: 0.7;
     flex-direction: column;
     justify-content: space-around;
     cursor: pointer;
+
+    @include not-smartphone() {
+      opacity: 0;
+      visibility: hidden;
+      width: 0;
+      overflow: hidden;
+      padding: 0;
+    }
 
     span {
       width: 100%;

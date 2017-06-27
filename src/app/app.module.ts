@@ -19,6 +19,7 @@ import { MenuComponent } from './components/menu/menu.component';
 import { TypewritingDirective } from './directives/typewriting.directive';
 import { StuffComponent } from './components/stuff/stuff.component';
 import { ReadingsComponent } from './components/readings/readings.component';
+import { ContentComponent } from './components/content/content.component';
 
 @NgModule({
   declarations: [
@@ -30,6 +31,7 @@ import { ReadingsComponent } from './components/readings/readings.component';
     TypewritingDirective,
     StuffComponent,
     ReadingsComponent,
+    ContentComponent,
   ],
   imports: [
     AppRoutingModule,

@@ -3,79 +3,6 @@
 @import '../../../assets/styles/variables';
 @import '../../../assets/styles/mixins';
 
-$slowTransition: 4s;
-
-@mixin super_heading {
-  font-family: $primary-heading-font;
-  font-size: 2em;
-  text-transform: uppercase;
-  line-height: 1.25;
-  color: $black;
-  margin-bottom: 1em;
-
-  @include printAndSmartphone {
-    font-size: 22px;
-    margin-top: 20px;
-    margin-bottom: 20px;
-  }
-}
-
-@mixin heading {
-  font-family: $primary-heading-font;
-  font-size: 1.5em;
-  margin-bottom: 0.5em;
-  text-transform: uppercase;
-  line-height: 1.25;
-  @include colorBasedOnContext();
-  transition: color $slowTransition ease-in;
-
-  @include printAndSmartphone {
-    color: $primary-color !important;
-    font-size: 16px;
-    margin-bottom: 5px;
-  }
-}
-
-@mixin heading_subsection {
-  font-family: $secondary-heading-font;
-  font-size: 1.2em;
-  margin-bottom: 0.3em;
-  line-height: 1.25;
-  color: $black;
-  font-weight: 300;
-
-  @include printAndSmartphone {
-    font-size: 14px;
-    margin-bottom: 2px;
-  }
-}
-
-@mixin subheading_subsection {
-  font-family: $general-font;
-  font-size: 1em;
-  line-height: 1.25;
-  color: $black;
-  margin-bottom: 0.2em;
-  font-style: italic;
-
-  @include printAndSmartphone {
-    font-size: 13px;
-    margin-bottom: 2px;
-  }
-}
-
-@mixin general_text($color: $black) {
-  font-family: $general-font;
-  font-size: 0.9em;
-  line-height: 1.5;
-  color: $color;
-
-  @include printAndSmartphone {
-    font-size: 12px;
-    margin-bottom: 2px;
-  }
-}
-
 .bg {
   position: absolute;
   width: 100%;
@@ -83,17 +10,9 @@ $slowTransition: 4s;
 }
 
 .cv {
-  margin-bottom: 5em;
-
-  @include print {
-    width: 100%;
-    max-width: auto;
-    padding: 0;
-  }
-
   &_section {
     page-break-inside: avoid;
-    background-color: rgba(255, 255, 255, .5);
+    background-color: $background-color;
     padding: 2em;
     margin-bottom: 2em;
 
@@ -103,7 +22,7 @@ $slowTransition: 4s;
   }
 
   &_section_title {
-    @include heading;
+    @include heading(true);
   }
 
   &_intro {
@@ -127,7 +46,7 @@ $slowTransition: 4s;
     }
 
     h2 {
-      @include heading_subsection;
+      @include heading_subsection(false);
     }
 
     &_company {
@@ -135,23 +54,23 @@ $slowTransition: 4s;
     }
 
     &_details {
-      @include subheading_subsection;
+      @include subheading_subsection(false);
     }
 
     &_description {
-      @include general_text;
+      @include general_text(false);
     }
   }
 
   &_about {
     p {
-      @include general_text;
+      @include general_text(false);
     }
   }
 
   &_works {
     p {
-      @include general_text;
+      @include general_text(false);
     }
 
     &_item {
@@ -167,13 +86,13 @@ $slowTransition: 4s;
       }
 
       &_name {
-        @include general_text;
+        @include general_text(false);
         width: 20%;
         min-width: 150px;
       }
 
       &_description {
-        @include general_text;
+        @include general_text(false);
         width: 80%;
 
         @include smartphone {

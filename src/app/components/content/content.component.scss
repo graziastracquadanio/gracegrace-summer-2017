@@ -1,0 +1,42 @@
+@import '../../../assets/styles/media-queries';
+@import '../../../assets/styles/variables';
+
+.content-container {
+  margin: 0 auto;
+  width: 80%;
+  max-width: 60rem;
+  box-sizing: border-box;
+
+  @include smartphone {
+    width: 100%;
+    padding: 1em 2em;
+  }
+
+  &.content-height {
+    margin-top: $menu-height;
+    padding-top: 2em;
+    height: auto;
+
+    margin-bottom: 5em;
+
+    @include print {
+      width: 100%;
+      max-width: auto;
+      padding: 0;
+    }
+  }
+
+  &.screen-height {
+    height: 100vh;
+  }
+
+  &.centered-content {
+    min-height: 100vh;
+    height: 100%;
+    width: 100%;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+}

@@ -3,7 +3,7 @@
 // COLOR DEFS
 @mixin colorBasedOnContext($opacity: 1) {
   @each $code, $color in $palette-defs {
-    .#{$code} & {
+    /deep/ .#{$code} & {
       color: $color;
       color: rgba($color, $opacity);
     }
@@ -12,7 +12,7 @@
 
 @mixin lightColorBasedOnContext($opacity: 1) {
   @each $code, $color in $palette-defs-light {
-    .#{$code} & {
+    /deep/ .#{$code} & {
       color: $color;
       color: rgba($color, $opacity);
     }
@@ -21,7 +21,7 @@
 
 @mixin backgroundBasedOnContext($opacity: 1) {
   @each $code, $color in $palette-defs {
-    .#{$code} & {
+    /deep/ .#{$code} & {
       background-color: $color;
       background-color: rgba($color, $opacity);
     }
@@ -30,7 +30,7 @@
 
 @mixin lightBackgroundBasedOnContext($opacity: 1) {
   @each $code, $color in $palette-defs-light {
-    .#{$code} & {
+    /deep/ .#{$code} & {
       background-color: $color;
       background-color: rgba($color, $opacity);
     }
@@ -41,7 +41,7 @@ $fastTransition: .2s;
 $slowTransition: 4s;
 
 @mixin colorTransition($property: all, $other: '') {
-  .fast & {
+  /deep/ .fast & {
     @if $other != '' {
       transition: $property $fastTransition ease-out, $other;
     } @else {
@@ -49,7 +49,7 @@ $slowTransition: 4s;
     }
   }
 
-  .slow & {
+  /deep/ .slow & {
     @if $other != '' {
       transition: $property $slowTransition ease-out, $other;
     } @else {
@@ -87,3 +87,103 @@ $slowTransition: 4s;
 }
 
 // END EFFECT ANIMATIONS
+
+
+// TEXT FORMAT
+$slowTransition: 2s;
+
+@mixin super_heading {
+  font-family: $primary-heading-font;
+  font-size: 2em;
+  text-transform: uppercase;
+  line-height: 1.25;
+  color: $black;
+  margin-bottom: 1em;
+
+  @include printAndSmartphone {
+    font-size: 22px;
+    margin-top: 20px;
+    margin-bottom: 20px;
+  }
+}
+
+@mixin heading($shimmering: true) {
+  font-family: $primary-heading-font;
+  font-size: 1.5em;
+  margin-bottom: 0.5em;
+  text-transform: uppercase;
+  line-height: 1.25;
+
+  @if $shimmering == true {
+    @include colorBasedOnContext();
+    transition: color $slowTransition ease-in;
+  } @else {
+    color: $primary-color;
+  }
+
+  @include printAndSmartphone {
+    font-size: 16px;
+    margin-bottom: 5px;
+  }
+
+  @include print {
+    color: $primary-color !important;
+  }
+}
+
+@mixin heading_subsection($shimmering: false) {
+  font-family: $secondary-heading-font;
+  font-size: 1.2em;
+  margin-bottom: 0.3em;
+  line-height: 1.25;
+  font-weight: 300;
+
+  @if $shimmering == true {
+    @include colorBasedOnContext();
+    transition: color $slowTransition ease-in;
+  } @else {
+    color: $black;
+  }
+
+  @include printAndSmartphone {
+    font-size: 14px;
+    margin-bottom: 2px;
+  }
+}
+
+@mixin subheading_subsection($shimmering: false) {
+  font-family: $general-font;
+  font-size: 1em;
+  line-height: 1.25;
+  color: $black;
+  margin-bottom: 0.2em;
+  font-style: italic;
+
+  @if $shimmering == true {
+    @include colorBasedOnContext();
+    transition: color $slowTransition ease-in;
+  }
+
+  @include printAndSmartphone {
+    font-size: 13px;
+    margin-bottom: 2px;
+  }
+}
+
+@mixin general_text($color: $black, $shimmering: false) {
+  font-family: $general-font;
+  font-size: 0.9em;
+  line-height: 1.5;
+  color: $color;
+
+  @if $shimmering == true {
+    @include colorBasedOnContext();
+    transition: color $slowTransition ease-in;
+  }
+
+  @include printAndSmartphone {
+    font-size: 12px;
+    margin-bottom: 2px;
+  }
+}
+// END TEXT FORMAT

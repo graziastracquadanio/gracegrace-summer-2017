@@ -31,21 +31,21 @@ export const slideInOut = trigger('routingAnimation', [
 ]);
 
 export const blurInOut = trigger('blurAnimation', [
-  state('menuVisible', style({
+  state('menu-visible', style({
     filter: 'blur(10px)',
   })),
-  state('menuHidden',   style({
+  state('menu-hidden',   style({
     filter: 'none',
   })),
-  transition('menuVisible <=> menuHidden', animate('300ms linear')),
+  transition('menu-visible <=> menu-hidden', animate('300ms linear')),
 ]);
 
 export const heightChange = trigger('heightAnimation', [
-  state('menuVisible', style({
+  state('menu-visible', style({
     height: '100vh',
   })),
-  state('menuHidden',   style({
+  state('menu-hidden',   style({
     height: '*',
   })),
-  transition('menuVisible <=> menuHidden', animate('300ms linear')),
+  transition('menu-visible <=> menu-hidden', animate('300ms linear')),
 ]);

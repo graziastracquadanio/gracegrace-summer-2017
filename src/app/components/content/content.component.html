@@ -1,0 +1,10 @@
+<div
+  [@routingAnimation]=""
+  [ngClass]="[currentPalette]">
+  <div
+    class="content-container"
+    [ngClass]="[containerClass, contentClass, heightClass]"
+    [@blurAnimation]="menuState">
+    <ng-content></ng-content>
+  </div>
+</div>
