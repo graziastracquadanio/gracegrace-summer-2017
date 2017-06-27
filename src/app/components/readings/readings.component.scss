@@ -30,20 +30,25 @@
 
   h2 {
     @include heading_subsection(true);
+    margin-bottom: 1em;
   }
 
   &-item {
-    padding-bottom: 0.5em;
+    padding-bottom: 0.8em;
 
     &_title {
       @include general_text();
       text-transform: capitalize;
+      line-height: 1.25;
+      margin-bottom: 0.2em;
     }
 
     &_author {
       @include general_text();
       text-transform: capitalize;
       font-style: italic;
+      font-size: 0.8em;
+      line-height: 1.25;
     }
   }
 }

@@ -3,14 +3,14 @@
     <div class="reading-column">
       <div class="reading-bucket">
         <h2># Reading now</h2>
-        <div class="reading-item" *ngFor="let book of currentReading">
+        <div class="reading-item" *ngFor="let book of currentReading | async">
           <div class="reading-item_title">{{book.title}}</div>
           <div class="reading-item_author">{{book.author}}</div>
         </div>
       </div>
       <div class="reading-bucket">
         <h2># Waiting on the shelf</h2>
-        <div class="reading-item" *ngFor="let book of waitingOnTheShelf">
+        <div class="reading-item" *ngFor="let book of waitingOnTheShelf | async">
           <div class="reading-item_title">{{book.title}}</div>
           <div class="reading-item_author">{{book.author}}</div>
         </div>
@@ -19,7 +19,7 @@
     <div class="reading-column">
       <div class="reading-bucket">
         <h2># Have read</h2>
-        <div class="reading-item" *ngFor="let book of finishedReadings">
+        <div class="reading-item" *ngFor="let book of finishedReadings | async">
           <div class="reading-item_title">{{book.title}}</div>
           <div class="reading-item_author">{{book.author}}</div>
         </div>
@@ -28,7 +28,7 @@
     <div class="reading-column">
       <div class="reading-bucket">
         <h2># Wishlist</h2>
-        <div class="reading-item" *ngFor="let book of wishlistReadings">
+        <div class="reading-item" *ngFor="let book of wishlistReadings | async">
           <div class="reading-item_title">{{book.title}}</div>
           <div class="reading-item_author">{{book.author}}</div>
         </div>

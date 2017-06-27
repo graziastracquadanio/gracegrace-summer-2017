@@ -1,3 +1,5 @@
+import { AngularFireModule } from 'angularfire2';
+import { AngularFireDatabaseModule } from 'angularfire2/database';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { BrowserModule } from '@angular/platform-browser';
 import { FormsModule } from '@angular/forms';
@@ -5,9 +7,11 @@ import { HttpModule } from '@angular/http';
 import { InlineSVGModule } from 'ng-inline-svg';
 import { NgModule } from '@angular/core';
 
+import { FIREBASE_CONFIG } from './app.config';
+
 import {
   ColorService,
-  MenuService
+  MenuService,
 } from './services';
 
 import { AppRoutingModule } from './app-routing.module';
@@ -34,6 +38,8 @@ import { ContentComponent } from './components/content/content.component';
     ContentComponent,
   ],
   imports: [
+    AngularFireModule.initializeApp(FIREBASE_CONFIG, 'gracegrace'),
+    AngularFireDatabaseModule,
     AppRoutingModule,
     BrowserAnimationsModule,
     BrowserModule,
