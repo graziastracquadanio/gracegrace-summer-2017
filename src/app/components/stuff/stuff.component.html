@@ -1,1 +1,40 @@
+<content containerClass="after-menu">
+  <div class="intro-block">
+    <h2>
+      A bunch of <span>stuff</span> lists
+    </h2>
+    <p>This is a place where I make lists. I like lists. I like to mark things as <span>done</span>.</p>
+  </div>
+  <div class="first-lists-block">
+    <div class="bucket-list"
+      [@loadedAnimation]="bucketListState"
+      (@loadedAnimation.done)="animationDone($event, 'bucketList')"
+      >
+      <h2>My bucket list</h2>
+      <ul>
+        <li [ngClass]="[item.done ? 'done' : '']"
+          *ngFor="let item of bucketList">
+          <span>{{ item.title }}</span>
+        </li>
+      </ul>
+    </div>
+
+    <div class="codepen-list"
+      [@loadedAnimation]="codepenListState"
+      (@loadedAnimation.done)="animationDone($event, 'codepenList')"
+      >
+      <h2>My codepen list</h2>
+      <ul>
+        <li [ngClass]="[item.done ? 'done' : '']"
+          *ngFor="let item of codepenList">
+          <span>{{ item.title }}</span>
+          <a href="{{item.link}}" target="_blank" *ngIf="item.link">(<span>view the Pen</span>)</a>
+        </li>
+      </ul>
+    </div>
+  </div>
+
+
+</content>
+
 <readings></readings>

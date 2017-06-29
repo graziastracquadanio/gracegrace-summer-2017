@@ -1,35 +1,46 @@
 <content>
   <div class="reading">
     <div class="reading-column">
-      <div class="reading-bucket">
+      <div class="reading-bucket"
+        [@loadedAnimation]="readingNowState"
+        (@loadedAnimation.done)="readingAnimationDone($event)">
         <h2># Reading now</h2>
-        <div class="reading-item" *ngFor="let book of currentReading | async">
+        <div class="reading-item" *ngFor="let book of readingNow">
           <div class="reading-item_title">{{book.title}}</div>
           <div class="reading-item_author">{{book.author}}</div>
         </div>
       </div>
-      <div class="reading-bucket">
+    </div>
+    <div class="reading-column">
+      <div class="reading-bucket"
+        [@loadedAnimation]="onTheShelfState"
+        (@loadedAnimation.done)="readingAnimationDone($event)">
         <h2># Waiting on the shelf</h2>
-        <div class="reading-item" *ngFor="let book of waitingOnTheShelf | async">
+        <div class="reading-item" *ngFor="let book of onTheShelf">
           <div class="reading-item_title">{{book.title}}</div>
           <div class="reading-item_author">{{book.author}}</div>
         </div>
       </div>
-    </div>
-    <div class="reading-column">
-      <div class="reading-bucket">
-        <h2># Have read</h2>
-        <div class="reading-item" *ngFor="let book of finishedReadings | async">
-          <div class="reading-item_title">{{book.title}}</div>
-          <div class="reading-item_author">{{book.author}}</div>
-        </div>
-      </div>
-    </div>
-    <div class="reading-column">
-      <div class="reading-bucket">
+      <div class="reading-bucket"
+        [@loadedAnimation]="wishlistState"
+        (@loadedAnimation.done)="readingAnimationDone($event)">
         <h2># Wishlist</h2>
-        <div class="reading-item" *ngFor="let book of wishlistReadings | async">
+        <div class="reading-item" *ngFor="let book of whishlist">
           <div class="reading-item_title">{{book.title}}</div>
+          <div class="reading-item_author">{{book.author}}</div>
+        </div>
+      </div>
+    </div>
+    <div class="reading-column">
+      <div class="reading-bucket"
+        [@loadedAnimation]="haveReadState"
+        (@loadedAnimation.done)="readingAnimationDone($event)">
+        <h2 class="with-tooltip">
+          # Have read *
+          <span class="tooltip">Some books I've read in the last 2 years</span>
+        </h2>
+        <div class="reading-item" *ngFor="let book of haveRead">
+          <div class="reading-item_title" [ngClass]="[book.mostLoved ? 'loved' : '']">{{book.title}}</div>
           <div class="reading-item_author">{{book.author}}</div>
         </div>
       </div>

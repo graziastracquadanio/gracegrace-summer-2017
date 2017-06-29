@@ -3,6 +3,10 @@
 @import '../../../assets/styles/variables';
 @import '../../../assets/styles/mixins';
 
+// @media print {
+//   #main-content a[href]:after { " (" attr(href) ") "; }
+// }
+
 .bg {
   position: absolute;
   width: 100%;

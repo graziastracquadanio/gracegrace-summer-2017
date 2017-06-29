@@ -12,7 +12,7 @@ export class ColorService {
   }
 
   getNextIndex() {
-    if (!!this.currentIndex) {
+    if (this.currentIndex === null) {
      return Math.floor(Math.random() * PALETTES.codes.length);
     }
     const next = this.currentIndex + 1;
@@ -45,7 +45,6 @@ export class ColorService {
         nextIndex = this.getNextIndex();
         break;
     }
-
     this.currentIndex = nextIndex;
     const nextPalette = PALETTES.codes[this.currentIndex];
     this.currentPaletteSource.next(nextPalette);

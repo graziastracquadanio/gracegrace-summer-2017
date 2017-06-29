@@ -1,6 +1,9 @@
 @import '../assets/styles/variables';
 @import '../assets/styles/media-queries';
 
+$ideanAngle: 10deg;
+$color-switcher-color: $black;
+
 .colorful-bg {
   position: fixed;
   top: 0;
@@ -8,10 +11,10 @@
   height: 100vh;
   width: 100vw;
   z-index: -1;
+  opacity: .2;
 }
 
-.color-switcher {
-  $color-switcher-color: white;
+/deep/ .color-switcher {
 
   position: fixed;
   bottom: 0;
@@ -35,9 +38,20 @@
 
   &:hover {
     opacity: 1;
+    .icon {
+      animation-play-state: paused;
+    }
+
+    .line {
+      opacity: 1;
+    }
 
     .text {
       opacity: 1;
+    }
+
+    .text_bg svg {
+      animation: ovalSketchAnimation 4s linear infinite;
     }
   }
 
@@ -45,6 +59,8 @@
     height: 2em;
     width: 2em;
     margin-right: 0.3em;
+    animation: ideaLineAnimation 4s linear infinite;
+    transform-origin: 50% 100%;
   }
 
   .text {
@@ -60,6 +76,10 @@
     align-items: center;
     opacity: 0;
 
+    @include smartphone {
+      display: none;
+    }
+
     span {
       position: absolute;
       top: 50%;
@@ -69,5 +89,45 @@
       padding: 0 .5em;
       text-align: center;
     }
+  }
+
+  .line {
+    opacity: 0;
+  }
+
+  .text_bg svg {
+    opacity: .5;
+    fill: transparent;
+    stroke: $color-switcher-color;
+    stroke-width: 2px;
+    stroke-dasharray: 700;
+  }
+}
+
+@keyframes ideaLineAnimation {
+  0% {
+    transform: rotate(0);
+  } 75% {
+    transform: rotate(0);
+  } 80% {
+    transform: rotate(-$ideanAngle);
+  } 85% {
+    transform: rotate($ideanAngle);
+  } 90% {
+    transform: rotate(-$ideanAngle);
+  } 95% {
+    transform: rotate($ideanAngle);
+  } 100% {
+    transform: rotate(0);
+  }
+}
+
+@keyframes ovalSketchAnimation {
+  0% {
+    stroke-dashoffset: 700;
+  } 50% {
+    stroke-dashoffset: 1400;
+  } 100% {
+    stroke-dashoffset: 2100;
   }
 }

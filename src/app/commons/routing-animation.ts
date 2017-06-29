@@ -49,3 +49,16 @@ export const heightChange = trigger('heightAnimation', [
   })),
   transition('menu-visible <=> menu-hidden', animate('300ms linear')),
 ]);
+
+export const componentLoaded = trigger('loadedAnimation', [
+  state('*', style({ opacity: 0 }) ),
+  state('not-loaded', style({
+    opacity: 0,
+    transform: 'translateY(100%)',
+  })),
+  state('loaded', style({
+    opacity: 1,
+    transform: 'translateY(0%)',
+  })),
+  transition('loaded <=> not-loaded', animate('300ms 300ms linear')),
+]);

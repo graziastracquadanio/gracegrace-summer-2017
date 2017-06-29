@@ -20,7 +20,7 @@ export class TrianglifyDirective {
     private renderer: Renderer) {
     let element = this.elementRef.nativeElement;
     this.renderer.setElementStyle(element, 'background-size', 'cover');
-    this.renderer.setElementStyle(element, 'opacity', `${this.isChrome || this.isSafari ? '0.9' : '0.6'}`);
+    // this.renderer.setElementStyle(element, 'opacity', `${this.isChrome || this.isSafari ? '0.9' : '0.6'}`);
   }
 
   private trianglifyElement(color: any, duration: number = 250) {

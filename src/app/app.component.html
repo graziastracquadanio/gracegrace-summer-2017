@@ -4,7 +4,9 @@
   ></app-menu>
 
 <router-outlet>
-  <div class="colorful-bg"  [trianglify]="currentPalette" [animateFast]="changeFast"></div>
+  <div class="colorful-bg"
+  [trianglify]="currentPalette"
+  [animateFast]="changeFast"></div>
 </router-outlet>
 
 <div class="color-switcher" (click)="showNextPalette()">

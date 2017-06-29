@@ -13,11 +13,7 @@
   }
 
   &.content-height {
-    margin-top: $menu-height;
-    padding-top: 2em;
     height: auto;
-
-    margin-bottom: 5em;
 
     @include print {
       width: 100%;
@@ -38,5 +34,14 @@
     display: flex;
     justify-content: center;
     align-items: center;
+  }
+
+  &.after-menu {
+    margin-top: $menu-height;
+    padding-top: 2em;
+  }
+
+  &.last-container {
+    margin-bottom: 5em;
   }
 }
