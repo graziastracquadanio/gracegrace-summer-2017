@@ -25,7 +25,7 @@
         [@loadedAnimation]="wishlistState"
         (@loadedAnimation.done)="readingAnimationDone($event)">
         <h2># Wishlist</h2>
-        <div class="reading-item" *ngFor="let book of whishlist">
+        <div class="reading-item" *ngFor="let book of wishlist">
           <div class="reading-item_title">{{book.title}}</div>
           <div class="reading-item_author">{{book.author}}</div>
         </div>

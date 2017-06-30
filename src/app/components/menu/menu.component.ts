@@ -13,18 +13,16 @@ export class MenuComponent implements OnInit, OnDestroy {
   isOpen;
   menuState: string;
 
-  constructor(private menuService: MenuService) { }
+  constructor(private menuService: MenuService) {}
 
   @Input() color: string;
   @Input() animateFast: boolean;
 
   ngOnInit() {
-    this.menuSubscription = this.menuService.isOpen$.subscribe(
-      value => {
-        this.menuState = value ? 'menu-visible' : 'menu-hidden';
-        this.isOpen = value;
-      }
-    );
+    this.menuSubscription = this.menuService.isOpen$.subscribe(value => {
+      this.menuState = value ? 'menu-visible' : 'menu-hidden';
+      this.isOpen = value;
+    });
   }
 
   ngOnDestroy() {

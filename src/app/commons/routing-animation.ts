@@ -1,4 +1,4 @@
-import { trigger, state, animate, transition, style } from '@angular/animations';
+import { trigger, state, animate, transition, style, keyframes } from '@angular/animations';
 
 const fadeIn = '.4s';
 const fadeOut = '.3s';
@@ -41,13 +41,23 @@ export const blurInOut = trigger('blurAnimation', [
 ]);
 
 export const heightChange = trigger('heightAnimation', [
-  state('menu-visible', style({
-    height: '100vh',
-  })),
-  state('menu-hidden',   style({
-    height: '*',
-  })),
-  transition('menu-visible <=> menu-hidden', animate('300ms linear')),
+  transition('menu-hidden => menu-visible',
+    animate(600, keyframes([
+      style({ transform: 'translateY(-100%) rotate(-2deg) scale(1.2, 1)', offset: 0}),
+      style({ transform: 'translateY(0%)', offset: 0.5}),
+      style({ transform: 'translateY(-20%)', offset: 0.6}),
+      style({ transform: 'translateY(0%)', offset: 0.7}),
+      style({ transform: 'translateY(-10%)', offset: 0.8}),
+      style({ transform: 'translateY(0%)', offset: 0.9}),
+      style({ transform: 'translateY(0%)', offset: 1}),
+    ]))
+  ),
+  transition('menu-visible => menu-hidden', [
+    animate(250, keyframes([
+      style({ transform: 'translateY(0%)', offset: 0}),
+      style({ transform: 'translateY(-100%)', offset: 1}),
+    ]))
+  ]),
 ]);
 
 export const componentLoaded = trigger('loadedAnimation', [

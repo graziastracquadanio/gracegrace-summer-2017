@@ -1,5 +1,5 @@
 <div [ngClass]="[color, animateFast ? 'fast' : 'slow']">
-  <div class="main-menu print-hidden" [@heightAnimation]="menuState" [ngClass]="[menuState]">
+  <div class="main-menu print-hidden" [ngClass]="[menuState]">
 
     <div class="main-menu_toggle"
       (click)="toggleMenu()">
@@ -8,7 +8,7 @@
       <span class="bottom"></span>
     </div>
 
-    <div class="main-menu_content">
+    <div class="main-menu_content" [@heightAnimation]="menuState">
       <div class="main-menu_links">
         <a
           class="main-menu_item"

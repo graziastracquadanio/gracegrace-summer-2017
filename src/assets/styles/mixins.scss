@@ -43,7 +43,7 @@ $slowTransition: 4s;
 @mixin colorTransition($property: all, $other: '') {
   /deep/ .fast & {
     @if $other != '' {
-      transition: $property $fastTransition ease-out, $other;
+      transition: $property $fastTransition ease-out, #{$other};
     } @else {
       transition: $property $fastTransition ease-out;
     }
@@ -60,34 +60,36 @@ $slowTransition: 4s;
 // END COLOR DEFS
 
 // EFFECT ANIMATIONS
-@keyframes gelatine{
-  from, to {
-    transform:scale(1, 1);
+@keyframes gelatine {
+  from,
+  to {
+    transform: scale(1, 1);
   }
   25% {
-    transform:scale(.94, 1.1);
+    transform: scale(.94, 1.1);
   }
   50% {
-    transform:scale(1.05, .9);
+    transform: scale(1.05, .9);
   }
   75% {
-    transform:scale(.98, 1.05);
+    transform: scale(.98, 1.05);
   }
-  from, to {
-    transform:scale(1, 1);
+  from,
+  to {
+    transform: scale(1, 1);
   }
   25% {
-    transform:scale(.94, 1.1);
+    transform: scale(.94, 1.1);
   }
   50% {
-    transform:scale(1.05, .9);
-  }75% {
-    transform:scale(.98, 1.05);
+    transform: scale(1.05, .9);
+  }
+  75% {
+    transform: scale(.98, 1.05);
   }
 }
 
 // END EFFECT ANIMATIONS
-
 
 // TEXT FORMAT
 $slowTransition: 2s;
