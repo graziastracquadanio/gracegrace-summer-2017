@@ -1,5 +1,6 @@
 @import '../assets/styles/variables';
 @import '../assets/styles/media-queries';
+@import '../assets/styles/mixins';
 
 $ideanAngle: 10deg;
 $color-switcher-color: $black;
@@ -11,11 +12,10 @@ $color-switcher-color: $black;
   height: 100vh;
   width: 100vw;
   z-index: -1;
-  opacity: .2;
+  @include colorTransition();
 }
 
 /deep/ .color-switcher {
-
   position: fixed;
   bottom: 0;
   right: 0;
@@ -107,17 +107,23 @@ $color-switcher-color: $black;
 @keyframes ideaLineAnimation {
   0% {
     transform: rotate(0);
-  } 75% {
+  }
+  75% {
     transform: rotate(0);
-  } 80% {
+  }
+  80% {
     transform: rotate(-$ideanAngle);
-  } 85% {
+  }
+  85% {
     transform: rotate($ideanAngle);
-  } 90% {
+  }
+  90% {
     transform: rotate(-$ideanAngle);
-  } 95% {
+  }
+  95% {
     transform: rotate($ideanAngle);
-  } 100% {
+  }
+  100% {
     transform: rotate(0);
   }
 }
@@ -125,9 +131,11 @@ $color-switcher-color: $black;
 @keyframes ovalSketchAnimation {
   0% {
     stroke-dashoffset: 700;
-  } 50% {
+  }
+  50% {
     stroke-dashoffset: 1400;
-  } 100% {
+  }
+  100% {
     stroke-dashoffset: 2100;
   }
 }

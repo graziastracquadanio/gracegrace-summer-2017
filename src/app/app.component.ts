@@ -1,23 +1,20 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
-import { Router, NavigationStart } from '@angular/router';
+import { Router, NavigationStart, NavigationEnd } from '@angular/router';
 import { ColorService } from './services';
 import 'rxjs/add/operator/filter';
 
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
-  styleUrls: ['./app.component.scss']
+  styleUrls: ['./app.component.scss'],
 })
-
 export class AppComponent {
   changeFast: boolean;
   currentPalette: string;
   colorSubscription;
   intervalId: any = null;
 
-  constructor(
-    private colorService: ColorService,
-    private router: Router) {
+  constructor(private colorService: ColorService, private router: Router) {
     this.colorService.setNextPalette();
   }
 
@@ -53,15 +50,16 @@ export class AppComponent {
       }
     );
 
-    this.router.events
-      .filter(event => event instanceof NavigationStart)
-      .subscribe((val) => {
+    this.router.events.subscribe(event => {
+      if (event instanceof NavigationStart) {
         this.showNextPalette();
-      });
+      } else if (event instanceof NavigationEnd) {
+        window.scrollTo(0, 0);
+      }
+    });
   }
 
   ngOnDestroy() {
     this.colorSubscription.unsubscribe();
   }
 }
-

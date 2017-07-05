@@ -38,12 +38,14 @@ $color-opacity: 0.7;
     align-items: center;
 
     @include backgroundBasedOnContext($color-opacity);
-    @include colorTransition(background);
+    @include colorTransition();
 
     @include smartphone {
       height: 100vh;
+      position: absolute;
 
       .menu-hidden & {
+        top: -100%;
         transform: translateY(-100%);
       }
     }

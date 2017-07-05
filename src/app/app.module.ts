@@ -9,10 +9,7 @@ import { NgModule } from '@angular/core';
 
 import { FIREBASE_CONFIG } from './app.config';
 
-import {
-  ColorService,
-  MenuService,
-} from './services';
+import { ColorService, MenuService } from './services';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -47,10 +44,7 @@ import { ContentComponent } from './components/content/content.component';
     HttpModule,
     InlineSVGModule,
   ],
-  providers: [
-    ColorService,
-    MenuService,
-  ],
-  bootstrap: [AppComponent]
+  providers: [ColorService, MenuService],
+  bootstrap: [AppComponent],
 })
-export class AppModule { }
+export class AppModule {}
