@@ -3,6 +3,7 @@ import { Routes, RouterModule } from '@angular/router';
 
 // components
 import { AboutComponent } from './components/about/about.component';
+import { BlogComponent } from './components/blog/blog.component';
 import { IntroComponent } from './components/intro/intro.component';
 import { StuffComponent } from './components/stuff/stuff.component';
 const routes: Routes = [
@@ -13,6 +14,10 @@ const routes: Routes = [
   {
     path: 'about',
     component: AboutComponent,
+  },
+  {
+    path: 'blog',
+    component: BlogComponent,
   },
   {
     path: 'stuff',
@@ -32,6 +37,6 @@ const routes: Routes = [
 
 @NgModule({
   imports: [RouterModule.forRoot(routes)],
-  exports: [RouterModule]
+  exports: [RouterModule],
 })
-export class AppRoutingModule { }
+export class AppRoutingModule {}
