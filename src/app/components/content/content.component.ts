@@ -1,15 +1,15 @@
 import { Component, OnInit, OnDestroy, Input } from '@angular/core';
-import { slideInOut, blurInOut } from '../../commons/routing-animation';
+import { blurInOut, fadeInOut } from '../../commons/routing-animation';
 import { ColorService, MenuService } from '../../services';
 
 @Component({
   selector: 'content',
   templateUrl: './content.component.html',
   styleUrls: ['./content.component.scss'],
-  animations: [slideInOut, blurInOut],
+  animations: [fadeInOut, blurInOut],
   host: {
-    '[@routingAnimation]': ''
-  }
+    '[@routingAnimation]': '',
+  },
 })
 export class ContentComponent implements OnInit, OnDestroy {
   contentClass: string = '';
@@ -20,11 +20,10 @@ export class ContentComponent implements OnInit, OnDestroy {
   colorSubscription;
   currentPalette;
 
-
   constructor(
     private colorService: ColorService,
-    private menuService: MenuService) {
-  }
+    private menuService: MenuService
+  ) {}
 
   /*
     Define the height of the page.
@@ -32,14 +31,16 @@ export class ContentComponent implements OnInit, OnDestroy {
     'content' => auto height based on content
     'screen' => height based on screen height (100vh)
   */
-  @Input() set height(value: string) {
+  @Input()
+  set height(value: string) {
     this.heightClass = `${value}-height`;
   }
 
   /*
     Define if the content is centered in the screen.
   */
-  @Input() set centered(value) {
+  @Input()
+  set centered(value) {
     this.heightClass = 'screen-height';
     this.contentClass = 'centered-content';
   }
@@ -51,14 +52,14 @@ export class ContentComponent implements OnInit, OnDestroy {
 
   ngOnInit() {
     this.colorSubscription = this.colorService.currentPalette$.subscribe(
-      value => { this.currentPalette = value; }
-    );
-
-    this.menuSubscription = this.menuService.isOpen$.subscribe(
       value => {
-        this.menuState = value ? 'menu-visible' : 'menu-hidden';
+        this.currentPalette = value;
       }
     );
+
+    this.menuSubscription = this.menuService.isOpen$.subscribe(value => {
+      this.menuState = value ? 'menu-visible' : 'menu-hidden';
+    });
   }
 
   ngOnDestroy() {

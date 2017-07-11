@@ -26,7 +26,7 @@
   }
 
   &_section_title {
-    @include heading(true);
+    @include heading();
   }
 
   &_intro {
@@ -34,7 +34,7 @@
 
     span {
       display: inline-block;
-      color: $primary-color;
+      @include textColor($primary-color);
     }
   }
 
@@ -50,7 +50,7 @@
     }
 
     h2 {
-      @include heading_subsection(false);
+      @include heading_subsection();
     }
 
     &_company {
@@ -58,23 +58,23 @@
     }
 
     &_details {
-      @include subheading_subsection(false);
+      @include subheading_subsection();
     }
 
     &_description {
-      @include general_text(false);
+      @include general_text();
     }
   }
 
   &_about {
     p {
-      @include general_text(false);
+      @include general_text();
     }
   }
 
   &_works {
     p {
-      @include general_text(false);
+      @include general_text();
     }
 
     &_item {
@@ -90,13 +90,13 @@
       }
 
       &_name {
-        @include general_text(false);
+        @include general_text();
         width: 20%;
         min-width: 150px;
       }
 
       &_description {
-        @include general_text(false);
+        @include general_text();
         width: 80%;
 
         @include smartphone {

@@ -1,18 +1,9 @@
-<app-menu
-  [color]="currentPalette"
-  [animateFast]="changeFast"
-  ></app-menu>
+<div [ngClass]="[currentPalette]">
+  <app-menu [color]="currentPalette" ></app-menu>
 
-<router-outlet>
-  <div class="colorful-bg"
-  [trianglify]="currentPalette"
-  [animateFast]="changeFast"></div>
-</router-outlet>
+  <router-outlet>
+    <div class="colorful-bg"></div>
+  </router-outlet>
 
-<div class="color-switcher" (click)="showNextPalette()">
-  <div class="icon" [inlineSVG]="'/assets/svg/idea.svg'"></div>
-  <div class="text">
-    <div class="text_bg" [inlineSVG]="'/assets/svg/oval.svg'"></div>
-    <span>Click here to change color</span>
-  </div>
+  <settings></settings>
 </div>

@@ -43,7 +43,7 @@
   }
 
   h2 {
-    @include heading_subsection(true);
+    @include heading_subsection();
     margin-bottom: 1em;
   }
 

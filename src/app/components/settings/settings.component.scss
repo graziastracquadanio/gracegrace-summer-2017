@@ -1,0 +1,123 @@
+@import '../../../assets/styles/mixins';
+@import '../../../assets/styles/palettes';
+@import '../../../assets/styles/variables';
+
+$colors: length($palettes-main) + 3;
+
+.settings-container {
+  position: fixed;
+  bottom: 0;
+  right: 0;
+}
+
+.fab {
+  width: 2em;
+  height: 2em;
+  margin: 0.5em;
+  cursor: pointer;
+  position: relative;
+  z-index: 10;
+
+  &:hover {
+    animation: fabRotation 4s ease-in-out;
+  }
+
+  /deep/ svg {
+    width: 100%;
+    height: 100%;
+    fill: white;
+  }
+}
+
+.options {
+  position: absolute;
+  right: 0;
+  bottom: 0;
+  padding-right: 3em;
+  width: 90vw;
+  display: flex;
+  flex-wrap: wrap-reverse;
+  justify-content: flex-end;
+  padding-bottom: 0.2em;
+
+  .option {
+    width: 1.8em;
+    height: 1.8em;
+    padding: .3em;
+  }
+
+  &.open .option {
+    transform: translateY(0%);
+    transition: transform .4s ease-out;
+
+    @for $i from 0 through $colors {
+      &:nth-child(#{$colors - $i}) {
+        transition-delay: 0.05s * $i;
+      }
+    }
+  }
+
+  &.closed .option {
+    transform: translateY(200px);
+    transition: transform .4s ease-in;
+
+    @for $i from 0 through $colors {
+      &:nth-child(#{$i}) {
+        transition-delay: 0.05s * $i;
+      }
+    }
+  }
+}
+
+.option {
+  button {
+    border-radius: 100%;
+    width: 100%;
+    height: 100%;
+    transition: all .2s linear;
+  }
+}
+
+.color-option {
+  button {
+    border: 2px solid white;
+  }
+}
+
+.icon-option {
+  button {
+    background-color: white;
+    fill: $black;
+    padding: .3em;
+  }
+}
+
+/deep/ .day {
+  .color-option {
+    button {
+      border-color: $black !important;
+    }
+  }
+
+  .icon-option {
+    button {
+      fill: white !important;
+      background-color: $black !important;
+    }
+  }
+
+  .fab {
+    svg {
+      fill: $black !important;
+    }
+  }
+}
+
+@keyframes fabRotation {
+  from {
+    transform: rotate(0);
+  }
+  to {
+    transform: rotate(720deg);
+  }
+}

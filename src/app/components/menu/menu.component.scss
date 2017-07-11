@@ -37,8 +37,13 @@ $color-opacity: 0.7;
     justify-content: space-between;
     align-items: center;
 
-    @include backgroundBasedOnContext($color-opacity);
-    @include colorTransition();
+    @include backgroundBasedOnContext($color-opacity, false);
+
+    .day & {
+      backgroound-color: white;
+    }
+
+    transition: color .2s ease-out;
 
     @include smartphone {
       height: 100vh;
@@ -67,8 +72,6 @@ $color-opacity: 0.7;
     flex-direction: column;
     justify-content: space-around;
     cursor: pointer;
-    // @include backgroundBasedOnContext($color-opacity);
-    // @include colorTransition(background);
 
     @include not-smartphone() {
       opacity: 0;
@@ -106,7 +109,6 @@ $color-opacity: 0.7;
   }
 
   &_item {
-    color: white;
     font-size: 0.9em;
     font-family: $general-font;
     text-transform: uppercase;
@@ -117,8 +119,7 @@ $color-opacity: 0.7;
     user-select: none;
     cursor: pointer;
     position: relative;
-    $opacity-transition: opacity .25s ease-in;
-    @include colorTransition($opacity-transition);
+    transition: opacity .25s ease-in;
     opacity: 0.7;
 
     &:hover {
@@ -127,10 +128,20 @@ $color-opacity: 0.7;
       transition: none;
     }
 
+    .day & {
+      color: $black;
+    }
+
     &.active {
-      @include colorTransition(color);
-      @include colorBasedOnContext($color-opacity);
-      background-color: white;
+      transition: color .2s ease-out;
+      @include colorBasedOnContext();
+      background-color: white !important;
+      opacity: 1;
+
+      .day & {
+        background-color: $black !important;
+        color: $text-color !important;
+      }
     }
   }
 
@@ -143,6 +154,11 @@ $color-opacity: 0.7;
     fill: white;
     opacity: 0.7;
     transition: all .25s ease-in;
+    background-color: transparent;
+
+    .day & {
+      fill: $black;
+    }
 
     &:hover {
       opacity: 1;

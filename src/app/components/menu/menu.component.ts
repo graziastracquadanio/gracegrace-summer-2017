@@ -16,7 +16,6 @@ export class MenuComponent implements OnInit, OnDestroy {
   constructor(private menuService: MenuService) {}
 
   @Input() color: string;
-  @Input() animateFast: boolean;
 
   ngOnInit() {
     this.menuSubscription = this.menuService.isOpen$.subscribe(value => {
