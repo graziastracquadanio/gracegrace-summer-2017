@@ -50,3 +50,44 @@ svg {
   width: 100%;
   height: 100%;
 }
+
+.loading {
+  $loading-size: 7em;
+
+  &-container {
+    width: 100%;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  font-family: $primary-heading-font;
+  color: $black;
+  opacity: .8;
+  font-size: 7em;
+
+  span {
+    animation: dotAnimation .9s linear alternate infinite;
+    @for $i from 0 through 3 {
+      &:nth-child(#{$i}) {
+        animation-delay: .3s * $i;
+      }
+    }
+  }
+}
+
+@keyframes dotAnimation {
+  0% {
+    opacity: 0;
+  }
+  49% {
+    opacity: 0;
+  }
+  50% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 1;
+  }
+}
