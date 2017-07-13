@@ -1,5 +1,4 @@
 import { Component } from '@angular/core';
-import content from '../../data/cv-content';
 
 @Component({
   selector: 'about',
@@ -7,8 +6,11 @@ import content from '../../data/cv-content';
   styleUrls: ['./about.component.scss'],
 })
 export class AboutComponent {
-  experience: Object[] = content.experience;
-  works: Object[] = content.works;
+  showNext: number = 0;
 
-  constructor() { }
+  constructor() {}
+
+  printCv() {
+    window.print();
+  }
 }

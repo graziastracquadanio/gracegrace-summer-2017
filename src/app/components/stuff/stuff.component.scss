@@ -13,10 +13,6 @@
     @include super_heading;
   }
 
-  p {
-    @include general_text();
-  }
-
   span {
     text-decoration: line-through;
   }
@@ -25,6 +21,7 @@
 .first-lists-block {
   display: flex;
   flex-direction: row;
+  flex-wrap: wrap;
   margin: 0 -1em;
 
   @include smartphone {
@@ -32,9 +29,7 @@
   }
 }
 
-.bucket-list,
-.codepen-list {
-  width: 100/2 * 1%;
+.list {
   padding: 1em;
 
   @include smartphone {
@@ -42,42 +37,71 @@
     padding: 1em;
   }
 
-  h2 {
-    @include heading_subsection();
-    margin-bottom: 1em;
+  &-1-md {
+    width: 100%;
   }
 
-  ul li {
-    @include general_text();
-    text-transform: capitalize;
-    line-height: 1.25;
-    margin-bottom: 0.2em;
-    text-transform: lowercase;
-    position: relative;
-    padding-left: 1.2em;
+  &-2-md {
+    width: 100/2 * 1%;
+  }
+}
+
+h2 {
+  @include heading_subsection();
+  margin-bottom: 1em;
+}
+
+p {
+  @include general_text();
+  margin-bottom: 0.5em;
+}
+
+ul li {
+  @include general_text();
+  line-height: 1.25;
+  margin-bottom: 0.2em;
+  position: relative;
+  padding-left: 1.2em;
+
+  &:before {
+    content: '#';
+    position: absolute;
+    left: 0em;
+  }
+
+  &.no-bullet {
+    padding-left: 0;
 
     &:before {
-      content: '#';
-      position: absolute;
-      left: 0em;
-    }
-
-    &.done span {
-      text-decoration: line-through;
-
-      &:hover {
-        text-decoration: underline;
-      }
-    }
-
-    a {
-      text-decoration: none;
-      display: inline-block;
-
-      span {
-        text-decoration: underline;
-        cursor: pointer;
-      }
+      content: '';
     }
   }
+
+  &.done span {
+    text-decoration: line-through;
+
+    &:hover {
+      text-decoration: underline;
+    }
+  }
+
+  a {
+    text-decoration: none;
+    display: inline-block;
+
+    span {
+      text-decoration: underline;
+      cursor: pointer;
+    }
+  }
+}
+
+.author {
+  text-transform: capitalize;
+  display: inline-block;
+}
+
+mark {
+  background-color: rgba(255, 255, 255, .2);
+  @include textColor();
 }

@@ -1,0 +1,37 @@
+@import 'media-queries';
+@import 'mixins';
+
+// PRINT STUFF
+@page {
+  size: A4;
+  margin: 25mm 25mm 25mm 25mm;
+}
+
+@media print {
+  body {
+    height: auto;
+  }
+
+  // .print-hidden {
+  //   display: none !important;
+  //   visibility: hidden !important;
+  // }
+
+  .screen-only {
+    display: none !important;
+    visibility: hidden !important;
+  }
+}
+
+@media not print {
+  // .print-display {
+  //   display: none !important;
+  //   visibility: hidden !important;
+  // }
+
+  .print-only {
+    display: none !important;
+    visibility: hidden !important;
+  }
+}
+// END PRINT STUFF

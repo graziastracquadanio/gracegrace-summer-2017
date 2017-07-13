@@ -12,9 +12,7 @@ export class AppComponent {
   currentPalette: string;
   colorSubscription;
 
-  constructor(private colorService: ColorService, private router: Router) {
-    this.colorService.setNextPalette();
-  }
+  constructor(private colorService: ColorService, private router: Router) {}
 
   showNextPalette() {
     this.colorService.setNextPalette();

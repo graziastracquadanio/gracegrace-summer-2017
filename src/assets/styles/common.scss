@@ -7,6 +7,10 @@ body {
   height: 100vh;
 }
 
+section {
+  margin-bottom: 2em;
+}
+
 a {
   background-color: rgba(0, 0, 0, .15);
   padding-left: 3px;
@@ -19,32 +23,6 @@ a {
     padding-right: 0;
   }
 }
-
-// PRINT STUFF
-@page {
-  size: A4;
-  margin: 25mm 25mm 25mm 25mm;
-}
-
-@media print {
-  body {
-    height: auto;
-    background-image: none;
-  }
-
-  .print-hidden {
-    display: none !important;
-    visibility: hidden !important;
-  }
-}
-
-@media not print {
-  .print-display {
-    display: none !important;
-    visibility: hidden !important;
-  }
-}
-// END PRINT STUFF
 
 svg {
   width: 100%;

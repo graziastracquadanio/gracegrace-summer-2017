@@ -1,6 +1,9 @@
+import 'rxjs/add/operator/takeUntil';
 import { Component, Input, OnInit, OnDestroy } from '@angular/core';
-import { MenuService } from '../../services/menu.service';
 import { heightChange } from '../../commons/routing-animation';
+import { MenuService } from '../../services/menu.service';
+import { Router, NavigationStart, NavigationEnd } from '@angular/router';
+import { Subject } from 'rxjs/Subject';
 
 @Component({
   selector: 'app-menu',
@@ -9,23 +12,30 @@ import { heightChange } from '../../commons/routing-animation';
   animations: [heightChange],
 })
 export class MenuComponent implements OnInit, OnDestroy {
-  menuSubscription;
+  private ngUnsubscribe: Subject<void> = new Subject<void>();
   isOpen;
   menuState: string;
 
-  constructor(private menuService: MenuService) {}
+  constructor(private menuService: MenuService, private router: Router) {}
 
   @Input() color: string;
 
   ngOnInit() {
-    this.menuSubscription = this.menuService.isOpen$.subscribe(value => {
+    this.menuService.isOpen$.takeUntil(this.ngUnsubscribe).subscribe(value => {
       this.menuState = value ? 'menu-visible' : 'menu-hidden';
       this.isOpen = value;
+    });
+
+    this.router.events.takeUntil(this.ngUnsubscribe).subscribe(event => {
+      if (event instanceof NavigationStart) {
+        this.menuService.closeMenu();
+      }
     });
   }
 
   ngOnDestroy() {
-    this.menuSubscription.unsubscribe();
+    this.ngUnsubscribe.next();
+    this.ngUnsubscribe.complete();
   }
 
   toggleMenu() {

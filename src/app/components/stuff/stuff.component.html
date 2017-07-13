@@ -1,12 +1,15 @@
 <content containerClass="after-menu">
   <div class="intro-block">
     <h2>
-      A bunch of <span>stuff</span> lists
+      A bunch of <span>stuff</span> lists!
     </h2>
-    <p>This is a place where I make lists. I like lists. I like to mark things as <span>done</span>.</p>
+    <p>
+      This is a place where I make lists. I like making lists and I like to mark things as <span>done</span>. <br>
+      This page is getting messy and I love it even more! &#9829;
+    </p>
   </div>
   <div class="first-lists-block">
-    <div class="bucket-list"
+    <div class="list list-2-md"
       [@loadedAnimation]="bucketListState"
       (@loadedAnimation.done)="animationDone($event, 'bucketList')"
       >
@@ -19,7 +22,7 @@
       </ul>
     </div>
 
-    <div class="codepen-list"
+    <div class="list list-2-md"
       [@loadedAnimation]="codepenListState"
       (@loadedAnimation.done)="animationDone($event, 'codepenList')"
       >
@@ -32,9 +35,19 @@
         </li>
       </ul>
     </div>
+    <div class="list list-1-md"
+      [@loadedAnimation]="quoteListState"
+      (@loadedAnimation.done)="animationDone($event, 'quoteList')"
+        >
+      <h2>Some of my favourite quotes in a list</h2>
+      <ul>
+        <li class="no-bullet" [ngClass]="[item.done ? 'done' : '']"
+          *ngFor="let item of quoteList">
+          <p><mark>"{{ item.quote }}"</mark> <span class="author" *ngIf="item.author">({{ item.author }})</span></p>
+        </li>
+      </ul>
+    </div>
   </div>
-
-
 </content>
 
 <readings></readings>

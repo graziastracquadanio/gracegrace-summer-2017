@@ -1,59 +1,40 @@
-<content containerClass="after-menu last-container">
-  <div class="cv">
-    <div class="cv_intro cv_section print-display">Grazia Stracquadanio. <span>Frontend developer</span></div>
-    <!-- <div class="cv_contacts cv_section">
-      <div class="">
-        <div class="icon" [inlineSVG]="'/assets/svg/email.svg'"></div>
-      </div>
-    </div> -->
-    <!-- ABOUT ME -->
-    <div class="cv_about cv_section">
-      <h1 class="cv_section_title">About me</h1>
-      <p>
-        I love applying creativity to every aspect of my life and work. I am a strong supporter of simplicity and optimised solutions, with a sharp attention to details. I believe in challenges (in work and life) and sharing because they are the best way to learn and improve.
-      </p>
-    </div>
-    <!-- WORK EXPERIENCE -->
-    <div class="cv_experience cv_section">
-      <h1 class="cv_section_title">Work Experience</h1>
-      <div class="cv_experience_item" *ngFor="let item of experience">
-        <h2>
-          <span class="cv_experience_item_role" *ngIf="item.role">{{item.role}} @</span>
-          <span class="cv_experience_item_company">{{item.company}}</span>
-          <span class="cv_experience_item_website" *ngIf="item.website">
-            ( <a href="{{item.website.url}}" target="_blank" title={{item.website.name}}>{{item.website.name}}</a> )
-          </span>
-        </h2>
-        <h3 class="cv_experience_item_details">
-          <span *ngIf="item.location">{{item.location}},</span> {{item.from_date}} – {{item.to_date}}
-        </h3>
-        <p class="cv_experience_item_description">{{item.description}}</p>
-      </div>
-    </div>
-    <!-- SOME WORKS -->
-    <div class="cv_works cv_section">
-      <p>Do you want to see some of the project I’ve worked on?</p>
+<content containerClass="after-menu">
+  <!-- DISPLAY ONLY: greetings -->
+  <section class="screen-only">
+    <h5>
+      <b>Hey! My name is Grazia Stracquadanio and I am a developer from Italy, currently based in Dublin.</b>
+      <br>
+      I earn my bread with with HTML, CSS and JavaScript and anything around those.
+    </h5>
 
-      <div class="cv_works_item" *ngFor="let item of works">
-        <div class="cv_works_item_name">
-          <a href="{{item.url}}">{{item.name}}</a>
-        </div>
-        <div class="cv_works_item_description">{{item.description}}</div>
-      </div>
+    <p>Do you need my full CV? You can find it
+      <a title="Curriculum Vitae" routerLink="/cv/true">here</a>
+    </p>
+  </section>
 
-      <p>Or, do you want to look at some code?</p>
+  <!-- DISPLAY ONLY: intro -->
+  <section class="screen-only">
+    <p>
+      After my secondary school, I faced a big decision to make. What's next? My first choice was to follow my heart, so I went to a school of Arts, but after few months I've realized that wasn't the way I wanted to make things. I wanted something more challenging, I wanted something where I could express my creativity, yes, but in a logical way. So I took a degree in Computer Science (something completely different and challenging!). That helped me to develop a more structured logical thinking but I've found my way to combine it with creativity. So here I am. I draw with code every day. This is my job. And I love it.
 
-      <div class="cv_code_item">
-        <div class="cv_code_item_icon" [inlineSVG]="'/assets/svg/codepen.svg'"></div>
-        <div class="cv_code_item_url"><a href="https://codepen.io/graziastrax/">https://codepen.io/graziastrax/</a></div>
-      </div>
+    </p>
 
-      <div class="cv_code_item">
-        <div class="cv_code_item_icon" [inlineSVG]="'/assets/svg/github.svg'"></div>
-        <div class="cv_code_item_url"><a href="https://github.com/graziastracquadanio">https://github.com/graziastracquadanio</a></div>
-      </div>
-    </div>
-  </div>
+    <p *ngIf="showNext > 0">
+      I fell in love with web development at first as a hobby. I've freelanced for a while, then I worked at Pane&Design as a frontend developer on a variety of projects. Our mission was to create a stronger and innovative design/development culture at the company.
+    </p>
+
+    <p *ngIf="showNext > 1">
+      I had the chance to work with great designers and developers. Together we built cool platforms that people enjoy using. What I've learned from this is that good communication between developers and designers helps to create a great product and also you enjoy more the process of building it. Sharing knowledge and ideas is very important to me.  I’m always trying to learn new things to make myself a better developer and person.
+    </p>
+
+    <p *ngIf="showNext > 2">
+      Today I work in Dublin, at HMH. Here, the challenge is to help people in the process of learning. We do it by offering new technologies that both young students and teachers can use. I enjoy working with this mission-driven process because every idea can have a great impact on this mission.
+    </p>
+
+    <button *ngIf="showNext < 3" (click)="showNext = showNext + 1"><mark>...and?</mark></button>
+  </section>
 </content>
+
+<curriculum></curriculum>
 
 

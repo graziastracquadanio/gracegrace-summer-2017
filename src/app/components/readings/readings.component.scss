@@ -35,10 +35,9 @@
   }
 
   h2 {
-    @include heading_subsection(true);
+    @include heading_subsection();
     margin-bottom: 1em;
   }
-
 
   .with-tooltip {
     position: relative;
@@ -64,7 +63,9 @@
   }
 
   &-item {
-    padding-bottom: 0.8em;
+    padding-top: .3em;
+    padding-bottom: .3em;
+    border-bottom: 1px dashed rgba(218, 223, 225, .3);
 
     &_title {
       @include general_text();
@@ -88,7 +89,7 @@
       @include general_text();
       text-transform: capitalize;
       font-style: italic;
-      font-size: 0.8em;
+      font-size: 1em;
       line-height: 1.25;
     }
   }

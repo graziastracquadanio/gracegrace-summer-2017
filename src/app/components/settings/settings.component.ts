@@ -6,9 +6,12 @@ import { ColorService } from '../../services';
   selector: 'settings',
   templateUrl: './settings.component.html',
   styleUrls: ['./settings.component.scss'],
+  host: {
+    '(document:scroll)': 'onScroll($event)',
+  },
 })
 export class SettingsComponent implements OnInit, OnDestroy {
-  palettes: object = palettes;
+  palettes = palettes;
   colorSubscription;
   currentPalette;
   isOpen: boolean = false;
@@ -33,5 +36,11 @@ export class SettingsComponent implements OnInit, OnDestroy {
 
   ngOnDestroy() {
     this.colorSubscription.unsubscribe();
+  }
+
+  onScroll(event) {
+    if (this.isOpen) {
+      this.toggleSettings();
+    }
   }
 }

@@ -24,6 +24,7 @@ import { ReadingsComponent } from './components/readings/readings.component';
 import { ContentComponent } from './components/content/content.component';
 import { BlogComponent } from './components/blog/blog.component';
 import { SettingsComponent } from './components/settings/settings.component';
+import { CurriculumComponent } from './components/curriculum/curriculum.component';
 
 @NgModule({
   declarations: [
@@ -38,6 +39,7 @@ import { SettingsComponent } from './components/settings/settings.component';
     ContentComponent,
     BlogComponent,
     SettingsComponent,
+    CurriculumComponent,
   ],
   imports: [
     AngularFireModule.initializeApp(FIREBASE_CONFIG, 'gracegrace'),

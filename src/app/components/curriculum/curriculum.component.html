@@ -1,0 +1,112 @@
+<content containerClass="after-menu last-container">
+  <!-- PRINT ONLY: cv head -->
+  <section [ngClass]="{'print-only': !showPrint}">
+    <h1>Grazia Stracquadanio. <mark>Frontend developer</mark></h1>
+  </section>
+
+  <!-- PRINT ONLY: contacts -->
+  <section [ngClass]="{'print-only': !showPrint}">
+    Here the contacts
+  </section>
+
+  <!-- PRINT ONLY: short intro -->
+  <section [ngClass]="{'print-only': !showPrint}">
+    <h2>About me</h2>
+    <p>
+      I love applying creativity to every aspect of my life and work. I am a strong supporter of simplicity and optimised solutions, with a sharp attention to details. I believe in challenges (in work and life) and sharing because they are the best way to learn and improve.
+    </p>
+  </section>
+
+  <!-- DISPLAY/PRINT: work experience -->
+  <section>
+    <h2>Work Experience</h2>
+
+    <div class="subsection" *ngFor="let item of experience">
+      <h3>
+        <span *ngIf="item.role">
+          <mark>{{item.role}}</mark>
+         @
+        </span>
+        <b >{{item.company}}</b>
+        <span *ngIf="item.website">
+          ( <a href="{{item.website.url}}" target="_blank" title={{item.website.name}}>{{item.website.name}}</a> )
+        </span>
+      </h3>
+      <h4>
+        <i>
+          <span *ngIf="item.location">{{item.location}},</span> {{item.from_date}} – {{item.to_date}}
+        </i>
+      </h4>
+      <p>{{item.description}}</p>
+    </div>
+  </section>
+
+  <!-- PRINT ONLY: some work -->
+  <section [ngClass]="{'print-only': !showPrint}">
+    <p>Do you want to see some of the project I’ve been working on?</p>
+
+    <div class="subsection cols-2" *ngFor="let item of works">
+      <div>
+        <a href="{{item.url}}">{{item.name}}</a>
+      </div>
+      <div>
+        <p>{{item.description}}</p>
+      </div>
+    </div>
+
+    <p>Or, do you want to look at some code?</p>
+
+    <div class="subsection with-icon">
+      <span [inlineSVG]="'/assets/svg/codepen.svg'"></span>
+      <a href="https://codepen.io/graziastrax/">https://codepen.io/graziastrax/</a>
+    </div>
+
+    <div class="subsection with-icon">
+      <span [inlineSVG]="'/assets/svg/github.svg'"></span>
+      <a href="https://github.com/graziastracquadanio">https://github.com/graziastracquadanio</a>
+    </div>
+  </section>
+
+  <!-- DISPLAY/PRINT: skills -->
+  <section>
+    <h2>Professional skillset</h2>
+    <p>
+      I am specialised in building cool things coding with <mark>HTML</mark>, <mark>CSS</mark> and <mark>Javascript</mark> (<mark>ES6</mark> too). In the last few years I’ve being using <mark>Angular</mark> (1.x and 2), <mark>React</mark>, <mark>Redux</mark>, <mark>Node.js</mark>, <mark>jQuery</mark> (of course!), <mark>Typescript</mark>, <mark>Sass</mark>, <mark>Less</mark>, <mark>Firebase</mark>, <mark>Webpack</mark>, <mark>Gulp</mark>, <mark>Grunt</mark>, <mark>NPM</mark>, <mark>Yarn</mark>, <mark>Twitter Bootstrap</mark>, <mark>Jasmine</mark>, <mark>Karma</mark>, <mark>Twig</mark>, <mark>JSP</mark>, <mark>Git</mark>, <mark>Bitbucket</mark> and soo many libraries .js I can’t even remember...
+    </p>
+    <p>
+      I firmly believe that nowadays everything should be <mark>mobile-friendly</mark> so a good <mark>responsive design/development</mark> is something I really care of.
+    </p>
+    <p>
+      I enjoy using design tools like <mark>Adobe Illustrator</mark>.
+    </p>
+    <p>
+      I’ve also worked in different <mark>Agile</mark> teams using <mark>Scrum</mark>, <mark>Kanban</mark>.
+    </p>
+  </section>
+
+  <!-- DISPLAY/PRINT: education -->
+  <section>
+    <h2>Education</h2>
+    <h3>BACHELOR'S DEGREE in COMPUTER SCIENCE</h3>
+    <h4><i>University of Catania, Italy – 2012</i></h4>
+    <p>
+      Part of Bachelor's thesis: illustration of anonymous systems for Internet communications, in particular weaknesses and strengths of TOR as an anonimity tool and a tool against Internet censorship.
+    </p>
+  </section>
+
+  <!-- DISPLAY/PRINT: languages -->
+  <section>
+    <h2>Languages</h2>
+    <p>
+      Italian (native), English (fluent), French (elementary proficiency), Spanish (work in progress).
+    </p>
+  </section>
+
+  <!-- DISPLAY/PRINT: interests -->
+  <section>
+    <h2>Interests</h2>
+    <p>
+      If I have to summarise what I like most that would be: creating, learning and challenges. In that order. I like to create anything with everything I have available. I absolutely love learning and challenges, for me they walk together expecially when it comes to overcome my limits. This is the main reason why I love yoga, inline-skating, surfing, climbing, snowboarding, playing my ukulele and every kind of activity that makes me feel happy and alive. Oh yes, I love good food too.
+    </p>
+  </section>
+</content>

@@ -95,16 +95,17 @@
 
 // END EFFECT ANIMATIONS
 
+// TODO remove all those stuff
 // TEXT FORMAT
 $slowTransition: 2s;
 
-@mixin super_heading {
+@mixin super_heading() {
   font-family: $primary-heading-font;
   font-size: 2.5em;
   text-transform: uppercase;
   line-height: 1.25;
-  @include textColor();
   margin-bottom: 1em;
+  @include textColor();
 
   @include printAndSmartphone {
     font-size: 22px;
@@ -113,19 +114,13 @@ $slowTransition: 2s;
   }
 }
 
-@mixin heading($shimmering: true) {
+@mixin heading() {
   font-family: $primary-heading-font;
   font-size: 2em;
-  margin-bottom: 0.5em;
   text-transform: uppercase;
   line-height: 1.25;
-
-  @if $shimmering == true {
-    @include colorBasedOnContext();
-    transition: color $slowTransition ease-in;
-  } @else {
-    @include textColor($primary-color);
-  }
+  margin-bottom: 0.5em;
+  @include textColor();
 
   @include printAndSmartphone {
     font-size: 16px;
@@ -133,19 +128,13 @@ $slowTransition: 2s;
   }
 }
 
-@mixin heading_subsection($shimmering: false) {
+@mixin heading_subsection() {
   font-family: $secondary-heading-font;
   font-size: 1.8em;
-  margin-bottom: 0.3em;
-  line-height: 1.25;
   font-weight: 300;
-
-  @if $shimmering == true {
-    @include colorBasedOnContext();
-    transition: color $slowTransition ease-in;
-  } @else {
-    @include textColor();
-  }
+  line-height: 1.25;
+  margin-bottom: 0.3em;
+  @include textColor();
 
   @include printAndSmartphone {
     font-size: 14px;
@@ -153,18 +142,12 @@ $slowTransition: 2s;
   }
 }
 
-@mixin subheading_subsection($shimmering: false) {
+@mixin subheading_subsection() {
   font-family: $general-font;
   font-size: 1.4em;
   line-height: 1.25;
   margin-bottom: 0.2em;
-  font-style: italic;
-  @include textColor($primary-color);
-
-  @if $shimmering == true {
-    @include colorBasedOnContext();
-    transition: color $slowTransition ease-in;
-  }
+  @include textColor();
 
   @include printAndSmartphone {
     font-size: 13px;
@@ -172,16 +155,11 @@ $slowTransition: 2s;
   }
 }
 
-@mixin general_text($color: $black, $shimmering: false) {
+@mixin general_text($color: $black) {
   font-family: $general-font;
   font-size: 1.1em;
   line-height: 1.5;
   @include textColor($color);
-
-  @if $shimmering == true {
-    @include colorBasedOnContext();
-    transition: color $slowTransition ease-in;
-  }
 
   @include printAndSmartphone {
     font-size: 12px;

@@ -4,11 +4,19 @@ import { palettes } from '../commons/palettes';
 
 @Injectable()
 export class ColorService {
+  private localStorageItem: string;
   private currentIndex: number = null;
   private currentPaletteSource = new BehaviorSubject<string>(null);
   currentPalette$ = this.currentPaletteSource.asObservable();
 
-  constructor() {}
+  constructor() {
+    const lastValue = localStorage.getItem('palette');
+    if (lastValue) {
+      this.setNextPalette(lastValue);
+    } else {
+      this.setNextPalette();
+    }
+  }
 
   getNextIndex() {
     if (this.currentIndex === null) {
@@ -24,20 +32,22 @@ export class ColorService {
 
   isCurrentPaletteInWhitelist() {
     const currentPalette = this.getCurrentPalette();
-    return currentPalette === 'night' || currentPalette === 'day';
+    return !!this.localStorageItem;
   }
 
   setNextPalette(value?: any) {
     let nextIndex;
-    let nextPalette;
+    let nextPalette = null;
 
     switch (typeof value) {
       case 'string':
         nextIndex = palettes.codes.findIndex(code => code === value);
         if (nextIndex < 0) {
           nextIndex = null;
-          nextPalette = value;
         }
+        nextPalette = value;
+        this.localStorageItem = nextPalette;
+        localStorage.setItem('palette', nextPalette);
         break;
       case 'number':
         if (nextIndex < 0 || nextIndex >= palettes.codes.length) {
@@ -49,8 +59,11 @@ export class ColorService {
       default:
         // get next index;
         nextIndex = this.getNextIndex();
+        localStorage.removeItem('palette');
+        this.localStorageItem = null;
         break;
     }
+
     this.currentIndex = nextIndex;
     if (nextIndex !== null) {
       nextPalette = palettes.codes[this.currentIndex];

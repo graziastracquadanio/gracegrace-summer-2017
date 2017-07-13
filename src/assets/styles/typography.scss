@@ -1,0 +1,149 @@
+@import 'media-queries';
+@import 'variables';
+
+$slowTransition: 2s;
+
+@mixin textColor($print-color: $black) {
+  color: $text-color;
+
+  .day & {
+    color: $dark-text-color !important;
+  }
+
+  @include print {
+    color: $print-color !important;
+  }
+}
+
+@mixin page_heading() {
+  font-family: $primary-heading-font;
+  font-size: 2.1em;
+  text-transform: uppercase;
+  line-height: 1.25;
+  margin-bottom: 1em;
+  @include textColor();
+
+  @include printAndSmartphone {
+    font-size: 22px;
+    margin-top: 20px;
+    margin-bottom: 20px;
+  }
+}
+
+@mixin section_heading() {
+  font-family: $primary-heading-font;
+  font-size: 1.8em;
+  text-transform: uppercase;
+  line-height: 1.25;
+  margin-bottom: 0.5em;
+  @include textColor();
+
+  @include printAndSmartphone {
+    font-size: 16px;
+    margin-bottom: 5px;
+  }
+}
+
+@mixin subsection_heading() {
+  font-family: $secondary-heading-font;
+  font-size: 1.4em;
+  font-weight: 300;
+  line-height: 1.25;
+  margin-bottom: 0.3em;
+  @include textColor();
+
+  b {
+    letter-spacing: 1px;
+  }
+
+  @include printAndSmartphone {
+    font-size: 14px;
+    margin-bottom: 2px;
+  }
+}
+
+@mixin subsection_subheading() {
+  font-family: $general-font;
+  font-size: 1.1em;
+  line-height: 1.25;
+  margin-bottom: 0.2em;
+  @include textColor();
+
+  @include printAndSmartphone {
+    font-size: 13px;
+    margin-bottom: 2px;
+  }
+}
+
+@mixin general_text($color: $black) {
+  font-family: $general-font;
+  font-size: 1.05em;
+  line-height: 1.5;
+  @include textColor($color);
+
+  @include printAndSmartphone {
+    font-size: 12px;
+    margin-bottom: 2px;
+  }
+}
+
+@mixin general_text_bigger($color: $text-color) {
+  font-family: $general-font;
+  font-size: 1.2em;
+  line-height: 1.5;
+  @include textColor($color);
+
+  @include printAndSmartphone {
+    font-size: 12px;
+    margin-bottom: 2px;
+  }
+}
+
+body {
+  @include general_text();
+}
+
+mark {
+  background-color: rgba(255, 255, 255, .3);
+  color: inherit;
+  padding-left: .2em;
+  padding-right: .2em;
+
+  .day & {
+    color: $primary-color;
+  }
+}
+
+b {
+  font-weight: bold;
+}
+
+i {
+  font-style: italic;
+}
+
+p {
+  @include general_text();
+  margin-bottom: .5em;
+}
+
+h1 {
+  @include page_heading();
+}
+
+h2 {
+  @include section_heading();
+}
+
+h3 {
+  @include subsection_heading();
+}
+
+h4 {
+  @include subsection_subheading();
+}
+
+h5 {
+  @include general_text_bigger();
+  margin-bottom: .5em;
+}

@@ -1,0 +1,45 @@
+@import '../../../assets/styles/media-queries';
+@import '../../../assets/styles/variables';
+
+// TODO
+// @media print {
+//   #main-content a[href]:after { " (" attr(href) ") "; }
+// }
+
+.subsection {
+  margin-bottom: 1em;
+
+  &.cols-2 {
+    display: flex;
+
+    @include smartphone() {
+      flex-wrap: wrap;
+    }
+
+    div:first-child {
+      width: 140px;
+      flex-shrink: 0;
+    }
+  }
+}
+
+.with-icon {
+  display: flex;
+  align-items: center;
+
+  span {
+    margin-right: 1em;
+    width: 2em;
+    height: 2em;
+    fill: $text-color;
+
+    /deep/ .day & {
+      fill: $dark-text-color !important;
+    }
+
+    @include print {
+      fill: $dark-text-color !important;
+    }
+  }
+}
+
