@@ -6,6 +6,11 @@
 //   #main-content a[href]:after { " (" attr(href) ") "; }
 // }
 
+section {
+  display: block;
+  page-break-inside: avoid;
+}
+
 .subsection {
   margin-bottom: 1em;
 

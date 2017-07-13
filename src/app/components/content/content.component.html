@@ -1,5 +1,6 @@
 <div
   [@routingAnimation]=""
+  (@routingAnimation.done)="animationDone($event)"
   [ngClass]="[currentPalette]">
   <div
     class="content-container"

@@ -44,4 +44,9 @@
   &.last-container {
     margin-bottom: 5em;
   }
+
+  @include print() {
+    margin: 0 !important;
+    padding: 0 !important;
+  }
 }

@@ -8,7 +8,7 @@
     </h5>
 
     <p>Do you need my full CV? You can find it
-      <a title="Curriculum Vitae" routerLink="/cv/true">here</a>
+      <a title="Curriculum Vitae" [routerLink]="['/cv']" [queryParams]="{ print: true }">here</a>
     </p>
   </section>
 
@@ -35,6 +35,6 @@
   </section>
 </content>
 
-<curriculum></curriculum>
+<curriculum [showPrint]="false"></curriculum>
 
 

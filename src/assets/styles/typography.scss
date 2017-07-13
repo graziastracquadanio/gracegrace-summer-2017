@@ -110,7 +110,15 @@ mark {
   padding-right: .2em;
 
   .day & {
-    color: $primary-color;
+    color: white;
+    background-color: white;
+    background-color: rgba($primary-color, .4);
+  }
+
+  @include print() {
+    color: inherit;
+    background-color: white;
+    font-weight: bold;
   }
 }
 
@@ -146,4 +154,23 @@ h4 {
 h5 {
   @include general_text_bigger();
   margin-bottom: .5em;
+}
+
+a {
+  background-color: rgba(0, 0, 0, .15);
+  padding-left: 3px;
+  padding-right: 3px;
+  color: $text-color;
+
+  .day & {
+    background-color: transparent !important;
+    color: $primary-color;
+  }
+
+  @include print {
+    color: $primary-color;
+    font-family: $secondary-heading-font;
+    padding-left: 0;
+    padding-right: 0;
+  }
 }

@@ -17,7 +17,7 @@ const routes: Routes = [
     component: AboutComponent,
   },
   {
-    path: 'cv/:print',
+    path: 'cv',
     component: CurriculumComponent,
   },
   {

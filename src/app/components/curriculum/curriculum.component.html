@@ -1,4 +1,4 @@
-<content containerClass="after-menu last-container">
+<content containerClass="after-menu last-container" (afterAnimation)="callPrinter($event)">
   <!-- PRINT ONLY: cv head -->
   <section [ngClass]="{'print-only': !showPrint}">
     <h1>Grazia Stracquadanio. <mark>Frontend developer</mark></h1>

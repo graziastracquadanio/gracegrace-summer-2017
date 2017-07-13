@@ -1,4 +1,12 @@
-import { Component, OnInit, OnDestroy, Input } from '@angular/core';
+import {
+  AnimationTransitionEvent,
+  Component,
+  OnInit,
+  OnDestroy,
+  Input,
+  Output,
+  EventEmitter,
+} from '@angular/core';
 import { blurInOut, fadeInOut } from '../../commons/routing-animation';
 import { ColorService, MenuService } from '../../services';
 
@@ -49,6 +57,15 @@ export class ContentComponent implements OnInit, OnDestroy {
     Define a custom class for the main container
   */
   @Input() containerClass: string = '';
+
+  /*
+    Emit event after routing animation is done
+  */
+  @Output() afterAnimation = new EventEmitter();
+
+  animationDone($event: AnimationTransitionEvent) {
+    this.afterAnimation.emit();
+  }
 
   ngOnInit() {
     this.colorSubscription = this.colorService.currentPalette$.subscribe(
