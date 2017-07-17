@@ -48,3 +48,8 @@ section {
   }
 }
 
+p mark {
+  @include print() {
+    font-weight: bold;
+  }
+}

@@ -1,6 +1,6 @@
 import 'rxjs/add/operator/takeUntil';
 import { Component, Input, OnInit, OnDestroy } from '@angular/core';
-import { heightChange } from '../../commons/routing-animation';
+import { heightChange } from '../../commons/animations';
 import { MenuService } from '../../services/menu.service';
 import { Router, NavigationStart, NavigationEnd } from '@angular/router';
 import { Subject } from 'rxjs/Subject';

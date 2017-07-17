@@ -109,16 +109,9 @@ mark {
   padding-left: .2em;
   padding-right: .2em;
 
-  .day & {
-    color: white;
-    background-color: white;
-    background-color: rgba($primary-color, .4);
-  }
-
   @include print() {
-    color: inherit;
-    background-color: white;
-    font-weight: bold;
+    color: $black;
+    background-color: transparent;
   }
 }
 

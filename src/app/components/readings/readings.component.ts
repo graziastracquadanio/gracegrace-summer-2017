@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
-import { AnimationTransitionEvent } from "@angular/core";
+import { AnimationTransitionEvent } from '@angular/core';
 import { AngularFireDatabase } from 'angularfire2/database';
-import { componentLoaded } from '../../commons/routing-animation';
+import { componentLoaded } from '../../commons/animations';
 
 @Component({
   selector: 'readings',
@@ -26,15 +26,16 @@ export class ReadingsComponent {
   loadingCounter: number = 0;
 
   constructor(private db: AngularFireDatabase) {
-    this.readingSubscription = db.object('readings')
-      .subscribe(data => Object.keys(data).map((key) => {
+    this.readingSubscription = db.object('readings').subscribe(data =>
+      Object.keys(data).map(key => {
         const bucket = key.replace(/(_[a-z])+/g, x => {
           return x.toUpperCase().replace('_', '');
         });
 
         this[bucket] = data[key];
         this[`${bucket}State`] = 'loaded';
-      }));
+      })
+    );
   }
 
   readingAnimationDone($event: AnimationTransitionEvent) {

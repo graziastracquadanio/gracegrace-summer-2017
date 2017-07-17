@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { AnimationTransitionEvent } from '@angular/core';
 import { AngularFireDatabase } from 'angularfire2/database';
-import { componentLoaded } from '../../commons/routing-animation';
+import { componentLoaded } from '../../commons/animations';
 
 @Component({
   selector: 'stuff',

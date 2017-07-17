@@ -7,7 +7,7 @@ import {
   Output,
   EventEmitter,
 } from '@angular/core';
-import { blurInOut, fadeInOut } from '../../commons/routing-animation';
+import { blurInOut, fadeInOut } from '../../commons/animations';
 import { ColorService, MenuService } from '../../services';
 
 @Component({

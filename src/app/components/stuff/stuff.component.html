@@ -43,7 +43,7 @@
       <ul>
         <li class="no-bullet" [ngClass]="[item.done ? 'done' : '']"
           *ngFor="let item of quoteList">
-          <p><mark>"{{ item.quote }}"</mark> <span class="author" *ngIf="item.author">({{ item.author }})</span></p>
+          <p><mark>"{{ item.quote }}"</mark> <i class="author" *ngIf="item.author">({{ item.author }})</i></p>
         </li>
       </ul>
     </div>
