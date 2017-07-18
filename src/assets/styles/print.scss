@@ -12,11 +12,6 @@
     height: auto;
   }
 
-  // .print-hidden {
-  //   display: none !important;
-  //   visibility: hidden !important;
-  // }
-
   .screen-only {
     display: none !important;
     visibility: hidden !important;
@@ -24,11 +19,6 @@
 }
 
 @media not print {
-  // .print-display {
-  //   display: none !important;
-  //   visibility: hidden !important;
-  // }
-
   .print-only {
     display: none !important;
     visibility: hidden !important;
