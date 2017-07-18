@@ -22,7 +22,6 @@ import { TypewritingDirective } from './directives/typewriting.directive';
 import { StuffComponent } from './components/stuff/stuff.component';
 import { ReadingsComponent } from './components/readings/readings.component';
 import { ContentComponent } from './components/content/content.component';
-import { BlogComponent } from './components/blog/blog.component';
 import { SettingsComponent } from './components/settings/settings.component';
 import { CurriculumComponent } from './components/curriculum/curriculum.component';
 
@@ -37,7 +36,6 @@ import { CurriculumComponent } from './components/curriculum/curriculum.componen
     StuffComponent,
     ReadingsComponent,
     ContentComponent,
-    BlogComponent,
     SettingsComponent,
     CurriculumComponent,
   ],
