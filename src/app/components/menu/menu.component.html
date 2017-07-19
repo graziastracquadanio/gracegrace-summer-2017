@@ -31,6 +31,14 @@
           routerLinkActive="active">
           Stuff
         </a>
+        <a
+          *ngIf="isLoggedIn"
+          class="main-menu_item"
+          title="Create post"
+          routerLink="/post-edit"
+          routerLinkActive="active">
+          Create post
+        </a>
       </div>
       <div class="main-menu_social">
         <a class="main-menu_social-item"

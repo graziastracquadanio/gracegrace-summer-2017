@@ -14,7 +14,7 @@ export class ColorService {
     if (lastValue) {
       this.setNextPalette(lastValue);
     } else {
-      this.setNextPalette();
+      this.setNextPalette('day');
     }
   }
 

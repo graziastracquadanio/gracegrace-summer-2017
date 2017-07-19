@@ -1,0 +1,24 @@
+<content>
+  <div class="login-form_container">
+    <form #loginForm="ngForm" class="login-form">
+      <div *ngIf="hasError" class="error-message">
+        <p>{{errorMessage}}</p>
+      </div>
+      <input
+        name="email" [(ngModel)]="email"
+        required
+        (keypress)="manageError()"
+        placeholder="Email">
+      <input
+        name="password" [(ngModel)]="password"
+        required
+        (keypress)="manageError()"
+        type="password"
+        placeholder="Password">
+
+        <button (click)="login(loginForm)">
+          Login
+        </button>
+    </form>
+  </div>
+</content>

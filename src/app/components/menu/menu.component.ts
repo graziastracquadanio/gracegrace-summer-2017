@@ -4,6 +4,7 @@ import { heightChange } from '../../commons/animations';
 import { MenuService } from '../../services/menu.service';
 import { Router, NavigationStart, NavigationEnd } from '@angular/router';
 import { Subject } from 'rxjs/Subject';
+import { AuthService } from 'services';
 
 @Component({
   selector: 'app-menu',
@@ -15,12 +16,19 @@ export class MenuComponent implements OnInit, OnDestroy {
   private ngUnsubscribe: Subject<void> = new Subject<void>();
   isOpen;
   menuState: string;
+  isLoggedIn: boolean;
 
-  constructor(private menuService: MenuService, private router: Router) {}
+  constructor(
+    private authService: AuthService,
+    private menuService: MenuService,
+    private router: Router
+  ) {}
 
   @Input() color: string;
 
   ngOnInit() {
+    this.authService.isLoggedIn$.subscribe(value => (this.isLoggedIn = value));
+
     this.menuService.isOpen$.takeUntil(this.ngUnsubscribe).subscribe(value => {
       this.menuState = value ? 'menu-visible' : 'menu-hidden';
       this.isOpen = value;

@@ -1,6 +1,6 @@
-@import '../../../assets/styles/mixins';
-@import '../../../assets/styles/palettes';
-@import '../../../assets/styles/variables';
+@import 'mixins';
+@import 'palettes';
+@import 'variables';
 
 $colors: length($palettes-main) + 3;
 

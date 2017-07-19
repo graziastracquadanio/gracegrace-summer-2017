@@ -15,7 +15,10 @@
       "tsconfig": "tsconfig.app.json",
       "testTsconfig": "tsconfig.spec.json",
       "prefix": "",
-      "styles": ["styles.scss", "assets/styles/monokai-theme.scss"],
+      "styles": ["styles.scss"],
+      "stylePreprocessorOptions": {
+        "includePaths": ["styles"]
+      },
       "scripts": [],
       "environmentSource": "environments/environment.ts",
       "environments": {
