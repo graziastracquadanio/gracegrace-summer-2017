@@ -4,7 +4,12 @@
     "outDir": "../out-tsc/app",
     "module": "es2015",
     "baseUrl": "",
-    "types": ["prismjs", "firebase"]
+    "types": ["prismjs", "firebase"],
+    "paths": {
+      "classes": ["app/classes"],
+      "commons": ["app/commons"],
+      "services": ["app/services"]
+    }
   },
   "exclude": ["test.ts", "**/*.spec.ts"]
 }

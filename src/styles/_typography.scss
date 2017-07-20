@@ -30,13 +30,15 @@ $slowTransition: 2s;
   }
 }
 
-@mixin section_heading() {
+@mixin section_heading($manageColor: true) {
   font-family: $primary-heading-font;
   font-size: 1.8em;
   text-transform: uppercase;
   line-height: 1.25;
   margin-bottom: 0.5em;
-  @include textColor();
+  @if $manageColor == true {
+    @include textColor();
+  }
 
   @include printAndSmartphone {
     font-size: 16px;
@@ -75,11 +77,13 @@ $slowTransition: 2s;
   }
 }
 
-@mixin general_text($color: $black) {
+@mixin general_text($manageColor: true, $color: $black) {
   font-family: $general-font;
   font-size: 1.05em;
   line-height: 1.5;
-  @include textColor($color);
+  @if $manageColor == true {
+    @include textColor($color);
+  }
 
   @include printAndSmartphone {
     font-size: 12px;
@@ -97,10 +101,6 @@ $slowTransition: 2s;
     font-size: 12px;
     margin-bottom: 2px;
   }
-}
-
-body {
-  @include general_text();
 }
 
 mark {
@@ -124,7 +124,6 @@ i {
 }
 
 p {
-  @include general_text();
   margin-bottom: .5em;
 }
 

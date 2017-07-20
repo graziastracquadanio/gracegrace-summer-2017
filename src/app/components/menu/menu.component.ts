@@ -27,7 +27,11 @@ export class MenuComponent implements OnInit, OnDestroy {
   @Input() color: string;
 
   ngOnInit() {
-    this.authService.isLoggedIn$.subscribe(value => (this.isLoggedIn = value));
+    this.authService.isLoggedIn$
+      .takeUntil(this.ngUnsubscribe)
+      .subscribe(value => {
+        this.isLoggedIn = value;
+      });
 
     this.menuService.isOpen$.takeUntil(this.ngUnsubscribe).subscribe(value => {
       this.menuState = value ? 'menu-visible' : 'menu-hidden';

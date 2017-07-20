@@ -1,5 +1,6 @@
 @import 'media-queries';
 @import 'mixins';
+@import 'typography';
 @import 'variables';
 
 * {
@@ -8,10 +9,6 @@
 
 .intro-block {
   margin-bottom: 2em;
-
-  h2 {
-    @include super_heading;
-  }
 
   span {
     text-decoration: line-through;
@@ -47,7 +44,6 @@
 }
 
 h2 {
-  @include heading_subsection();
   margin-bottom: 1em;
 }
 

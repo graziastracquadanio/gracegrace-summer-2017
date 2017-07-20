@@ -24,7 +24,7 @@ export class AuthService {
   }
 
   isLoggedIn() {
-    console.log(this.afAuth.auth.currentUser);
+    console.log('isLoggedIn', this.staticIsLoggedIn);
     return this.staticIsLoggedIn;
   }
 }

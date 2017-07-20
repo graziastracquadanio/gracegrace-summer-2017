@@ -1,0 +1,14 @@
+<content containerClass="after-menu">
+  <div class="entries_container">
+    <div class="entry_row">
+      <div>Entry</div>
+      <div>Date created</div>
+      <div>Shared</div>
+    </div>
+    <div class="entry_row" *ngFor="let post of postList | async">
+      <div [routerLink]="['/post-edit', post.$key]">{{post.title}} {{post.$key}}</div>
+      <div>{{post.creationDate}}</div>
+      <div>{{post.shared}}</div>
+    </div>
+  </div>
+</content>

@@ -7,7 +7,8 @@ import { AboutComponent } from './components/about/about.component';
 import { CurriculumComponent } from './components/curriculum/curriculum.component';
 import { IntroComponent } from './components/intro/intro.component';
 import { LoginComponent } from './components/blog/login/login.component';
-import { PostEditComponent } from './components/blog/post-edit/post-edit.component';
+import { ManagerComponent } from './components/blog/manager/manager.component';
+import { PostEditorComponent } from './components/blog/post-editor/post-editor.component';
 import { StuffComponent } from './components/stuff/stuff.component';
 
 const routes: Routes = [
@@ -33,8 +34,18 @@ const routes: Routes = [
     component: LoginComponent,
   },
   {
-    path: 'post-edit',
-    component: PostEditComponent,
+    path: 'manager',
+    component: ManagerComponent,
+    canActivate: [AuthGuard],
+  },
+  {
+    path: 'post-add',
+    component: PostEditorComponent,
+    canActivate: [AuthGuard],
+  },
+  {
+    path: 'post-edit/:id',
+    component: PostEditorComponent,
     canActivate: [AuthGuard],
   },
   {

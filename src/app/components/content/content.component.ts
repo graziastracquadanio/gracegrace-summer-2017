@@ -59,6 +59,11 @@ export class ContentComponent implements OnInit, OnDestroy {
   @Input() containerClass: string = '';
 
   /*
+    Define if the content finished loding
+  */
+  @Input() contentStatus: string = 'loaded';
+
+  /*
     Emit event after routing animation is done
   */
   @Output() afterAnimation = new EventEmitter();

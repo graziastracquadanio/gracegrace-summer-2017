@@ -8,7 +8,7 @@
   max-width: 20em;
   transition: all .25s linear;
   text-align: center;
-
+  @include general_text;
 
   &_container {
     width: 100%;

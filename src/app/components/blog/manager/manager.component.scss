@@ -1,0 +1,19 @@
+.entries_container {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  background-color: white;
+}
+
+.entry_row {
+  display: flex;
+  flex-wrap: nowrap;
+  // justify-content: space-between;
+
+  div {
+    &:first-child {
+      flex-grow: 3;
+      background-color: pink;
+    }
+  }
+}

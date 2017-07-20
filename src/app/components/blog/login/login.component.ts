@@ -1,17 +1,25 @@
 import { AuthService } from 'services';
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { Router, ActivatedRoute } from '@angular/router';
+import { Subject } from 'rxjs/Subject';
+import 'rxjs/add/operator/takeUntil';
+import 'rxjs/add/operator/takeLast';
 
 @Component({
   selector: 'login',
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.scss'],
 })
-export class LoginComponent implements OnInit {
+export class LoginComponent implements OnInit, OnDestroy {
+  private ngUnsubscribe: Subject<void> = new Subject<void>();
   returnUrl: string;
   hasError: boolean = false;
   errorMessage: string;
+  email: string;
+  password: string;
+  isLoggedIn: boolean;
+  contentStatus: string = '';
 
   constructor(
     private authService: AuthService,
@@ -20,19 +28,29 @@ export class LoginComponent implements OnInit {
   ) {}
 
   ngOnInit() {
-    this.returnUrl = this.route.snapshot.queryParams['returnUrl'] || '/';
-
-    const isLoggedInSubscription = this.authService.isLoggedIn$.subscribe(
-      data => {
-        if (data) {
+    this.route.queryParams.takeUntil(this.ngUnsubscribe).subscribe(params => {
+      this.returnUrl = this.route.snapshot.queryParams['returnUrl'] || '/';
+    });
+    this.authService.isLoggedIn$
+      .takeUntil(this.ngUnsubscribe)
+      .subscribe(data => {
+        const prevData = this.isLoggedIn;
+        if (prevData === null && data) {
           this.router.navigate([this.returnUrl]);
         }
 
-        if (typeof data === 'boolean') {
-          isLoggedInSubscription.unsubscribe();
+        if (prevData === false) {
+          console.log(data);
+          this.contentStatus = 'loaded';
         }
-      }
-    );
+
+        this.isLoggedIn = data;
+      });
+  }
+
+  ngOnDestroy() {
+    this.ngUnsubscribe.next();
+    this.ngUnsubscribe.complete();
   }
 
   login(loginForm: NgForm) {
@@ -50,7 +68,7 @@ export class LoginComponent implements OnInit {
     );
   }
 
-  manageError(error: any) {
+  manageError(error?: any) {
     if (!error) {
       this.hasError = false;
       this.errorMessage = '';

@@ -14,9 +14,9 @@ const slideIn = '.6s';
 const slideOut = '.3s';
 
 export const fadeInOut = trigger('routingAnimation', [
-  state('void', style({ opacity: 1 })),
-  state('*', style({ opacity: 1 })),
-  transition(':enter', [
+  state('*', style({ opacity: 0 })),
+  state('loaded', style({ opacity: 1 })),
+  transition('void => loaded', [
     style({ opacity: 0 }),
     animate(`${fadeIn} 300ms linear`, style({ opacity: 1 })),
   ]),
@@ -92,14 +92,12 @@ export const componentLoaded = trigger('loadedAnimation', [
     'not-loaded',
     style({
       opacity: 0,
-      transform: 'translateY(100%)',
     })
   ),
   state(
     'loaded',
     style({
       opacity: 1,
-      transform: 'translateY(0%)',
     })
   ),
   transition('loaded <=> not-loaded', animate('300ms 300ms linear')),

@@ -9,15 +9,22 @@ import { AuthService } from 'services';
 
 @Injectable()
 export class AuthGuard implements CanActivate {
-  constructor(private authService: AuthService, private router: Router) {}
+  isLoggedIn: boolean;
+
+  constructor(private authService: AuthService, private router: Router) {
+    this.isLoggedIn = this.authService.isLoggedIn();
+  }
 
   canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot) {
-    const isLoggedIn = this.authService.isLoggedIn();
-    if (!isLoggedIn) {
+    this.isLoggedIn = this.authService.isLoggedIn();
+
+    console.log('after checking', this.isLoggedIn, state.url);
+
+    if (!this.isLoggedIn) {
       this.router.navigate(['/login'], {
         queryParams: { returnUrl: state.url },
       });
     }
-    return isLoggedIn;
+    return this.isLoggedIn;
   }
 }
