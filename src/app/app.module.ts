@@ -12,11 +12,13 @@ import { MarkdownToHtmlModule } from 'ng2-markdown-to-html';
 import { QuillModule } from 'ngx-quill';
 import { AuthGuard } from './auth.guard';
 import {
-    MdDatepickerModule,
-    MdNativeDateModule,
-    MdIconModule,
+  DateAdapter,
+  MdDatepickerModule,
+  MdNativeDateModule,
+  MdIconModule,
 } from '@angular/material';
 import { FIREBASE_CONFIG } from './app.config';
+import { CustomDateAdapter } from 'classes';
 
 import { AuthService, ColorService, MenuService } from './services';
 
@@ -40,43 +42,50 @@ import { PostEditorComponent } from './components/blog/post-editor/post-editor.c
 import { ToggleComponent } from './components/parts/toggle/toggle.component';
 
 @NgModule({
-    declarations: [
-        AppComponent,
-        AboutComponent,
-        IntroComponent,
-        TrianglifyDirective,
-        MenuComponent,
-        TypewritingDirective,
-        StuffComponent,
-        ReadingsComponent,
-        ContentComponent,
-        SettingsComponent,
-        CurriculumComponent,
-        ListComponent,
-        PostComponent,
-        LoginComponent,
-        ManagerComponent,
-        PostEditorComponent,
-        ToggleComponent,
-    ],
-    imports: [
-        AngularFireModule.initializeApp(FIREBASE_CONFIG, 'gracegrace'),
-        AngularFireDatabaseModule,
-        AngularFireAuthModule,
-        AppRoutingModule,
-        BrowserAnimationsModule,
-        BrowserModule,
-        FormsModule,
-        ReactiveFormsModule,
-        HttpModule,
-        InlineSVGModule,
-        MarkdownToHtmlModule.forRoot(),
-        MdDatepickerModule,
-        MdNativeDateModule,
-        MdIconModule,
-        QuillModule,
-    ],
-    providers: [AuthGuard, AuthService, ColorService, DatePipe, MenuService],
-    bootstrap: [AppComponent],
+  declarations: [
+    AppComponent,
+    AboutComponent,
+    IntroComponent,
+    TrianglifyDirective,
+    MenuComponent,
+    TypewritingDirective,
+    StuffComponent,
+    ReadingsComponent,
+    ContentComponent,
+    SettingsComponent,
+    CurriculumComponent,
+    ListComponent,
+    PostComponent,
+    LoginComponent,
+    ManagerComponent,
+    PostEditorComponent,
+    ToggleComponent,
+  ],
+  imports: [
+    AngularFireModule.initializeApp(FIREBASE_CONFIG, 'gracegrace'),
+    AngularFireDatabaseModule,
+    AngularFireAuthModule,
+    AppRoutingModule,
+    BrowserAnimationsModule,
+    BrowserModule,
+    FormsModule,
+    ReactiveFormsModule,
+    HttpModule,
+    InlineSVGModule,
+    MarkdownToHtmlModule.forRoot(),
+    MdDatepickerModule,
+    MdNativeDateModule,
+    MdIconModule,
+    QuillModule,
+  ],
+  providers: [
+    AuthGuard,
+    AuthService,
+    ColorService,
+    DatePipe,
+    MenuService,
+    [{ provide: DateAdapter, useClass: CustomDateAdapter }],
+  ],
+  bootstrap: [AppComponent],
 })
 export class AppModule {}
