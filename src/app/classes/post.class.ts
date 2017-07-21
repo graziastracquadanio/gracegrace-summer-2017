@@ -2,8 +2,9 @@ const DEFAULT_POST = {
   id: null,
   title: new Date().toDateString(),
   body: '',
-  creationDate: new Date(),
-  modifyDate: new Date(),
+  creationDate: Date.now(),
+  modifyDate: Date.now(),
+  location: '',
   isPublic: false,
 };
 
@@ -18,10 +19,9 @@ export class Post {
   id: string;
   title: string;
   body: string;
-
   creationDate: Date;
   modifyDate: Date;
-
+  location: string;
   isPublic: boolean;
 
   constructor(data: object = {}) {
@@ -36,11 +36,12 @@ export class Post {
   }
 
   getEditableFields() {
-    const { title, body, creationDate, isPublic } = this;
+    const { title, body, creationDate, location, isPublic } = this;
     return {
       title,
       body,
       creationDate,
+      location,
       isPublic,
     };
   }

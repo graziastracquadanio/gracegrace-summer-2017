@@ -17,24 +17,40 @@
 
       <!-- second row -->
       <div class="post-editor_extra-details">
-        <div class="date_container">
-          <button [mdDatepickerToggle]="myDatepicker"></button>
-          <md-datepicker #myDatepicker></md-datepicker>
-          Created
-          <input
-            [mdDatepicker]="myDatepicker"
-            formControlName="creationDate">
-        </div>
+        <div class="some-details_container">
+          <div (click)="postDatepicker.open()" class="date_container">
+            <md-icon>today</md-icon>
+            <md-datepicker #postDatepicker [touchUi]="true"></md-datepicker>
+            <span>Created {{post.creationDate | date:'EEE. dd/MM/yy'}}</span>
+            <input
+              [mdDatepicker]="postDatepicker"
+              formControlName="creationDate">
+          </div>
 
+          <div class="location_container">
+            <md-icon>place</md-icon>
+            <input
+              type="text"
+              formControlName="location"
+              placeholder="Where exactly?">
+          </div>
+        </div>
+        <div>
+          <span class="words-counter">{{wordsCounter}} word<span *ngIf="wordsCounter.length > 1">s</span></span>
+        </div>
         <div class="extra-options_container">
-          <button class="extra-options_item" (click)="toggleEditorOptions()">A</button>
+          <button class="extra-options_item" (click)="toggleEditorOptions()">
+            <md-icon>text_format</md-icon>
+          </button>
         </div>
       </div>
 
       <!-- post body -->
 
       <div class="post-editor_body">
-        <quill-editor formControlName="body">
+        <quill-editor
+          formControlName="body"
+          (onContentChanged)="setWordsCounter($event)">
           <div quill-editor-toolbar
             class="editor_options"
             [ngClass]="[showEditorOptions ? 'visible' : 'hidden']">

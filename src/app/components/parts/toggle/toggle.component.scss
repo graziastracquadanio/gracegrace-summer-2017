@@ -1,0 +1,35 @@
+@import 'variables';
+
+$toggleSize: 1em;
+$toggleTransition: all .2s ease-out;
+
+/deep/ .toggle {
+  width: $toggleSize * 2;
+  height: $toggleSize;
+  background-color: rgba(0, 0, 0, .3);
+  border-radius: 10em;
+  transition: $toggleTransition;
+  position: relative;
+  box-shadow: 0 0 0 2px rgba(0, 0, 0, .3);
+
+  &-thumb {
+    width: $toggleSize;
+    height: $toggleSize;
+    border-radius: 50%;
+    background-color: rgba(255, 255, 255, .6);
+    position: absolute;
+    transition: $toggleTransition;
+    left: 0;
+    top: 0;
+  }
+
+  &.is-on {
+    background-color: $black;
+    box-shadow: 0 0 0 2px $black;
+
+    .toggle-thumb {
+      left: 50%;
+      background-color: white;
+    }
+  }
+}

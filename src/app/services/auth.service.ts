@@ -24,7 +24,6 @@ export class AuthService {
   }
 
   isLoggedIn() {
-    console.log('isLoggedIn', this.staticIsLoggedIn);
     return this.staticIsLoggedIn;
   }
 }

@@ -1,14 +1,24 @@
 <content containerClass="after-menu">
   <div class="entries_container">
     <div class="entry_row">
-      <div>Entry</div>
-      <div>Date created</div>
-      <div>Shared</div>
+      <div class="entry_title">Entry</div>
+      <div class="entry_date">Date created</div>
+      <div class="entry_publish">Public</div>
+      <div class="entry_delete"></div>
     </div>
     <div class="entry_row" *ngFor="let post of postList | async">
-      <div [routerLink]="['/post-edit', post.$key]">{{post.title}} {{post.$key}}</div>
-      <div>{{post.creationDate}}</div>
-      <div>{{post.shared}}</div>
+      <div class="entry_title" >
+        <a [routerLink]="['/post-edit', post.id]">{{post.title}}</a>
+      </div>
+      <div class="entry_date">{{post.creationDate | date:'EEE. dd/MM/yy' }}</div>
+      <div class="entry_publish">
+        <toggle (valueChanged)="toggleIsPublic(post)" [isOn]="post.isPublic"></toggle>
+      </div>
+      <div class="entry_delete">
+        <button (click)="deletePost(post.id)">
+          <md-icon>delete</md-icon>
+        </button>
+      </div>
     </div>
   </div>
 </content>

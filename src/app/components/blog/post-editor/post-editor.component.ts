@@ -19,14 +19,14 @@ import {
   styleUrls: ['./post-editor.component.scss'],
 })
 export class PostEditorComponent implements OnInit, OnDestroy {
-  id: string = null;
   editorConfig: object = editorConfig;
   form: FormGroup;
   paramsSubscription;
   post: Post = new Post();
   postList;
-  showEditorOptions: boolean = true;
+  showEditorOptions: boolean = false;
   postStatus: string;
+  wordsCounter: number = 0;
 
   constructor(
     private fb: FormBuilder,
@@ -34,18 +34,18 @@ export class PostEditorComponent implements OnInit, OnDestroy {
     private route: ActivatedRoute,
     private router: Router
   ) {
-    this.form = this.fb.group(this.post);
+    this.form = this.fb.group(this.post.getEditableFields());
     this.postList = this.db.list('/posts');
   }
 
   ngOnInit() {
     this.paramsSubscription = this.route.params.subscribe(params => {
-      this.id = params['id'];
+      const id = params['id'];
 
-      if (this.id) {
+      if (id) {
         this.postStatus = POST_STATUS.loading;
         const postSubscription = this.db
-          .object(`/posts/${this.id}`)
+          .object(`/posts/${id}`)
           .subscribe(data => {
             this.post = new Post(data);
             postSubscription.unsubscribe();
@@ -76,21 +76,30 @@ export class PostEditorComponent implements OnInit, OnDestroy {
     this.postStatus = POST_STATUS.saving;
     this.post.updatePost(newData);
 
-    if (!this.id) {
+    let id = this.post.id;
+
+    if (!id) {
       const newPost = await this.postList.push(this.post);
-      this.id = newPost.key;
-      this.post.updatePost({ id: this.id });
+      id = newPost.key;
+      this.post.updatePost({ id });
     }
 
     this.savePost();
   }
 
   async savePost() {
-    await this.postList.update(this.id, this.post);
+    await this.postList.update(this.post.id, this.post);
     this.postStatus = POST_STATUS.saved;
   }
 
   toggleEditorOptions() {
     this.showEditorOptions = !this.showEditorOptions;
+  }
+
+  setWordsCounter(editor) {
+    if (editor.text) {
+      const words = editor.text.replace(/\r?\n|\r/, ' ').match(/\S+/g);
+      this.wordsCounter = words !== null ? words.length : 0;
+    }
   }
 }

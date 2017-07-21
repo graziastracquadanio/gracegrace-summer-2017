@@ -1,6 +1,8 @@
 @import 'media-queries';
-@import 'variables';
+@import 'mixins';
+@import 'palettes';
 @import 'typography';
+@import 'variables';
 
 * {
   box-sizing: border-box;
@@ -38,8 +40,9 @@ $border-color: rgba(0, 0, 0, .2);
 
       input {
         width: 100%;
-        @include section_heading(false);
+        padding-right: 2em;
         margin: 0;
+        @include section_heading(false);
         text-transform: inherit;
       }
     }
@@ -59,7 +62,7 @@ $border-color: rgba(0, 0, 0, .2);
 
       &_button {
         cursor: pointer;
-        color: $primary-color;
+        @include colorBasedOnContext();
       }
     }
   }
@@ -72,20 +75,46 @@ $border-color: rgba(0, 0, 0, .2);
     border-top: 1px solid $border-color;
     border-bottom: 1px solid $border-color;
 
+    .some-details_container {
+      display: flex;
+    }
+
     .date_container {
       display: flex;
       align-items: center;
+      margin-right: 1em;
+
+      span {
+        cursor: pointer;
+      }
+
+      input {
+        display: none;
+      }
 
       button {
         margin-right: .5em;
       }
+    }
 
-      input {
-        @include general_text();
-        color: $black;
-        margin-left: .5em;
-        margin-right: .5em;
+    .location_container {
+      display: flex;
+      align-items: center;
+    }
+
+    .extra-options_container {
+      display: flex;
+      align-items: center;
+
+      button {
+        display: flex;
+        align-items: center;
       }
+    }
+
+    input {
+      @include general_text();
+      color: $black;
     }
   }
 
@@ -104,5 +133,20 @@ $border-color: rgba(0, 0, 0, .2);
       border: none;
       @include general_text(false);
     }
+  }
+}
+
+md-icon {
+  margin-right: .3em;
+
+  @each $code, $color in $palettes-main {
+    /deep/ .#{$code} & {
+      color: $color;
+    }
+  }
+
+  .day &,
+  .night & {
+    color: $black;
   }
 }

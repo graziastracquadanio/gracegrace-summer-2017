@@ -4,13 +4,13 @@
 
 .content-container {
   margin: 0 auto;
-  width: 80%;
+  width: 90%;
   max-width: 60rem;
   box-sizing: border-box;
 
   @include smartphone {
     width: 100%;
-    padding: 1em 2em;
+    padding: 1em 1em;
   }
 
   &.content-height {
