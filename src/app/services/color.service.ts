@@ -26,6 +26,11 @@ export class ColorService {
     return next >= palettes.codes.length ? 0 : next;
   }
 
+  getPaletteColor(palette: string, opacity: number = 1): string {
+    const hex = palettes.defs[palette] || palettes.extra[palette];
+    return opacity === 1 ? hex : this.hexToRgba(hex, opacity);
+  }
+
   getCurrentPalette(): string {
     return this.currentPaletteSource.value;
   }
@@ -69,5 +74,18 @@ export class ColorService {
       nextPalette = palettes.codes[this.currentIndex];
     }
     this.currentPaletteSource.next(nextPalette);
+  }
+
+  hexToRgba(hex: string, opacity: number = 1) {
+    hex = hex.replace('#', '');
+    const r = parseInt(hex.substring(0, hex.length / 3), 16);
+    const g = parseInt(hex.substring(hex.length / 3, 2 * hex.length / 3), 16);
+    const b = parseInt(
+      hex.substring(2 * hex.length / 3, 3 * hex.length / 3),
+      16
+    );
+
+    const result = `rgba(${r},${g},${b},${opacity})`;
+    return result;
   }
 }

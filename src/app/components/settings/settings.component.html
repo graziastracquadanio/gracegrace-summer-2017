@@ -1,7 +1,8 @@
 <div class="settings-container screen-only">
   <button class="fab"
-    [inlineSVG]="'/assets/svg/settings.svg'"
-    (click)="toggleSettings()"></button>
+    (click)="toggleSettings()">
+      <md-icon>settings</md-icon>
+    </button>
   <div class="options" [ngClass]="[isOpen ? 'open' : 'closed']">
     <div class="option color-option" *ngFor="let code of palettes.codes">
       <button
@@ -12,20 +13,26 @@
     </div>
     <div class="option icon-option">
       <button
-        [inlineSVG]="'/assets/svg/shuffle.svg'"
         (click)="changeColor(null)">
+        <span>
+          <md-icon>shuffle</md-icon>
+        </span>
       </button>
     </div>
     <div class="option icon-option">
       <button
-        [inlineSVG]="'/assets/svg/sun.svg'"
         (click)="changeColor('day')">
+        <span>
+          <md-icon>wb_sunny</md-icon>
+        </span>
       </button>
     </div>
     <div class="option icon-option night-option">
       <button
-        [inlineSVG]="'/assets/svg/moon.svg'"
         (click)="changeColor('night')">
+        <span>
+          <md-icon>brightness_2</md-icon>
+        </span>
       </button>
     </div>
   </div>

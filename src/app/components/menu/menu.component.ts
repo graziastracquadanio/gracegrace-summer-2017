@@ -1,6 +1,6 @@
 import 'rxjs/add/operator/takeUntil';
 import { Component, Input, OnInit, OnDestroy } from '@angular/core';
-import { heightChange } from '../../commons/animations';
+import { heightChange, slideInOut } from './menu.animations';
 import { MenuService } from '../../services/menu.service';
 import { Router, NavigationStart, NavigationEnd } from '@angular/router';
 import { Subject } from 'rxjs/Subject';
@@ -10,7 +10,7 @@ import { AuthService } from 'services';
   selector: 'app-menu',
   templateUrl: './menu.component.html',
   styleUrls: ['./menu.component.scss'],
-  animations: [heightChange],
+  animations: [heightChange, slideInOut],
 })
 export class MenuComponent implements OnInit, OnDestroy {
   private ngUnsubscribe: Subject<void> = new Subject<void>();

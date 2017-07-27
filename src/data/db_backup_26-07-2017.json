@@ -1,0 +1,186 @@
+{
+  "bucketlist": [
+    {
+      "title": "Travel in all our continents"
+    },
+    {
+      "title": "Do international volunteer"
+    },
+    {
+      "title": "Take a long journey by the sea"
+    },
+    {
+      "title": "Jump from a very (veeery) high point (without dying)"
+    },
+    {
+      "title": "Ice skating on a frozen lake"
+    },
+    {
+      "title": "Surf in all the oceans and some seas"
+    },
+    {
+      "title": "Get a motorcycle licence"
+    },
+    {
+      "title": "Donate my blood (I'm scared of syringes)"
+    },
+    {
+      "done": "true",
+      "title": "Skate in a place where I've never been before"
+    }
+  ],
+  "codepen-ideas": [
+    {
+      "title": "a monkey"
+    },
+    {
+      "done": true,
+      "link": "https://codepen.io/graziastrax/pen/RVyPVd/",
+      "title": "something with a skate"
+    },
+    {
+      "done": true,
+      "link": "https://codepen.io/graziastrax/pen/YVvLdx",
+      "title": "something to celebrate my new ukulele"
+    },
+    {
+      "done": true,
+      "link": "https://codepen.io/graziastrax/pen/WjzZpx",
+      "title": "draw something with html and css"
+    },
+    {
+      "title": "a ride with a bicycle"
+    }
+  ],
+  "codepen-suggestions": {
+    "title": "test"
+  },
+  "posts": {
+    "-KpicL8k6aiPoXxtpy58": {
+      "body": "<p>Hi there,</p><p>this is a test</p>",
+      "creationDate": 1500799645155,
+      "id": "-KpicL8k6aiPoXxtpy58",
+      "isPublic": false,
+      "location": "Dublin, Ireland",
+      "modifyDate": 1500799683079,
+      "title": "This is a test"
+    }
+  },
+  "quotes": [
+    {
+      "author": "A. A. Milne",
+      "quote": "Always remember you are braver than you believe, stronger than you seem, and smarter than you think"
+    },
+    {
+      "quote": "Life isn't about waiting for the storm to pass. It's about learning to dance in the rain."
+    },
+    {
+      "author": "William James",
+      "quote": "If you can change your mind, you can change your life."
+    },
+    {
+      "author": "Peter Drucker",
+      "quote": "The best way to predict the future is to create it."
+    },
+    {
+      "author": "Norman Vincent Peale",
+      "quote": "Change your thoughts and you change your world."
+    },
+    {
+      "author": "Nelson Mandela",
+      "quote": "It always seems impossible until it's done."
+    },
+    {
+      "author": "Walt Disney",
+      "quote": "If you can dream it, you can do it."
+    }
+  ],
+  "readings": {
+    "have_read": [
+      {
+        "author": "Bill Bryson",
+        "mostLoved": true,
+        "title": "A Short History of Nearly Everything"
+      },
+      {
+        "author": "Wayne W. Dyer",
+        "mostLoved": true,
+        "title": "Your Erroneous Zones"
+      },
+      {
+        "author": "Bill Bryson",
+        "title": "Neither Here Nor There"
+      },
+      {
+        "author": "Robyn Davidson",
+        "title": "Tracks"
+      },
+      {
+        "author": "Cheryl Strayed",
+        "title": "Wild: From Lost to Found on the Pacific Crest Trail"
+      },
+      {
+        "author": "Bill Bryson",
+        "title": "A Walk in the Woods"
+      },
+      {
+        "author": "Wilma Johnson",
+        "title": "Surf Mama"
+      },
+      {
+        "author": "Paulo Coelho",
+        "mostLoved": true,
+        "title": "The Alchemist"
+      },
+      {
+        "author": "Paulo Coelho",
+        "title": "The Pilgrimage"
+      },
+      {
+        "author": "Paulo Coelho",
+        "title": "Eleven Minutes"
+      },
+      {
+        "author": "Hal Belson",
+        "mostLoved": true,
+        "title": "Il meraviglioso Viaggio del Viaggiatore Turchino"
+      },
+      {
+        "author": "Rachel Joyce",
+        "title": "The Unlikely Pilgrimage of Harold Fry"
+      },
+      {
+        "author": "Suzanne Collins",
+        "title": "The Hunger Games trylogy"
+      }
+    ],
+    "on_the_shelf": [
+      {
+        "author": "Wayne W. Dyer",
+        "title": "Living the Wisdom of the Tao"
+      },
+      {
+        "author": "Richard Dawkins",
+        "title": "The Selfish Gene"
+      },
+      {
+        "author": "Kary Mullis",
+        "title": "Dancing Naked in the Mind Field"
+      },
+      {
+        "author": "Jon Krakauer",
+        "title": "Into The Wild"
+      }
+    ],
+    "reading_now": [
+      {
+        "author": "Clarissa Pinkola Estés",
+        "title": "Women who run with the wolves"
+      },
+      {
+        "author": "T. K. V. Desikachar",
+        "title": "Heart of Yoga: Developing a Personal Practice"
+      }
+    ]
+  }
+}

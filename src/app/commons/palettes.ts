@@ -13,7 +13,13 @@ const defs = {
 
 const codes = Object.keys(defs);
 
+const extra = {
+  day: '#ffffff',
+  night: '#000000',
+};
+
 export const palettes = {
   codes,
   defs,
+  extra,
 };

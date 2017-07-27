@@ -22,3 +22,4 @@ $color-transition: .2s;
 $menu-height: 45px;
 
 $gelatineButtonAnimation: gelatine .5s cubic-bezier(.6, 4, .3, .8) 1;
+$gelatineButtonSlowerAnimation: gelatine .4s cubic-bezier(0, 0, 0.6, 0.8) .1s 1;

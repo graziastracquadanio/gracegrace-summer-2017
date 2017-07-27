@@ -22,6 +22,7 @@ export class PostEditorComponent implements OnInit, OnDestroy {
   editorConfig: object = editorConfig;
   form: FormGroup;
   paramsSubscription;
+  postSubscription;
   post: Post = new Post();
   postList;
   showEditorOptions: boolean = false;
@@ -44,11 +45,10 @@ export class PostEditorComponent implements OnInit, OnDestroy {
 
       if (id) {
         this.postStatus = POST_STATUS.loading;
-        const postSubscription = this.db
+        this.postSubscription = this.db
           .object(`/posts/${id}`)
           .subscribe(data => {
             this.post = new Post(data);
-            postSubscription.unsubscribe();
             this.form.patchValue(this.post.getEditableFields());
 
             this.postStatus = POST_STATUS.saved;
@@ -69,7 +69,13 @@ export class PostEditorComponent implements OnInit, OnDestroy {
   }
 
   ngOnDestroy() {
-    this.paramsSubscription.unsubscribe();
+    if (this.paramsSubscription) {
+      this.paramsSubscription.unsubscribe();
+    }
+
+    if (this.postSubscription) {
+      this.postSubscription.unsubscribe();
+    }
   }
 
   async prepareForSaving(newData) {

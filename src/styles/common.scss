@@ -1,6 +1,7 @@
 @import 'variables';
 @import 'media-queries';
 @import 'mixins';
+@import 'typography';
 
 body {
   width: 100%;
@@ -54,5 +55,69 @@ svg {
   }
   100% {
     opacity: 1;
+  }
+}
+
+b {
+  font-weight: bold;
+}
+
+i {
+  font-style: italic;
+}
+
+p {
+  margin-bottom: .5em;
+}
+
+h1 {
+  @include page_heading();
+}
+
+h2 {
+  @include section_heading();
+}
+
+h3 {
+  @include subsection_heading();
+}
+
+h4 {
+  @include subsection_subheading();
+}
+
+h5 {
+  @include general_text_bigger();
+  margin-bottom: .5em;
+}
+
+a {
+  background-color: rgba(0, 0, 0, .15);
+  padding-left: 3px;
+  padding-right: 3px;
+  color: $text-color;
+
+  .day & {
+    background-color: transparent !important;
+    color: $primary-color;
+  }
+
+  @include print {
+    color: $primary-color;
+    font-family: $secondary-heading-font;
+    padding-left: 0;
+    padding-right: 0;
+  }
+}
+
+mark {
+  background-color: rgba(255, 255, 255, .3);
+  color: inherit;
+  padding-left: .2em;
+  padding-right: .2em;
+
+  @include print() {
+    color: $black;
+    background-color: transparent;
   }
 }

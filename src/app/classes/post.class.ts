@@ -31,7 +31,11 @@ export class Post {
     });
   }
 
-  updatePost(newData: object) {
+  updatePost(newData) {
+    if (newData.creationDate && typeof newData.creationDate !== 'number') {
+      newData.creationDate = Date.parse(newData.creationDate);
+    }
+    newData.modifyDate = Date.now();
     Object.keys(newData).forEach(key => (this[key] = newData[key]));
   }
 

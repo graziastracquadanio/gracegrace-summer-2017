@@ -1,10 +1,10 @@
-import { Component, OnInit, OnDestroy } from '@angular/core';
+import { Component, OnInit, OnDestroy, HostBinding } from '@angular/core';
 import { Router, NavigationStart, NavigationEnd } from '@angular/router';
 import { ColorService } from './services';
 import 'rxjs/add/operator/filter';
 
 @Component({
-  selector: 'app-root',
+  selector: 'body',
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.scss'],
 })
@@ -22,6 +22,7 @@ export class AppComponent {
     this.colorSubscription = this.colorService.currentPalette$.subscribe(
       value => {
         this.currentPalette = value;
+        this.currentColor = this.colorService.getPaletteColor(value, 0.9);
       }
     );
 
@@ -40,4 +41,6 @@ export class AppComponent {
   ngOnDestroy() {
     this.colorSubscription.unsubscribe();
   }
+
+  @HostBinding('style.backgroundColor') currentColor = 'white';
 }

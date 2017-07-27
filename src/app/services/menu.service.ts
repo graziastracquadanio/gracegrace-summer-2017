@@ -6,7 +6,7 @@ export class MenuService {
   private isOpenSource = new BehaviorSubject<boolean>(false);
   isOpen$ = this.isOpenSource.asObservable();
 
-  constructor() { }
+  constructor() {}
 
   openMenu() {
     this.isOpenSource.next(true);

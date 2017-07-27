@@ -1,15 +1,15 @@
 <div [ngClass]="[currentPalette]">
-  <app-menu [color]="currentPalette" ></app-menu>
+  <div class="app_container">
+    <app-menu [color]="currentPalette" ></app-menu>
 
-  <router-outlet>
-    <div class="colorful-bg"></div>
-  </router-outlet>
+    <router-outlet>
+      <div class="colorful-bg"></div>
+    </router-outlet>
 
-  <a
-    class="side-link"
-    title="Life"
-    routerLink="/manager"
-    [inlineSVG]="'/assets/svg/list.svg'">
-  </a>
-  <settings></settings>
+    <settings></settings>
+  </div>
 </div>
+
+<footer class="footer_container">
+  <h3>I will be a random quote</h3>
+</footer>

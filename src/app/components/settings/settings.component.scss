@@ -8,24 +8,27 @@ $colors: length($palettes-main) + 3;
   position: fixed;
   bottom: 0;
   right: 0;
+  z-index: 100;
 }
 
 .fab {
-  width: 2em;
-  height: 2em;
+  height: 2.5em;
+  width: 2.5em;
   margin: 0.5em;
   cursor: pointer;
   position: relative;
-  z-index: 10;
+  z-index: 101;
+  color: white;
+  transform-origin: 50% 50%;
 
   &:hover {
     animation: fabRotation 4s ease-in-out;
   }
 
-  /deep/ svg {
-    width: 100%;
+  md-icon {
     height: 100%;
-    fill: white;
+    width: 100%;
+    font-size: 2.5em;
   }
 }
 
@@ -33,17 +36,17 @@ $colors: length($palettes-main) + 3;
   position: absolute;
   right: 0;
   bottom: 0;
-  padding-right: 3em;
+  padding-right: 3.5em;
+  padding-bottom: .3em;
   width: 90vw;
   display: flex;
   flex-wrap: wrap-reverse;
   justify-content: flex-end;
-  padding-bottom: 0.2em;
 
   .option {
-    width: 2.3em;
-    height: 2.3em;
-    padding: .3em;
+    width: 2em;
+    height: 2em;
+    margin: .3em;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -90,8 +93,24 @@ $colors: length($palettes-main) + 3;
 .icon-option {
   button {
     background-color: white;
-    fill: $black;
-    padding: .3em;
+    color: $black;
+
+    span {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    md-icon {
+      height: 100%;
+      width: 100%;
+    }
+  }
+
+  &.night-option {
+    span {
+      transform: rotate(135deg);
+    }
   }
 }
 
@@ -104,15 +123,13 @@ $colors: length($palettes-main) + 3;
 
   .icon-option {
     button {
-      fill: white !important;
+      color: white !important;
       background-color: $black !important;
     }
   }
 
   .fab {
-    svg {
-      fill: $black !important;
-    }
+    color: $black !important;
   }
 }
 

@@ -10,11 +10,12 @@
 
   @include smartphone {
     width: 100%;
-    padding: 1em 1em;
+    padding: 1em 1.5em;
   }
 
   &.content-height {
     height: auto;
+    padding-bottom: 3em;
 
     @include print {
       width: 100%;

@@ -5,29 +5,24 @@
 $ideanAngle: 10deg;
 $color-switcher-color: $black;
 
-.colorful-bg {
-  position: fixed;
-  top: 0;
-  left: 0;
-  height: 100vh;
-  width: 100vw;
-  z-index: -1;
-  background-color: $black;
+$footer-height: 5em;
 
+.app_container {
+  min-height: 100vh;
+  margin-bottom: $footer-height;
+
+  min-height: 100vh;
+  width: 100vw;
   @include backgroundBasedOnContext();
 }
 
-.side-link {
+.footer_container {
   position: fixed;
-  right: 0;
-  bottom: 3em;
-  width: 2em;
-  height: 2em;
-  margin: 0.5em;
-  fill: white;
-
-  /deep/ .day & {
-    fill: $black;
-  }
+  bottom: 0;
+  width: 100%;
+  height: $footer-height;
+  z-index: -1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
-
