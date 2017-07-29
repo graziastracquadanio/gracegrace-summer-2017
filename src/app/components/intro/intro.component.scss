@@ -2,10 +2,30 @@
 @import 'variables';
 
 h1 {
+  min-height: 4em;
   max-width: 90%;
   font-family: $primary-heading-font;
   font-size: 2.5em;
   line-height: 1.5;
-  @include textColor();
   text-transform: inherit;
 }
+
+// .with-cursor {
+//   border-right: 2px solid;
+//   animation: animateCursor .8s linear infinite alternate;
+// }
+
+// @keyframes animateCursor {
+//   from {
+//     border-right-color: rgba(218, 223, 225, .8);
+//   }
+//   49% {
+//     border-right-color: rgba(218, 223, 225, .8);
+//   }
+//   50% {
+//     border-right-color: rgba(218, 223, 225, 0);
+//   }
+//   to {
+//     border-right-color: rgba(218, 223, 225, 0);
+//   }
+// }

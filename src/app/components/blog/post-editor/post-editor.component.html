@@ -35,10 +35,8 @@
               placeholder="Where exactly?">
           </div>
         </div>
-        <div>
-          <span class="words-counter">{{wordsCounter}} word<span *ngIf="wordsCounter.length > 1">s</span></span>
-        </div>
         <div class="extra-options_container">
+          <div class="words-counter">{{wordsCounter}} word<span *ngIf="wordsCounter > 1">s</span></div>
           <button class="extra-options_item" (click)="toggleEditorOptions()">
             <md-icon>text_format</md-icon>
           </button>
@@ -106,10 +104,10 @@
             </span>
 
             <span class="ql-formats">
-              <button class="ql-bold" [title]="'Bold'"></button>
-              <button class="ql-italic" [title]="'Italic'"></button>
-              <button class="ql-underline" [title]="'Underline'"></button>
-              <button class="ql-strike" [title]="'Strike'"></button>
+              <button class="editor_option ql-bold" [title]="'Bold'"></button>
+              <button class="editor_option ql-italic" [title]="'Italic'"></button>
+              <button class="editor_option ql-underline" [title]="'Underline'"></button>
+              <button class="editor_option ql-strike" [title]="'Strike'"></button>
             </span>
 
             <span class="ql-formats">

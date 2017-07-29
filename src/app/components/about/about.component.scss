@@ -1,5 +1,6 @@
 @import 'typography';
 
-* {
+button {
+  color: inherit;
   @include general_text();
 }

@@ -39,12 +39,8 @@ export class LoginComponent implements OnInit, OnDestroy {
           this.router.navigate([this.returnUrl]);
         }
 
-        if (prevData === false) {
-          console.log(data);
-          this.contentStatus = 'loaded';
-        }
-
         this.isLoggedIn = data;
+        this.contentStatus = 'loaded';
       });
   }
 

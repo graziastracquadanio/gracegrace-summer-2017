@@ -5,7 +5,8 @@
 
 body {
   width: 100%;
-  height: 100vh;
+  @include textColorBasedOnContext(.8, false);
+  transition: background-color $color-transition linear;
 }
 
 section {
@@ -92,14 +93,14 @@ h5 {
 }
 
 a {
+  @include general_text();
   background-color: rgba(0, 0, 0, .15);
   padding-left: 3px;
   padding-right: 3px;
-  color: $text-color;
+  color: inherit;
 
   .day & {
     background-color: transparent !important;
-    color: $primary-color;
   }
 
   @include print {
@@ -120,4 +121,8 @@ mark {
     color: $black;
     background-color: transparent;
   }
+}
+
+p {
+  @include general_text();
 }

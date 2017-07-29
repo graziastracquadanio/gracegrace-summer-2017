@@ -10,7 +10,7 @@
   margin-bottom: 1em;
   background-color: rgba(white, .4);
 
-  @include general_text(false);
+  @include general_text();
 }
 
 .add-new-entry_button {
@@ -43,7 +43,7 @@
   padding: 0.5em;
   min-height: 70vh;
 
-  @include general_text(false);
+  @include general_text();
 }
 
 .entry_row {
@@ -74,7 +74,6 @@
 
   a {
     background-color: transparent;
-    color: inherit;
   }
 }
 

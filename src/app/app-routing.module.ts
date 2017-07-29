@@ -34,6 +34,11 @@ const routes: Routes = [
     component: LoginComponent,
   },
   {
+    path: 'logout',
+    component: LoginComponent,
+    canActivate: [AuthGuard],
+  },
+  {
     path: 'manager',
     component: ManagerComponent,
     canActivate: [AuthGuard],

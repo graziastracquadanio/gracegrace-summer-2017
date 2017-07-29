@@ -1,4 +1,8 @@
+@import 'variables';
+
 $palettes-main: (
+  day: #fefefe,
+  night: $black,
   crusta: #f2784b,
   sunsetorange: #f64747,
   cabaret: #d2527f,
@@ -9,4 +13,19 @@ $palettes-main: (
   shakespeare: #52b3d9,
   mountainmeadow: #1bbc9b,
   freespeechaquamarine: #03a678
+);
+
+$palettes-text: (
+  day: $black,
+  night: #ffffff,
+  crusta: #ffffff,
+  sunsetorange: #ffffff,
+  cabaret: #ffffff,
+  plum: #ffffff,
+  honeyflower: #ffffff,
+  studio: #ffffff,
+  curiousblue: #ffffff,
+  shakespeare: #ffffff,
+  mountainmeadow: #ffffff,
+  freespeechaquamarine: #ffffff
 );

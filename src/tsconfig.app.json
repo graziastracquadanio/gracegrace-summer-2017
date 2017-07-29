@@ -8,6 +8,7 @@
     "paths": {
       "classes": ["app/classes"],
       "commons": ["app/commons"],
+      "models": ["app/models"],
       "services": ["app/services"]
     }
   },

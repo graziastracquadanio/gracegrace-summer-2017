@@ -1,7 +1,7 @@
 import { DatePipe } from '@angular/common';
 import { NgModule } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { HttpModule } from '@angular/http';
+import { HttpClientModule } from '@angular/common/http';
 import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { AngularFireModule } from 'angularfire2';
@@ -20,7 +20,12 @@ import {
 import { FIREBASE_CONFIG } from './app.config';
 import { CustomDateAdapter } from 'classes';
 
-import { AuthService, ColorService, MenuService } from './services';
+import {
+  AuthService,
+  ColorService,
+  MenuService,
+  QuoteService,
+} from './services';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -70,7 +75,7 @@ import { ToggleComponent } from './components/parts/toggle/toggle.component';
     BrowserModule,
     FormsModule,
     ReactiveFormsModule,
-    HttpModule,
+    HttpClientModule,
     InlineSVGModule,
     MarkdownToHtmlModule.forRoot(),
     MdDatepickerModule,
@@ -84,6 +89,7 @@ import { ToggleComponent } from './components/parts/toggle/toggle.component';
     ColorService,
     DatePipe,
     MenuService,
+    QuoteService,
     [{ provide: DateAdapter, useClass: CustomDateAdapter }],
   ],
   bootstrap: [AppComponent],

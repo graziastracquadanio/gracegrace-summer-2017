@@ -1,35 +1,55 @@
 import { Directive, ElementRef, Input, Renderer } from '@angular/core';
 
 @Directive({
-  selector: '[typewriting]'
+  selector: '[typewriting]',
 })
 export class TypewritingDirective {
+  private breakSymbol: string = '~';
+  breakTiming: number = 500;
+
   showTiming: number = 150;
   hideTiming: number = 100;
   pauseBetween: number = 500;
+
   words: string[] = [];
   processedWords: any[] = [];
   fullTiming: number = 0;
 
-  constructor(
-    private elementRef: ElementRef,
-    private renderer: Renderer) {
-  }
+  constructor(private elementRef: ElementRef, private renderer: Renderer) {}
 
-  private typeWord({word, showAt, hideAt}) {
+  private typeWord({ word, showAt, hideAt }) {
     const { showTiming, hideTiming } = this;
     let element = this.elementRef.nativeElement;
-    const length = word.length;
+    const wordNoBreaks = this.getRealWord(word);
+    let breaks = 0;
+    let letterTiming = showAt;
 
-    for(let i=0; i<=length; i++) {
-      setTimeout(() => {
-        element.innerHTML = word.slice(0, i);
-      }, showAt + (showTiming * i));
-
-      setTimeout(() => {
-        element.innerHTML = word.slice(0, length - i);
-      }, hideAt + (hideTiming * i));
+    for (let i = 0; i <= word.length; i++) {
+      const letter = word.slice(i - 1, i);
+      if (letter === this.breakSymbol) {
+        letterTiming += this.breakTiming;
+      } else {
+        letterTiming += showTiming;
+        setTimeout(() => {
+          element.innerHTML += letter;
+        }, letterTiming);
+      }
     }
+
+    for (let i = 0; i <= wordNoBreaks.length; i++) {
+      setTimeout(() => {
+        element.innerHTML = wordNoBreaks.slice(0, wordNoBreaks.length - i);
+      }, this.period + letterTiming + hideTiming * i);
+    }
+  }
+
+  private getRealWord(word) {
+    return word.replace(this.breakSymbol, '');
+  }
+
+  private getBreaks(word) {
+    const matches = word.match(/~/g) || [];
+    return matches.length;
   }
 
   private processWords(words: string[]) {
@@ -39,14 +59,17 @@ export class TypewritingDirective {
 
     words.forEach((word, index) => {
       const showAt = fullTiming + pauseBetween;
-      const hideAt = showAt + word.length * showTiming + period;
-      fullTiming = hideAt + word.length * hideTiming;
+      const wordNoBreaks = this.getRealWord(word);
+      const breaks = this.getBreaks(word) * this.breakTiming;
+      const hideAt =
+        showAt + wordNoBreaks.length * showTiming + breaks + period;
+      fullTiming = hideAt + wordNoBreaks.length * hideTiming;
 
       const wordSettings = {
         word,
         showAt,
-        hideAt
-      }
+        hideAt,
+      };
 
       this.processedWords.push(wordSettings);
     });
@@ -62,10 +85,15 @@ export class TypewritingDirective {
 
   private setCursor(color: string = 'gray') {
     let element = this.elementRef.nativeElement;
-    this.renderer.setElementStyle(element, 'border-right', `2px solid ${color}`);
+    this.renderer.setElementStyle(
+      element,
+      'border-right',
+      `2px solid ${color}`
+    );
   }
 
-  @Input() set typewriting(value: any) {
+  @Input()
+  set typewriting(value: any) {
     const words = typeof value === 'string' ? [value] : value;
     this.processWords(value);
     setTimeout(() => {
@@ -78,7 +106,8 @@ export class TypewritingDirective {
 
   @Input('typewritingPeriod') period: number = 2000;
 
-  @Input() set typewritingColor(value: string) {
+  @Input()
+  set typewritingColor(value: string) {
     this.setCursor(value);
   }
 }

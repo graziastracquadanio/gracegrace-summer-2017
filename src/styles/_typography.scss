@@ -3,25 +3,12 @@
 
 $slowTransition: 2s;
 
-@mixin textColor($print-color: $black) {
-  color: $text-color;
-
-  /deep/ .day & {
-    color: $dark-text-color !important;
-  }
-
-  @include print {
-    color: $print-color !important;
-  }
-}
-
 @mixin page_heading() {
   font-family: $primary-heading-font;
   font-size: 2.1em;
   text-transform: uppercase;
   line-height: 1.25;
   margin-bottom: 1em;
-  @include textColor();
 
   @include print {
     font-size: 22px;
@@ -30,15 +17,12 @@ $slowTransition: 2s;
   }
 }
 
-@mixin section_heading($manageColor: true) {
+@mixin section_heading() {
   font-family: $primary-heading-font;
   font-size: 1.8em;
   text-transform: uppercase;
   line-height: 1.25;
   margin-bottom: 0.5em;
-  @if $manageColor == true {
-    @include textColor();
-  }
 
   @include print {
     font-size: 16px;
@@ -52,7 +36,6 @@ $slowTransition: 2s;
   font-weight: 300;
   line-height: 1.25;
   margin-bottom: 0.3em;
-  @include textColor();
 
   b {
     letter-spacing: 1px;
@@ -69,7 +52,6 @@ $slowTransition: 2s;
   font-size: 1.1em;
   line-height: 1.25;
   margin-bottom: 0.2em;
-  @include textColor();
 
   @include print {
     font-size: 13px;
@@ -77,13 +59,10 @@ $slowTransition: 2s;
   }
 }
 
-@mixin general_text($manageColor: true, $color: $black) {
+@mixin general_text() {
   font-family: $general-font;
   font-size: 1.05em;
   line-height: 1.5;
-  @if $manageColor == true {
-    @include textColor($color);
-  }
 
   @include print {
     font-size: 12px;
@@ -91,11 +70,10 @@ $slowTransition: 2s;
   }
 }
 
-@mixin general_text_bigger($color: $text-color) {
+@mixin general_text_bigger() {
   font-family: $general-font;
   font-size: 1.2em;
   line-height: 1.5;
-  @include textColor($color);
 
   @include print {
     font-size: 12px;

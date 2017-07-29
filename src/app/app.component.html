@@ -6,10 +6,14 @@
       <div class="colorful-bg"></div>
     </router-outlet>
 
-    <settings></settings>
   </div>
+  <footer class="footer_container screen-only">
+    <content>
+      <div class="quote">
+        <h3 class="quote_body">{{quote.quote}}</h3>
+        <p class="quote_author">{{quote.author}}</p>
+      </div>
+      <settings></settings>
+    </content>
+  </footer>
 </div>
-
-<footer class="footer_container">
-  <h3>I will be a random quote</h3>
-</footer>

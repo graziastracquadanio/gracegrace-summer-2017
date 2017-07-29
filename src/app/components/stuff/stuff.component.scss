@@ -3,10 +3,6 @@
 @import 'typography';
 @import 'variables';
 
-* {
-  box-sizing: border-box;
-}
-
 .intro-block {
   margin-bottom: 2em;
 
@@ -29,22 +25,28 @@
 .list {
   padding: 1em;
 
+  @include not-smartphone {
+    &-1-md {
+      width: 100%;
+    }
+
+    &-2-md {
+      width: 100/2 * 1%;
+    }
+  }
+
   @include smartphone {
     width: 100%;
     padding: 1em;
-  }
-
-  &-1-md {
-    width: 100%;
-  }
-
-  &-2-md {
-    width: 100/2 * 1%;
   }
 }
 
 h2 {
   margin-bottom: 1em;
+
+  @include smartphone {
+    text-align: center;
+  }
 }
 
 p {

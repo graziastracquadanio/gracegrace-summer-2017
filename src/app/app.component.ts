@@ -1,7 +1,8 @@
 import { Component, OnInit, OnDestroy, HostBinding } from '@angular/core';
 import { Router, NavigationStart, NavigationEnd } from '@angular/router';
-import { ColorService } from './services';
+import { ColorService, QuoteService } from './services';
 import 'rxjs/add/operator/filter';
+import { Quote } from 'models';
 
 @Component({
   selector: 'body',
@@ -11,20 +12,23 @@ import 'rxjs/add/operator/filter';
 export class AppComponent {
   currentPalette: string;
   colorSubscription;
+  quote: Quote = new Quote();
 
-  constructor(private colorService: ColorService, private router: Router) {}
-
-  showNextPalette() {
-    this.colorService.setNextPalette();
-  }
+  constructor(
+    private colorService: ColorService,
+    private quoteService: QuoteService,
+    private router: Router
+  ) {}
 
   ngOnInit() {
     this.colorSubscription = this.colorService.currentPalette$.subscribe(
       value => {
         this.currentPalette = value;
-        this.currentColor = this.colorService.getPaletteColor(value, 0.9);
+        this.backgroundColor = this.colorService.getPaletteColor(value, 0.9);
       }
     );
+
+    this.quoteService.getQOD().subscribe(quote => (this.quote = quote));
 
     this.router.events.subscribe(event => {
       if (event instanceof NavigationStart) {
@@ -42,5 +46,10 @@ export class AppComponent {
     this.colorSubscription.unsubscribe();
   }
 
-  @HostBinding('style.backgroundColor') currentColor = 'white';
+  // @HostBinding('style.color') currentColor = 'white';
+  @HostBinding('style.backgroundColor') backgroundColor = 'white';
+
+  showNextPalette() {
+    this.colorService.setNextPalette();
+  }
 }

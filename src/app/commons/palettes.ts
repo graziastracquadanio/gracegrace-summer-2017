@@ -14,8 +14,8 @@ const defs = {
 const codes = Object.keys(defs);
 
 const extra = {
-  day: '#ffffff',
-  night: '#000000',
+  day: '#FEFEFE',
+  night: '#2c3e50',
 };
 
 export const palettes = {

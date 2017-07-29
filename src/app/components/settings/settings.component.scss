@@ -63,13 +63,15 @@ $colors: length($palettes-main) + 3;
     }
   }
 
-  &.closed .option {
-    transform: translateY(200px);
-    transition: transform .4s ease-in;
+  &.closed {
+    .option {
+      transform: translateY(200px);
+      transition: transform .4s ease-in;
 
-    @for $i from 0 through $colors {
-      &:nth-child(#{$i}) {
-        transition-delay: 0.05s * $i;
+      @for $i from 0 through $colors {
+        &:nth-child(#{$i}) {
+          transition-delay: 0.05s * $i;
+        }
       }
     }
   }
@@ -123,7 +125,10 @@ $colors: length($palettes-main) + 3;
 
   .icon-option {
     button {
-      color: white !important;
+      md-icon {
+        color: white !important;
+      }
+
       background-color: $black !important;
     }
   }

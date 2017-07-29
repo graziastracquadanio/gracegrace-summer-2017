@@ -52,6 +52,7 @@ export class PostEditorComponent implements OnInit, OnDestroy {
             this.form.patchValue(this.post.getEditableFields());
 
             this.postStatus = POST_STATUS.saved;
+            this.postSubscription.unsubscribe();
           });
       } else {
         this.post = new Post();
