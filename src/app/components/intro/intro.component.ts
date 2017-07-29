@@ -7,18 +7,14 @@ import { Component } from '@angular/core';
 })
 export class IntroComponent {
   introLove: string[] = [
-    'love making...~cooool things!',
+    'love making cooool things',
     'love drawing with code.',
-    'love to create new things.',
+    'love creating new things.',
     'love to have fun coding.',
+    'love to solve problems.',
     'love making beautiful things.',
     'love making awesome things',
-    'love to solve problems.',
     'love experiment new things.',
-    '. . .',
-    '. . .',
-    '. . .',
-    '. . .',
     '. . .',
     'will travel the world~~~!',
   ];

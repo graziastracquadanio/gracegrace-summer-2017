@@ -9,78 +9,81 @@ export class TypewritingDirective {
 
   showTiming: number = 150;
   hideTiming: number = 100;
-  pauseBetween: number = 500;
+  pauseAtTheEnd: number = 1000;
+  pauseInBetween: number = 1000;
 
   words: string[] = [];
-  processedWords: any[] = [];
-  fullTiming: number = 0;
 
   constructor(private elementRef: ElementRef, private renderer: Renderer) {}
 
-  private typeWord({ word, showAt, hideAt }) {
-    const { showTiming, hideTiming } = this;
-    let element = this.elementRef.nativeElement;
-    const wordNoBreaks = this.getRealWord(word);
-    let breaks = 0;
-    let letterTiming = showAt;
+  private async processWord(index: number, counter: number) {
+    if (index === this.words.length) {
+      index = 0;
+      counter -= 1;
+    }
 
-    for (let i = 0; i <= word.length; i++) {
-      const letter = word.slice(i - 1, i);
-      if (letter === this.breakSymbol) {
-        letterTiming += this.breakTiming;
-      } else {
-        letterTiming += showTiming;
-        setTimeout(() => {
-          element.innerHTML += letter;
-        }, letterTiming);
+    if (counter === 0) {
+      return;
+    }
+
+    const word: string = this.words[index];
+    await this.wait(this.pauseInBetween);
+    await this.processLetter(0, 1, word);
+
+    // recursively process next word
+    this.processWord(index + 1, counter);
+  }
+
+  private wait = ms => new Promise(resolve => setTimeout(resolve, ms));
+
+  private async processLetter(current: number, next: number, word: string) {
+    const nextLetter = word[next];
+    let _current, _next, timing;
+
+    // keep typing
+    if (nextLetter && current < next) {
+      _current = next;
+      _next = next + 1;
+      timing = this.showTiming;
+      if (nextLetter === this.breakSymbol) {
+        timing += this.breakTiming;
       }
     }
 
-    for (let i = 0; i <= wordNoBreaks.length; i++) {
-      setTimeout(() => {
-        element.innerHTML = wordNoBreaks.slice(0, wordNoBreaks.length - i);
-      }, this.period + letterTiming + hideTiming * i);
+    // reached the end of the word, it will start cancelling
+    if (!nextLetter && current < next) {
+      _current = next;
+      _next = current;
+      timing = this.pauseAtTheEnd;
     }
+
+    // keep cancelling
+    if (nextLetter && current > next) {
+      _current = next;
+      _next = next - 1;
+      timing = this.hideTiming;
+
+      if (nextLetter === this.breakSymbol) {
+        timing = 0;
+      }
+    }
+
+    if (!nextLetter && current === 0) {
+      return word;
+    }
+
+    this.type(word, 0, _current);
+    await this.wait(timing);
+
+    return this.processLetter(_current, _next, word);
   }
 
-  private getRealWord(word) {
-    return word.replace(this.breakSymbol, '');
-  }
-
-  private getBreaks(word) {
-    const matches = word.match(/~/g) || [];
-    return matches.length;
-  }
-
-  private processWords(words: string[]) {
-    let fullTiming = 0;
-    const { showTiming, hideTiming, period, pauseBetween } = this;
-    this.words = words;
-
-    words.forEach((word, index) => {
-      const showAt = fullTiming + pauseBetween;
-      const wordNoBreaks = this.getRealWord(word);
-      const breaks = this.getBreaks(word) * this.breakTiming;
-      const hideAt =
-        showAt + wordNoBreaks.length * showTiming + breaks + period;
-      fullTiming = hideAt + wordNoBreaks.length * hideTiming;
-
-      const wordSettings = {
-        word,
-        showAt,
-        hideAt,
-      };
-
-      this.processedWords.push(wordSettings);
-    });
-
-    this.fullTiming = fullTiming;
-  }
-
-  private cycleWords() {
-    this.processedWords.forEach(wordSettings => {
-      this.typeWord(wordSettings);
-    });
+  private type(word, start, end) {
+    const wordToPrint = word
+      .slice(start, end)
+      .replace(/~/g, '')
+      .replace(/\s/g, '&nbsp;');
+    this.elementRef.nativeElement.innerHTML = wordToPrint;
   }
 
   private setCursor(color: string = 'gray') {
@@ -95,16 +98,11 @@ export class TypewritingDirective {
   @Input()
   set typewriting(value: any) {
     const words = typeof value === 'string' ? [value] : value;
-    this.processWords(value);
-    setTimeout(() => {
-      this.cycleWords();
-      setInterval(() => {
-        this.cycleWords();
-      }, this.fullTiming);
-    }, 1000);
+    this.words = words;
+    this.processWord(0, this.repeat);
   }
 
-  @Input('typewritingPeriod') period: number = 2000;
+  @Input('typewritingRepeat') repeat: number = 1;
 
   @Input()
   set typewritingColor(value: string) {
