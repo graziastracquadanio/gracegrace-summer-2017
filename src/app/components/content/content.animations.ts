@@ -8,7 +8,7 @@ import {
 } from '@angular/animations';
 
 export const fadeInOut = trigger('routingAnimation', [
-  state('*', style({ opacity: 0 })),
+  state('void', style({ opacity: 0 })),
   state('loaded', style({ opacity: 1 })),
   transition('void => loaded', [
     style({ opacity: 0 }),
