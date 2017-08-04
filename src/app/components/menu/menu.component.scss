@@ -32,13 +32,19 @@ $color-opacity: 0.8;
   display: flex;
   z-index: 10;
 
+  @include smartphone {
+    &.menu-hidden {
+      position: absolute;
+    }
+  }
+
   &_content {
     display: flex;
     width: 100%;
     justify-content: space-between;
     align-items: center;
-
     @include backgroundBasedOnContext($color-opacity);
+    transition: color .2s ease-out;
 
     @include not-smartphone {
       transform: translateY(0%) !important;
@@ -53,8 +59,6 @@ $color-opacity: 0.8;
       background-color: $black;
       background-color: rgba($black, $color-opacity);
     }
-
-    transition: color .2s ease-out;
 
     @include smartphone {
       height: 100vh;
@@ -73,19 +77,31 @@ $color-opacity: 0.8;
   }
 
   &_toggle {
-    position: fixed;
+    position: absolute;
     top: 0;
     right: 0;
-    $menu-button-size: 2.1em;
+    $menu-button-size: 2.5em;
     height: $menu-button-size;
     width: $menu-button-size;
-    margin: 0.5em 0.8em;
+    padding: 0.2em;
+    margin: 0.3em 0.5em;
     z-index: 100;
 
     display: flex;
     flex-direction: column;
     justify-content: space-around;
     cursor: pointer;
+    background-color: transparent;
+    @include backgroundBasedOnContext(1);
+    transition: background-color 0.10s ease-out;
+
+    .menu-visible & {
+      background-color: transparent;
+    }
+
+    .menu-hidden & {
+      transition: background-color .2s linear .2s;
+    }
 
     @include not-smartphone() {
       opacity: 0;

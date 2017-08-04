@@ -13,6 +13,13 @@
     padding: 1em 1.5em;
   }
 
+  &.full-width-mobile {
+    @include smartphone {
+      padding-left: 0;
+      padding-right: 0;
+    }
+  }
+
   &.content-height {
     height: auto;
     padding-bottom: 3em;
@@ -40,6 +47,10 @@
 
   &.after-menu {
     padding-top: 5em;
+
+    @include smartphone {
+      padding-top: 3em;
+    }
   }
 
   &.last-container {

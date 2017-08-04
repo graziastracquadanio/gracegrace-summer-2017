@@ -12,6 +12,8 @@ import {
   Validators,
   FormBuilder,
 } from '@angular/forms';
+import { colors } from './post-editor.colors';
+import { ColorService } from 'services';
 
 @Component({
   selector: 'post-editor',
@@ -28,13 +30,19 @@ export class PostEditorComponent implements OnInit, OnDestroy {
   showEditorOptions: boolean = false;
   postStatus: string;
   wordsCounter: number = 0;
+  textColorOptions: string[] = colors;
+  bgColorOptions: string[] = [];
 
   constructor(
+    private colorService: ColorService,
     private fb: FormBuilder,
     private db: AngularFireDatabase,
     private route: ActivatedRoute,
     private router: Router
   ) {
+    this.bgColorOptions = colors.map(color =>
+      colorService.hexToRgba(color, 0.5)
+    );
     this.form = this.fb.group(this.post.getEditableFields());
     this.postList = this.db.list('/posts');
   }
