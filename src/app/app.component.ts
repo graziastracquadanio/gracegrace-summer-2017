@@ -23,6 +23,7 @@ export class AppComponent {
   ngOnInit() {
     this.colorSubscription = this.colorService.currentPalette$.subscribe(
       value => {
+        console.log(value);
         this.currentPalette = value;
         this.backgroundColor = this.colorService.getPaletteColor(value, 0.9);
       }
@@ -31,12 +32,7 @@ export class AppComponent {
     this.quoteService.getQOD().subscribe(quote => (this.quote = quote));
 
     this.router.events.subscribe(event => {
-      if (event instanceof NavigationStart) {
-        const shouldChangeColor = !this.colorService.isCurrentPaletteInWhitelist();
-        if (shouldChangeColor) {
-          this.showNextPalette();
-        }
-      } else if (event instanceof NavigationEnd) {
+      if (event instanceof NavigationEnd) {
         window.scrollTo(0, 0);
       }
     });
@@ -48,8 +44,4 @@ export class AppComponent {
 
   // @HostBinding('style.color') currentColor = 'white';
   @HostBinding('style.backgroundColor') backgroundColor = 'white';
-
-  showNextPalette() {
-    this.colorService.setNextPalette();
-  }
 }

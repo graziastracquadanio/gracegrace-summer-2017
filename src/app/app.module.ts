@@ -31,7 +31,6 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { AboutComponent } from './components/about/about.component';
 import { IntroComponent } from './components/intro/intro.component';
-import { TrianglifyDirective } from './directives/trianglify.directive';
 import { MenuComponent } from './components/menu/menu.component';
 import { TypewritingDirective } from './directives/typewriting.directive';
 import { StuffComponent } from './components/stuff/stuff.component';
@@ -50,7 +49,6 @@ import { ToggleComponent } from './components/parts/toggle/toggle.component';
     AppComponent,
     AboutComponent,
     IntroComponent,
-    TrianglifyDirective,
     MenuComponent,
     TypewritingDirective,
     StuffComponent,
