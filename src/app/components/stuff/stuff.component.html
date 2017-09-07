@@ -43,11 +43,39 @@
       <ul>
         <li class="no-bullet" [ngClass]="[item.done ? 'done' : '']"
           *ngFor="let item of quoteList">
-          <p><mark>"{{ item.quote }}"</mark> <i class="author" *ngIf="item.author">({{ item.author }})</i></p>
+          <mark>"{{ item.quote }}"</mark> <i class="author" *ngIf="item.author">({{ item.author }})</i>
+        </li>
+      </ul>
+    </div>
+    <div class="list list-1-md"
+      [@loadedAnimation]="readingListState"
+      (@loadedAnimation.done)="animationDone($event, 'readingList')"
+        >
+      <h2>Some books</h2>
+      <ul>
+        <li><b>READING NOW</b></li>
+        <li class="no-bullet" *ngFor="let book of readingList['reading']">
+          <span [ngClass]="[book.mostLoved ? 'loved' : '']">{{book.title}}</span>
+           -
+          <i>{{book.author}}</i>
+        </li>
+      </ul>
+      <ul>
+        <li><b>HAVE READ</b></li>
+        <li class="no-bullet" *ngFor="let book of readingList['read']">
+          <span [ngClass]="[book.mostLoved ? 'loved' : '']">{{book.title}}</span>
+           -
+          <i>{{book.author}}</i>
+        </li>
+      </ul>
+      <ul>
+        <li><b>WAITING ON THE SHELF</b></li>
+        <li class="no-bullet" *ngFor="let book of readingList['waiting']">
+          <span [ngClass]="[book.mostLoved ? 'loved' : '']">{{book.title}}</span>
+           -
+          <i>{{book.author}}</i>
         </li>
       </ul>
     </div>
   </div>
 </content>
-
-<readings></readings>

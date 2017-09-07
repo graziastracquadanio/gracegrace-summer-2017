@@ -35,7 +35,6 @@ import { TrianglifyDirective } from './directives/trianglify.directive';
 import { MenuComponent } from './components/menu/menu.component';
 import { TypewritingDirective } from './directives/typewriting.directive';
 import { StuffComponent } from './components/stuff/stuff.component';
-import { ReadingsComponent } from './components/readings/readings.component';
 import { ContentComponent } from './components/content/content.component';
 import { SettingsComponent } from './components/settings/settings.component';
 import { CurriculumComponent } from './components/curriculum/curriculum.component';
@@ -55,7 +54,6 @@ import { ToggleComponent } from './components/parts/toggle/toggle.component';
     MenuComponent,
     TypewritingDirective,
     StuffComponent,
-    ReadingsComponent,
     ContentComponent,
     SettingsComponent,
     CurriculumComponent,

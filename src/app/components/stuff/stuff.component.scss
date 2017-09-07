@@ -1,7 +1,7 @@
-@import 'media-queries';
-@import 'mixins';
-@import 'typography';
-@import 'variables';
+@import "media-queries";
+@import "mixins";
+@import "typography";
+@import "variables";
 
 .intro-block {
   margin-bottom: 2em;
@@ -54,42 +54,48 @@ p {
   margin-bottom: 0.5em;
 }
 
-ul li {
-  @include general_text();
-  line-height: 1.25;
-  margin-bottom: 0.2em;
-  position: relative;
-  padding-left: 1.2em;
+ul {
+  margin-bottom: 0.8em;
 
-  &:before {
-    content: '#';
-    position: absolute;
-    left: 0em;
-  }
-
-  &.no-bullet {
-    padding-left: 0;
+  li {
+    @include general_text();
+    line-height: 1.25;
+    position: relative;
+    padding-left: 1.2em;
+    padding-top: 0.3em;
+    padding-bottom: 0.3em;
+    border-bottom: 1px dashed rgba(218, 223, 225, 0.3);
 
     &:before {
-      content: '';
+      content: "#";
+      position: absolute;
+      left: 0em;
     }
-  }
 
-  &.done span {
-    text-decoration: line-through;
+    &.no-bullet {
+      padding-left: 0;
 
-    &:hover {
-      text-decoration: underline;
+      &:before {
+        content: "";
+      }
     }
-  }
 
-  a {
-    text-decoration: none;
-    display: inline-block;
+    &.done span {
+      text-decoration: line-through;
 
-    span {
-      text-decoration: underline;
-      cursor: pointer;
+      &:hover {
+        text-decoration: underline;
+      }
+    }
+
+    a {
+      text-decoration: none;
+      display: inline-block;
+
+      span {
+        text-decoration: underline;
+        cursor: pointer;
+      }
     }
   }
 }
@@ -99,7 +105,9 @@ ul li {
   display: inline-block;
 }
 
-mark {
-  background-color: rgba(255, 255, 255, .2);
+mark,
+.loved {
+  line-height: 2;
+  background-color: rgba(255, 255, 255, 0.2);
   @include textColor();
 }
